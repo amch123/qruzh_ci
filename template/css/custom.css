@@ -1,0 +1,31 @@
+/* Add here all your CSS customizations */
+
+.title-special-section {
+	background: #ff7bd5;
+	padding: 40px;
+	color:#FFF;
+	font-size: 60px;
+	font-family: "Shadows Into Light", cursive;
+}
+
+.special-section {
+	background: #F8F8F8;
+	border-top: 5px solid #f1f1f1;
+	margin: 0px 0;
+	padding: 0px 0px 20px;
+}
+
+.numbers {
+	color: #610068;
+	font-size: 50px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.words {
+	color: #fe5aff;
+	font-size: 20px;
+}
+
+
+

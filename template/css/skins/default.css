@@ -1,0 +1,183 @@
+a {
+	color: #000;
+}
+
+a:hover {
+	color: #000;
+}
+
+a:focus {
+	color: #000;
+}
+
+a:active {
+	color: #000;
+}
+
+html .heading-primary,
+html .lnk-primary,
+html .text-color-primary {
+	color: #000 !important;
+}
+
+html .heading.heading-primary h1,
+html .heading.heading-primary h2,
+html .heading.heading-primary h3,
+html .heading.heading-primary h4,
+html .heading.heading-primary h5,
+html .heading.heading-primary h6 {
+	border-color: #0088cc;
+}
+
+html .heading-secondary,
+html .lnk-secondary,
+html .text-color-secondary {
+	color: #e36159 !important;
+}
+
+html .heading.heading-secondary h1,
+html .heading.heading-secondary h2,
+html .heading.heading-secondary h3,
+html .heading.heading-secondary h4,
+html .heading.heading-secondary h5,
+html .heading.heading-secondary h6 {
+	border-color: #e36159;
+}
+
+html .heading-tertiary,
+html .lnk-tertiary,
+html .text-color-tertiary {
+	color: #2baab1 !important;
+}
+
+html .heading.heading-tertiary h1,
+html .heading.heading-tertiary h2,
+html .heading.heading-tertiary h3,
+html .heading.heading-tertiary h4,
+html .heading.heading-tertiary h5,
+html .heading.heading-tertiary h6 {
+	border-color: #2baab1;
+}
+
+html .heading-quaternary,
+html .lnk-quaternary,
+html .text-color-quaternary {
+	color: #383f48 !important;
+}
+
+html .heading.heading-quaternary h1,
+html .heading.heading-quaternary h2,
+html .heading.heading-quaternary h3,
+html .heading.heading-quaternary h4,
+html .heading.heading-quaternary h5,
+html .heading.heading-quaternary h6 {
+	border-color: #383f48;
+}
+
+html .heading-dark,
+html .lnk-dark,
+html .text-color-dark {
+	color: #2e353e !important;
+}
+
+html .heading.heading-dark h1,
+html .heading.heading-dark h2,
+html .heading.heading-dark h3,
+html .heading.heading-dark h4,
+html .heading.heading-dark h5,
+html .heading.heading-dark h6 {
+	border-color: #2e353e;
+}
+
+html .heading-light,
+html .lnk-light,
+html .text-color-light {
+	color: #ffffff !important;
+}
+
+html .heading.heading-light h1,
+html .heading.heading-light h2,
+html .heading.heading-light h3,
+html .heading.heading-light h4,
+html .heading.heading-light h5,
+html .heading.heading-light h6 {
+	border-color: #ffffff;
+}
+
+html .background-color-primary {
+	background-color: #0088cc !important;
+}
+
+html .background-color-secondary {
+	background-color: #e36159 !important;
+}
+
+html .background-color-tertiary {
+	background-color: #2baab1 !important;
+}
+
+html .background-color-quaternary {
+	background-color: #383f48 !important;
+}
+
+html .background-color-dark {
+	background-color: #2e353e !important;
+}
+
+html .background-color-light {
+	background-color: #ffffff !important;
+}
+
+.alternative-font {
+	color: #0088cc;
+}
+
+html .blockquote-primary {
+	border-color: #0088cc !important;
+}
+
+html .blockquote-secondary {
+	border-color: #e36159 !important;
+}
+
+html .blockquote-tertiary {
+	border-color: #2baab1 !important;
+}
+
+html .blockquote-quaternary {
+	border-color: #383f48 !important;
+}
+
+html .blockquote-dark {
+	border-color: #2e353e !important;
+}
+
+html .blockquote-light {
+	border-color: #ffffff !important;
+}
+
+.sign-in-up {
+	color: #000;
+}
+
+p.drop-caps:first-child:first-letter {
+	color: #0088cc;
+}
+
+p.drop-caps.drop-caps-style-2:first-child:first-letter {
+	background-color: #0088cc;
+}
+
+ul.nav-pills > li.active > a {
+	background-color: #FF7514;
+}
+
+ul.nav-pills > li > a:hover,
+ul.nav-pills > li > a:focus {
+	background-color: #a400ce;
+}
+
+ul.nav-pills > li.active > a:hover,
+ul.nav-pills > li.active > a:focus {
+	background-color: #a400ce;
+}
