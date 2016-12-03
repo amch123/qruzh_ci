@@ -35,7 +35,7 @@ require('header.php');
                         <div>
                             <div>
                                 <div>
-                                    <img src="template/img/device.png" class="img-responsive" width="300" height="211">
+                                    <img src="<?php echo base_url(); ?>template/img/device.png" class="img-responsive" width="300" height="211">
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@ require('header.php');
                         <div>
                             <div>
                                 <div>
-                                    <img src="template/img/device.png" class="img-responsive" width="300" height="211">
+                                    <img src="<?php echo base_url(); ?>template/img/device.png" class="img-responsive" width="300" height="211">
                                 </div>
                             </div>
                         </div>

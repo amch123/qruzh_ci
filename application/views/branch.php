@@ -32,7 +32,7 @@ require('header.php');
                     <div>
                         <div>
                             <div class="thumbnail" data-appear-animation="fadeInDown" data-appear-animation-delay="300">
-                                <img src="template/img/products/product-14.png" class="img-responsive img-rounded"></img>
+                                <img src="<?php echo base_url(); ?>/template/img/products/product-14.png" class="img-responsive img-rounded"></img>
                             </div>
                         </div>
                     </div>

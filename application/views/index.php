@@ -5,7 +5,7 @@ require('header.php');
         <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options='{"gridwidth": 1170, "gridheight": 500}'>
             <ul>
                 <li data-transition="fade">
-                        <img src="template/img/slider1.jpg"  
+                        <img src="<?php echo base_url(); ?>template/img/slider1.jpg"  
 						alt=""
 						data-bgposition="center center" 
 						data-bgfit="cover" 
@@ -38,7 +38,7 @@ require('header.php');
                     </div> 
                 </li>
                 <li data-transition="fade">
-                        <img src="template/img/slider3.jpg"  
+                        <img src="<?php echo base_url(); ?>template/img/slider3.jpg"  
 						alt=""
 						data-bgposition="center center" 
 						data-bgfit="cover" 
@@ -106,7 +106,7 @@ require('header.php');
                                         <span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Detalles</em>
                                         </span>
                                     </span>
-                                    <img src="template/img/products/product-1.jpg" class="img-responsive"></img>
+                                    <img src="<?php echo base_url(); ?>template/img/products/product-1.jpg" class="img-responsive"></img>
                                 </span>
                             </a>
                             <span class="product-thumb-info-content">
@@ -132,7 +132,7 @@ require('header.php');
                                         <span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Detalles</em>
                                         </span>
                                     </span>
-                                    <img src="template/img/products/product-2.jpg" class="img-responsive"></img>
+                                    <img src="<?php echo base_url(); ?>template/img/products/product-2.jpg" class="img-responsive"></img>
                                 </span>
                             </a>
                             <span class="product-thumb-info-content">
@@ -156,7 +156,7 @@ require('header.php');
                                         <span class="product-thumb-info-act-left"><em>Ver</em></span>
                                         <span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Detalles</em></span>
                                     </span>
-                                    <img src="template/img/products/product-3.jpg" class="img-responsive"></img>
+                                    <img src="<?php echo base_url(); ?>template/img/products/product-3.jpg" class="img-responsive"></img>
                                 </span>
                             </a>
                             <span class="product-thumb-info-content">
@@ -180,7 +180,7 @@ require('header.php');
                                         <span class="product-thumb-info-act-left"><em>Ver</em></span>
                                         <span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Detalles</em></span>
                                     </span>
-                                    <img src="template/img/products/product-4.jpg" class="img-responsive"></img>
+                                    <img src="<?php echo base_url(); ?>template/img/products/product-4.jpg" class="img-responsive"></img>
                                 </span>
                             </a>
                             <span class="product-thumb-info-content">
@@ -237,8 +237,8 @@ require('header.php');
                     <div class="project-image">
                         <div id="fcSlideshow" class="fc-slideshow">
                             <ul class="fc-slides">
-                                <li><img src="template/img/projects/project-home-1.jpg" class="img-responsive"></img></li>
-                                <li><img src="template/img/projects/project-home-2.jpg" class="img-responsive"></img></li>
+                                <li><img src="<?php echo base_url(); ?>template/img/projects/project-home-1.jpg" class="img-responsive"></img></li>
+                                <li><img src="<?php echo base_url(); ?>template/img/projects/project-home-2.jpg" class="img-responsive"></img></li>
                             </ul>
                         </div>
                     </div>

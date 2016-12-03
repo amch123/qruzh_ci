@@ -12,8 +12,8 @@
         <meta name="author" content="okler.net">
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>template/img/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="<?php echo base_url(); ?>template/img/apple-touch-icon.png">
 
         <!-- Mobile Metas -->
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -22,34 +22,34 @@
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
 
         <!-- Vendor CSS -->
-        <link rel="stylesheet" href="template/vendor/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="template/vendor/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="template/vendor/simple-line-icons/css/simple-line-icons.css">
-        <link rel="stylesheet" href="template/vendor/owl.carousel/assets/owl.carousel.min.css">
-        <link rel="stylesheet" href="template/vendor/owl.carousel/assets/owl.theme.default.min.css">
-        <link rel="stylesheet" href="template/vendor/magnific-popup/magnific-popup.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/simple-line-icons/css/simple-line-icons.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/owl.carousel/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/owl.carousel/assets/owl.theme.default.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/magnific-popup/magnific-popup.css">
 
         <!-- Theme CSS -->
-        <link rel="stylesheet" href="template/css/theme.css">
-        <link rel="stylesheet" href="template/css/theme-elements.css">
-        <link rel="stylesheet" href="template/css/theme-blog.css">
-        <link rel="stylesheet" href="template/css/theme-shop.css">
-        <link rel="stylesheet" href="template/css/theme-animate.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/css/theme.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/css/theme-elements.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/css/theme-blog.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/css/theme-shop.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/css/theme-animate.css">
 
         <!-- Current Page CSS -->
-        <link rel="stylesheet" href="template/vendor/rs-plugin/css/settings.css" media="screen">
-        <link rel="stylesheet" href="template/vendor/rs-plugin/css/layers.css" media="screen">
-        <link rel="stylesheet" href="template/vendor/rs-plugin/css/navigation.css" media="screen">
-        <link rel="stylesheet" href="template/vendor/circle-flip-slideshow/css/component.css" media="screen">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/rs-plugin/css/settings.css" media="screen">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/rs-plugin/css/layers.css" media="screen">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/rs-plugin/css/navigation.css" media="screen">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/vendor/circle-flip-slideshow/css/component.css" media="screen">
 
         <!-- Skin CSS -->
-        <link rel="stylesheet" href="template/css/skins/default.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/css/skins/default.css">
 
         <!-- Theme Custom CSS -->
-        <link rel="stylesheet" href="template/css/custom.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>template/css/custom.css">
 
         <!-- Head Libs -->
-        <script src="template/vendor/modernizr/modernizr.js"></script>
+        <script src="<?php echo base_url(); ?>template/vendor/modernizr/modernizr.js"></script>
 
     </head>
     <body>
@@ -60,8 +60,8 @@
                         <div class="header-row">
                             <div class="header-column">
                                 <div class="header-logo">
-                                    <a href="{{ url('/') }}">
-                                    <img src="template/img/logo.png" width="141" height="74" data-sticky-width="82" data-sticky-height="40" data-sticky-top="" 33 ></img>
+                                    <a href="#">
+                                    <img src="<?php echo base_url(); ?>template/img/logo.png" width="141" height="74" data-sticky-width="82" data-sticky-height="40" data-sticky-top="" 33 ></img>
                                     </a>
                                 </div>
                             </div>
@@ -80,10 +80,10 @@
                                     <nav class="header-nav-top">
                                         <ul class="nav nav-pills">
                                             <li class="hidden-xs">
-                                                <a href="#"><i class="fa fa-angle-right"></i> Ingresa</a>
+                                                <a href="<?php echo base_url(); ?>index.php/login"><i class="fa fa-angle-right"></i> Ingresa</a>
                                             </li>
                                             <li class="hidden-xs">
-                                                <a href="#"><i class="fa fa-angle-right"></i> Registrate</a>
+                                                <a href="<?php echo base_url(); ?>index.php/register"><i class="fa fa-angle-right"></i> Registrate</a>
                                             </li>
                                         </ul>
                                     </nav>
@@ -100,33 +100,33 @@
                                         <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
                                             <nav>
                                                 <ul class="nav nav-pills" id="mainNav">
-                                                    <li class="active">
-                                                        <a href="#">
+                                                    <li <?php if($_SESSION['button'] == 1) { ?> class="active" <?php } ?>>
+                                                        <a href="<?php echo base_url(); ?>index.php">
                                                             Inicio
                                                         </a>
                                                     </li>
-                                                    <li class="active">
-                                                        <a href="#">
+                                                    <li <?php if($_SESSION['button'] == 2) { ?> class="active" <?php } ?>>
+                                                        <a href="<?php echo base_url(); ?>index.php/aboutus">
                                                             Nosotros
                                                         </a>
                                                     </li>
-                                                    <li class="active">
-                                                        <a href="#">
+                                                    <li <?php if($_SESSION['button'] == 3) { ?> class="active" <?php } ?>>
+                                                        <a href="<?php echo base_url(); ?>index.php/product">
                                                             Productos
                                                         </a>
                                                     </li>
-                                                    <li class="active">
-                                                        <a href="#">
-                                                            Mayoreo
+                                                    <li <?php if($_SESSION['button'] == 4) { ?> class="active" <?php } ?>>
+                                                        <a href="<?php echo base_url(); ?>index.php/wholesale">
+                                                            Mayor
                                                         </a>
                                                     </li>
-                                                    <li class="active">
-                                                        <a href="#">
+                                                    <li <?php if($_SESSION['button'] == 5) { ?> class="active" <?php } ?>>
+                                                        <a href="<?php echo base_url(); ?>index.php/branch">
                                                             Sucursales
                                                         </a>
                                                     </li>
-                                                    <li class="active">
-                                                        <a href="#">
+                                                    <li <?php if($_SESSION['button'] == 6) { ?> class="active" <?php } ?>>
+                                                        <a href="<?php echo base_url(); ?>index.php/contact">
                                                             Contáctanos
                                                         </a>
                                                     </li>

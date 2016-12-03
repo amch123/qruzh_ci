@@ -45,16 +45,10 @@ require('header.php');
                                         <div class="col-md-6">
                                             <label>Nombre *</label>
                                             <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
-                                                <span class="help-block">
-                                                    <strong>nombre</strong>
-                                                </span>
                                         </div>
                                         <div class="col-md-6">
                                             <label>Correo Eléctronico *</label>
                                             <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
-                                                <span class="help-block">
-                                                    <strong>email</strong>
-                                                </span>
                                         </div>
                                     </div>
                                 </div>
@@ -63,9 +57,6 @@ require('header.php');
                                         <div class="col-md-12">
                                             <label>Asunto</label>
                                             <input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
-                                                <span class="help-block">
-                                                    <strong>asunto</strong>
-                                                </span>
                                         </div>
                                     </div>
                                 </div>
@@ -74,9 +65,6 @@ require('header.php');
                                         <div class="col-md-12">
                                             <label>Mensaje *</label>
                                             <textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="message" id="message" required></textarea>
-                                                <span class="help-block">
-                                                    <strong>mensaje</strong>
-                                                </span>
                                         </div>
                                     </div>
                                 </div>

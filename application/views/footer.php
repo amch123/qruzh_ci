@@ -44,9 +44,9 @@
                         <div class="col-md-2">
                             <h4>Aceptamos</h4>
                             <ul class="contact">
-                                <li><a href="#" target="_blank"><img src="template/img/visa.png"></img></i></a></li>
-                                <li><a href="#" target="_blank"><img src="template/img/mastercard.png"></img></i></a></li>
-                                <li><a href="#" target="_blank"><img src="template/img/paypal.png"></img></i></a></li>
+                                <li><a href="#" target="_blank"><img src="<?php echo base_url(); ?>template/img/visa.png"></img></i></a></li>
+                                <li><a href="#" target="_blank"><img src="<?php echo base_url(); ?>template/img/mastercard.png"></img></i></a></li>
+                                <li><a href="#" target="_blank"><img src="<?php echo base_url(); ?>template/img/paypal.png"></img></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             <div class="col-md-1">
                                 <nav id="sub-menu">
                                     <a href="#" class="logo">
-                                        <img src="template/img/logo-footer.png"></img>
+                                        <img src="<?php echo base_url(); ?>template/img/logo-footer.png"></img>
                                     </a>
                                 </nav>
                             </div>
@@ -77,36 +77,36 @@
             </footer>
         </div>
         <!-- Vendor -->
-        <script type="text/javascript" src="template/vendor/jquery/jquery.js"></script> 
-        <script type="text/javascript" src="template/vendor/jquery.appear/jquery.appear.js"></script> 
-        <script type="text/javascript" src="template/vendor/jquery.easing/jquery.easing.js"></script> 
-        <script type="text/javascript" src="template/vendor/jquery-cookie/jquery-cookie.js"></script> 
-        <script type="text/javascript" src="template/vendor/bootstrap/js/bootstrap.js"></script> 
-        <script type="text/javascript" src="template/vendor/common/common.js"></script> 
-        <script type="text/javascript" src="template/vendor/jquery.validation/jquery.validation.js"></script> 
-        <script type="text/javascript" src="template/vendor/jquery.stellar/jquery.stellar.js"></script>
-        <script type="text/javascript" src="template/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
-        <script type="text/javascript" src="template/vendor/jquery.gmap/jquery.gmap.js"></script>
-        <script type="text/javascript" src="template/vendor/jquery.lazyload/jquery.lazyload.js"></script>
-        <script type="text/javascript" src="template/vendor/isotope/jquery.isotope.js"></script>
-        <script type="text/javascript" src="template/vendor/owl.carousel/owl.carousel.js"></script>
-        <script type="text/javascript" src="template/vendor/magnific-popup/jquery.magnific-popup.js"></script>
-        <script type="text/javascript" src="template/vendor/vide/vide.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/jquery/jquery.js"></script> 
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/jquery.appear/jquery.appear.js"></script> 
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/jquery.easing/jquery.easing.js"></script> 
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/jquery-cookie/jquery-cookie.js"></script> 
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/bootstrap/js/bootstrap.js"></script> 
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/common/common.js"></script> 
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/jquery.validation/jquery.validation.js"></script> 
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/jquery.stellar/jquery.stellar.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/jquery.gmap/jquery.gmap.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/jquery.lazyload/jquery.lazyload.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/isotope/jquery.isotope.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/owl.carousel/owl.carousel.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/vide/vide.js"></script>
             
         <!-- Theme Base, Components and Settings -->
-        <script type="text/javascript" src="template/js/theme.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/js/theme.js"></script>
 
         <!-- Current Page Vendor and Views -->
-        <script type="text/javascript" src="template/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-        <script type="text/javascript" src="template/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-        <script type="text/javascript" src="template/vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
-        <script type="text/javascript" src="template/js/views/view.home.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/js/views/view.home.js"></script>
             
         <!-- Theme Custom -->
-        <script type="text/javascript" src="template/js/custom.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/js/custom.js"></script>
 
         <!-- Theme Initialization Files -->
-        <script type="text/javascript" src="template/js/theme.init.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>template/js/theme.init.js"></script>
 
         <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
         <script>
