@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Product_model extends CI_Model {
+class Payment_model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
@@ -21,11 +21,12 @@ class Product_model extends CI_Model {
 		}
 	}
 
-	function getProducts()
+	function getPayments()
 	{
-		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
-		$this->db->from('products');
-		$this->db->order_by("created_at", "desc");
+		$this->db->select('payments.*, DATE_FORMAT(payments.created_at, "%d-%m-%Y") as custom_created_at, orders.*');
+		$this->db->where('payments.id_order = orders.id_order');
+		$this->db->from('payments, orders');
+		$this->db->order_by("payments.created_at", "desc");
 		$query = $this->db->get();
 
 		if($query->num_rows() > 0)

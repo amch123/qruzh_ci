@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User_model extends CI_Model {
+class Shipping_model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
@@ -38,10 +38,10 @@ class User_model extends CI_Model {
 		}
 	}
 
-	function getUsers()
+	function getShipping()
 	{
 		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
-		$this->db->from('users');
+		$this->db->from('shippings');
 		$this->db->order_by("created_at", "desc");
 		$query = $this->db->get();
 

@@ -63,3 +63,20 @@ $route['cart/store'] = 'cart/store';
 $route['message/store'] = 'message/store';
 $route['account'] = 'welcome';
 $route['user/sessionDestroy'] = 'user/sessionDestroy';
+$route['payment'] = 'payment/index';
+//////////////
+$route['account/product'] = 'product/index';
+$route['account/product/create'] = 'product/create';
+$route['account/product/store'] = 'product/store';
+$route['account/product/delete/:num'] = 'product/destroy';
+$route['account/product/edit/:num'] = 'product/edit';
+$route['account/product/update'] = 'product/update';
+//////////////
+$route['account/user'] = 'user/index';
+$route['account/user/create'] = 'user/create';
+$route['account/user/store'] = 'user/store';
+$route['account/user/delete/:num'] = 'user/destroy';
+$route['account/user/edit/:num'] = 'user/edit';
+$route['account/user/update'] = 'user/update';
+//////////////
+$route['account/payment'] = 'payment/index';

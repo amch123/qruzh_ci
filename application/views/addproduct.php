@@ -8,9 +8,9 @@ require('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Usuarios<span></span></h1>
+                            <h1>Productos<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
-                                <li><a href="<?php echo base_url(); ?>index.php/account/user/edit/<?php echo $this->uri->segment(4); ?>">Editar Usuario</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/account/product/create">Agregar Producto</a></li>
                             </ul>
                         </div>
                     </div>
@@ -34,42 +34,18 @@ require('header.php');
                             <div class="col-sm-10">
                                 <div class="featured-box featured-box-primary align-left mt-xlg">
                                     <div class="box-content">
-                                        <form action="<?php echo base_url(); ?>index.php/account/user/update" id="frmSignUp" method="post">
+                                        <form action="<?php echo base_url(); ?>index.php/account/product/store" id="frmSignUp" method="post">
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <label>Nombre</label>
-                                                        <input type="text" name="name" value="<?php echo $user[0]->name; ?>" class="form-control input-lg" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <label>Correo</label>
-                                                        <input type="text" name="email" value="<?php echo $user[0]->email; ?>" class="form-control input-lg" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <label>Contraseña</label>
-                                                        <input type="password" name="password" value="<?php echo $user[0]->password; ?>" class="form-control input-lg" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <label>Rol</label>
-                                                        <select class="form-control" name="id_role" required>
+                                                        <label>Categoría</label>
+                                                        <select class="form-control" name="id_category" required>
                                                             <option value="">-Seleccione-</option>
                                                             <?php
-                                                            foreach($roles->result() as $role)
+                                                            foreach($categories->result() as $category)
                                                             {
                                                             ?>
-                                                                <option <?php if($role->id_role == $user[0]->id_role) {?> selected <?php } ?> value="<?php echo $role->id_role; ?>"><?php echo $role->role; ?></option>
+                                                                <option value="<?php echo $category->id_category; ?>"><?php echo $category->category_name; ?></option>
                                                             <?php
                                                             }
                                                             ?>
@@ -78,9 +54,40 @@ require('header.php');
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label>Titulo</label>
+                                                        <input type="text" name="title" value="" class="form-control input-lg" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label>Descripción</label>
+                                                        <textarea class="form-control" rows="5" class="form-control input-lg" name="description" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label>Precio Unitario</label>
+                                                        <input type="text" name="unit_price" value="" class="form-control input-lg" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label>Precio al Mayor</label>
+                                                        <input type="text" name="wholesale_price" value="" class="form-control input-lg" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="hidden" name="id_user" value="<?php echo $user[0]->id_user; ?>">
-                                                    <input type="submit" value="Editar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
+                                                    <input type="submit" value="Guardar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
                                                 </div>
                                             </div>
                                         </form>

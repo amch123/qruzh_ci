@@ -6,6 +6,7 @@ class Welcome extends CI_Controller {
 	{
 		parent::__construct();
 		$this->session->set_userdata('button', '1');
+		$this->session->set_userdata('account_button', '0');
 	}
 
 	/**
@@ -25,15 +26,15 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['recent_products'] = $this->product_model->getRecentProducts();
-
 		if($this->session->userdata('id_user') == FALSE)
 		{
+			$data['recent_products'] = $this->product_model->getRecentProducts();
+
 			$this->load->view('index', $data);
 		}
 		else
 		{
-			$this->load->view('productcrud');
+			$this->load->view('account');
 		}
 	}
 }

@@ -1,4 +1,6 @@
-$(document).ready(function(){
+$(document).ready(function() {
+	$('#productcrud').DataTable();
+
 	$('#quantity').attr('value', '0');
 
 	$('.minus').click(function(){

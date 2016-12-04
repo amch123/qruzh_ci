@@ -5,6 +5,7 @@ class User extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->session->set_userdata('account_button', '4');
 	}
 
 	/**
@@ -24,9 +25,9 @@ class User extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->session->set_userdata('button', '3');
+		$data['users'] = $this->user_model->getUsers();
 
-		$this->load->view('product');
+		$this->load->view('usercrud', $data);
 	}
 
 	/**
@@ -135,9 +136,75 @@ class User extends CI_Controller {
 	 */
 	public function create()
 	{
-		$this->session->set_userdata('button', '0');
+		$url = $this->uri->segment(1);
 
-		$this->load->view('register');
+		if($url == "account")
+		{
+			$data['roles'] = $this->role_model->getRoles();
+
+			$this->load->view('adduser', $data);
+		}
+		else
+		{
+			$this->session->set_userdata('button', '0');
+
+			$this->load->view('register');
+		}
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function edit()
+	{
+		$id = $this->uri->segment(4);
+
+		$data['user'] = $this->user_model->getUser($id);
+
+		$data['roles'] = $this->role_model->getRoles();
+
+		$this->load->view('edituser', $data);
+	}
+
+	/**
+	 * Update Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/category/destroy/{$id}
+	 *
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see http://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function update()
+	{
+		$data['status'] = $this->user_model->updateUser($this->input->post());
+		
+		if($data['status'] == true)
+		{
+			$data = array(
+						'update_status' => '1',
+					);
+
+			$this->session->set_userdata($data);
+		}
+		
+		redirect('account/user/edit/'.$this->input->post('id_user'));
 	}
 
 	/**
@@ -155,6 +222,8 @@ class User extends CI_Controller {
 	 */
 	public function store()
 	{
+		$url = $this->uri->segment(1);
+
 		$data = array(
 					'name' => $this->input->post('name'),
 					'email' => $this->input->post('email'),
@@ -173,6 +242,46 @@ class User extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 
-		redirect('register');
+		if($url == "account")
+		{
+			redirect('account/user');
+		}
+		else
+		{
+			redirect('register');
+		}
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function destroy()
+	{
+		$id = $this->uri->segment(4);
+
+		$data['status'] = $this->user_model->deleteUser($id);
+
+		if($data['status'] == true)
+		{
+			$data = array(
+						'delete_status' => '1',
+					);
+
+			$this->session->set_userdata($data);
+		}
+
+		redirect('account/user');
 	}
 }

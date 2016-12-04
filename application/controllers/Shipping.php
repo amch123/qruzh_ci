@@ -1,12 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Product extends CI_Controller {
+class Shipping extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session->set_userdata('button', '0');
-		$this->session->set_userdata('account_button', '1');
+		$this->session->set_userdata('account_button', '2');
 	}
 
 	/**
@@ -26,20 +25,9 @@ class Product extends CI_Controller {
 	 */
 	public function index()
 	{
-		$url = $this->uri->segment(1);
+		$data['shippings'] = $this->shipping_model->getShippings();
 
-		$data['products'] = $this->product_model->getProducts();
-
-		if($url == "account")
-		{
-			$this->load->view('productcrud', $data);
-		}
-		else
-		{
-			$this->session->set_userdata('button', '3');
-
-			$this->load->view('product', $data);
-		}	
+		$this->load->view('shippingcrud', $data);	
 	}
 
 	/**
@@ -59,8 +47,6 @@ class Product extends CI_Controller {
 	 */
 	public function show()
 	{
-		$this->session->set_userdata('button', '3');
-
 		$id = $this->uri->segment(3);
 
 		$data['product'] = $this->product_model->getProduct($id);
@@ -88,61 +74,6 @@ class Product extends CI_Controller {
 		$data['categories'] = $this->category_model->getCategories();
 
 		$this->load->view('addproduct', $data);
-	}
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function edit()
-	{
-		$id = $this->uri->segment(4);
-
-		$data['product'] = $this->product_model->getProduct($id);
-
-		$data['categories'] = $this->category_model->getCategories();
-
-		$this->load->view('editproduct', $data);
-	}
-
-	/**
-	 * Update Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/category/destroy/{$id}
-	 *
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function update()
-	{
-		$data['status'] = $this->product_model->updateProduct($this->input->post());
-		
-		if($data['status'] == true)
-		{
-			$data = array(
-						'update_status' => '1',
-					);
-
-			$this->session->set_userdata($data);
-		}
-		
-		redirect('account/product/edit/'.$this->input->post('id_product'));
 	}
 
 	/**

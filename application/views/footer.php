@@ -25,12 +25,12 @@
                             <div class="contact-details">
                                 <h4>Menú</h4>
                                 <ul class="contact">
-                                    <a href="#"><li><p><strong>Inicio</strong></p></li></a>
-                                    <a href="#"><li><p><strong>Nosotros</strong></p></li></a>
-                                    <a href="#"><li><p><strong>Productos</strong></p></li></a>
-                                    <a href="#"><li><p><strong>Mayoreo</strong></p></li></a>
-                                    <a href="#"><li><p><strong>Sucursales</strong></p></li></a>
-                                    <a href="#"><li><p><strong>Contáctanos</strong></p></li></a>
+                                    <a href="<?php echo base_url(); ?>index.php"><li><p><strong>Inicio</strong></p></li></a>
+                                    <a href="<?php echo base_url(); ?>index.php/aboutus"><li><p><strong>Nosotros</strong></p></li></a>
+                                    <a href="<?php echo base_url(); ?>index.php/product"><li><p><strong>Productos</strong></p></li></a>
+                                    <a href="<?php echo base_url(); ?>index.php/wholesale"><li><p><strong>Mayoreo</strong></p></li></a>
+                                    <a href="<?php echo base_url(); ?>index.php/branch"><li><p><strong>Sucursales</strong></p></li></a>
+                                    <a href="<?php echo base_url(); ?>index.php/contact"><li><p><strong>Contáctanos</strong></p></li></a>
                                 </ul>
                             </div>
                         </div>
@@ -103,6 +103,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>template/js/views/view.home.js"></script>
             
         <!-- Theme Custom -->
+        <script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>template/js/custom.js"></script>
 
         <!-- Theme Initialization Files -->

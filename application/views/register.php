@@ -42,7 +42,7 @@ require('header.php');
                                 <div class="featured-box featured-box-primary align-left mt-xlg">
                                     <div class="box-content">
                                         <h4 class="heading-primary text-uppercase mb-md">Crear una cuenta</h4>
-                                        <form action="<?php echo base_url(); ?>/user/store" id="frmSignUp" method="post">
+                                        <form action="<?php echo base_url(); ?>index.php/user/store" id="frmSignUp" method="post">
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">

@@ -8,9 +8,9 @@ require('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Productos<span></span></h1>
+                            <h1>Pagos<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
-                                <li><a href="<?php echo base_url(); ?>index.php/account/product">Productos</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/account/payment">Pagos</a></li>
                             </ul>
                         </div>
                     </div>
@@ -27,8 +27,6 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
-                    <a href="<?php echo base_url(); ?>index.php/account/product/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Producto</button></a></i></button>
-                    <hr>
                     <?php 
                     if(isset($_SESSION['store_status']))
                     {
@@ -58,13 +56,10 @@ require('header.php');
                                     Id
                                 </th>
                                 <th>
-                                    Titulo
+                                    Order
                                 </th>
                                 <th>
-                                    Precio Unitario
-                                </th>
-                                <th>
-                                    Precio al Mayor
+                                    Monto
                                 </th>
                                 <th>
                                     Fecha de Registro
@@ -76,32 +71,27 @@ require('header.php');
                         </thead>
                         <tbody>
                             <?php
-                            if($products != "")
+                            if($payments != "")
                             {
-                                foreach($products->result() as $product)
+                                foreach($payments->result() as $payment)
                                 {
                             ?>
                                     <tr>
                                         <td>
-                                            <?php echo $product->id_product; ?>
+                                            <?php echo $payment->id_payment; ?>
                                         </td>
                                         <td>
-                                            <?php echo $product->title; ?>
+                                            <?php echo $payment->id_order; ?>
                                         </td>
                                         <td>
-                                            <?php echo $product->unit_price; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $product->wholesale_price; ?>
+                                            <?php echo $payment->total_amount; ?>
                                         </td>
                                         <td>
                                             <?php echo $product->custom_created_at; ?>
                                         </td>
                                         <td>
-                                            <a href="<?php echo base_url(); ?>index.php/account/product/edit/<?php echo $product->id_product; ?>">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a href="<?php echo base_url(); ?>index.php/account/product/delete/<?php echo $product->id_product; ?>">
-                                                <i class="fa fa-times" aria-hidden="true"></i></a>
+                                            <a href="<?php echo base_url(); ?>index.php/account/payment/edit/<?php echo $payment->id_payment; ?>">
+                                                <i class="fa fa-check" aria-hidden="true"></i></a>
                                         </td>
                                     </tr> 
                             <?php

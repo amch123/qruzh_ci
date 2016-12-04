@@ -27,14 +27,14 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
-                    <a href="<?php echo base_url(); ?>index.php/account/product/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Producto</button></a></i></button>
+                    <a href="<?php echo base_url(); ?>index.php/account/user/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Usuario</button></a></i></button>
                     <hr>
                     <?php 
                     if(isset($_SESSION['store_status']))
                     {
                     ?>
                         <div class="alert alert-success">
-                            <strong>Exito!</strong> Se ha guardado el producto.
+                            <strong>Exito!</strong> Se ha guardado el usuario.
                         </div>
                     <?php 
                         unset($_SESSION['store_status']);
@@ -45,7 +45,7 @@ require('header.php');
                     {
                     ?>
                         <div class="alert alert-success">
-                            <strong>Exito!</strong> Se ha borrado el producto.
+                            <strong>Exito!</strong> Se ha borrado el usario.
                         </div>
                     <?php 
                         unset($_SESSION['delete_status']);
@@ -58,13 +58,10 @@ require('header.php');
                                     Id
                                 </th>
                                 <th>
-                                    Titulo
+                                    Nombre
                                 </th>
                                 <th>
-                                    Precio Unitario
-                                </th>
-                                <th>
-                                    Precio al Mayor
+                                    Correo
                                 </th>
                                 <th>
                                     Fecha de Registro
@@ -76,31 +73,28 @@ require('header.php');
                         </thead>
                         <tbody>
                             <?php
-                            if($products != "")
+                            if($users != "")
                             {
-                                foreach($products->result() as $product)
+                                foreach($users->result() as $user)
                                 {
                             ?>
                                     <tr>
                                         <td>
-                                            <?php echo $product->id_product; ?>
+                                            <?php echo $user->id_user; ?>
                                         </td>
                                         <td>
-                                            <?php echo $product->title; ?>
+                                            <?php echo $user->name; ?>
                                         </td>
                                         <td>
-                                            <?php echo $product->unit_price; ?>
+                                            <?php echo $user->email; ?>
                                         </td>
                                         <td>
-                                            <?php echo $product->wholesale_price; ?>
+                                            <?php echo $user->custom_created_at; ?>
                                         </td>
                                         <td>
-                                            <?php echo $product->custom_created_at; ?>
-                                        </td>
-                                        <td>
-                                            <a href="<?php echo base_url(); ?>index.php/account/product/edit/<?php echo $product->id_product; ?>">
+                                            <a href="<?php echo base_url(); ?>index.php/account/user/edit/<?php echo $user->id_user; ?>">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a href="<?php echo base_url(); ?>index.php/account/product/delete/<?php echo $product->id_product; ?>">
+                                            <a href="<?php echo base_url(); ?>index.php/account/user/delete/<?php echo $user->id_user; ?>">
                                                 <i class="fa fa-times" aria-hidden="true"></i></a>
                                         </td>
                                     </tr> 
