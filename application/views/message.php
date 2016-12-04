@@ -31,15 +31,19 @@ require('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="alert alert-success hidden" id="contactSuccess">
-                                <strong>Éxito!</strong> Su mensaje ha sido enviado.
-                            </div>
+                            <?php 
+                            if(isset($_SESSION['store_status']))
+                            {
+                            ?>
+                                <div class="alert alert-success">
+                                    <strong>Exito!</strong> Se ha enviado el mensaje.
+                                </div>
+                            <?php 
+                                unset($_SESSION['store_status']);
+                            }
+                            ?>
 
-                            <div class="alert alert-danger hidden" id="contactError">
-                                <strong>Error!</strong> Ha ocurrio un fallo en el envío.
-                            </div>
-
-                            <form id="contactForm" action="" method="POST">
+                            <form id="contactForm" action="<?php echo base_url(); ?>index.php/message/store" method="POST">
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-md-6">

@@ -5,7 +5,7 @@ require('header.php');
         <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options='{"gridwidth": 1170, "gridheight": 500}'>
             <ul>
                 <li data-transition="fade">
-                        <img src="<?php echo base_url(); ?>template/img/slider1.jpg"  
+                    <img src="<?php echo base_url(); ?>template/img/slider1.jpg"  
 						alt=""
 						data-bgposition="center center" 
 						data-bgfit="cover" 
@@ -83,8 +83,8 @@ require('header.php');
 
     <div class="row center4">
         <div class="col-md-12">
-            <h2 class="pt-sm"><strong class="semi-bold">DESTACADOS</strong></h2>
-            <h4>Nuestros productos más solicitados</h4>
+            <h2 class="pt-sm"><strong class="semi-bold">RECIENTES</strong></h2>
+            <h4>Nuestros productos más recientes</h4>
         </div>
     </div>
 
@@ -94,12 +94,13 @@ require('header.php');
 
             <div class="row">
                 <ul class="products product-thumb-info-list" data-plugin-masonry>
+                    <?php 
+                    foreach($recent_products->result() as $recent_product)
+                    {
+                    ?>
                     <li class="col-md-3 col-sm-6 col-xs-12 product">
                         <span class="product-thumb-info">
-                            <a href="shop-cart.html" class="add-to-cart-product">
-                                <span><i class="fa fa-shopping-cart"></i> Agregar al Carro</span>
-                            </a>
-                            <a href="shop-product-sidebar.html">
+                            <a href="<?php echo base_url(); ?>index.php/product/show/<?php echo $recent_product->id_product; ?>">
                                 <span class="product-thumb-info-image">
                                     <span class="product-thumb-info-act">
                                         <span class="product-thumb-info-act-left"><em>Ver</em></span>
@@ -111,88 +112,17 @@ require('header.php');
                             </a>
                             <span class="product-thumb-info-content">
                                 <a href="shop-product-sidebar.html">
-                                    <h4>Photo Camera</h4>
+                                    <h4><?php echo $recent_product->title; ?></h4>
                                     <span class="price">
-                                        <ins><span class="amount">$299</span></ins>
+                                        <ins><span class="amount"><?php echo $recent_product->unit_price; ?></span></ins>
                                     </span>
                                 </a>
                             </span>
                         </span>
                     </li>
-                    <li class="col-md-3 col-sm-6 col-xs-12 product">
-                        <span class="product-thumb-info">
-                            <a href="shop-cart.html" class="add-to-cart-product">
-                                <span><i class="fa fa-shopping-cart"></i> Agregar al Carro</span>
-                            </a>
-                            <a href="shop-product-sidebar.html">
-                                <span class="product-thumb-info-image">
-                                    <span class="product-thumb-info-act">
-                                        <span class="product-thumb-info-act-left"><em>Ver</em>
-                                        </span>
-                                        <span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Detalles</em>
-                                        </span>
-                                    </span>
-                                    <img src="<?php echo base_url(); ?>template/img/products/product-2.jpg" class="img-responsive"></img>
-                                </span>
-                            </a>
-                            <span class="product-thumb-info-content">
-                                <a href="shop-product-sidebar.html">
-                                    <h4>Golf Bag</h4>
-                                    <span class="price">
-                                        <span class="amount">$72</span>
-                                    </span>
-                                </a>
-                            </span>
-                        </span>
-                    </li>
-                    <li class="col-md-3 col-sm-6 col-xs-12 product">
-                        <span class="product-thumb-info">
-                            <a href="shop-cart.html" class="add-to-cart-product">
-                                <span><i class="fa fa-shopping-cart"></i> Agregar al Carro</span>
-                            </a>
-                            <a href="shop-product-sidebar.html">
-                                <span class="product-thumb-info-image">
-                                    <span class="product-thumb-info-act">
-                                        <span class="product-thumb-info-act-left"><em>Ver</em></span>
-                                        <span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Detalles</em></span>
-                                    </span>
-                                    <img src="<?php echo base_url(); ?>template/img/products/product-3.jpg" class="img-responsive"></img>
-                                </span>
-                            </a>
-                            <span class="product-thumb-info-content">
-                                <a href="shop-product-sidebar.html">
-                                    <h4>Workout</h4>
-                                    <span class="price">
-                                        <span class="amount">$60</span>
-                                    </span>
-                                </a>
-                            </span>
-                        </span>
-                    </li>
-                    <li class="col-md-3 col-sm-6 col-xs-12 product">
-                        <span class="product-thumb-info">
-                            <a href="shop-cart.html" class="add-to-cart-product">
-                                <span><i class="fa fa-shopping-cart"></i> Agregar al carro</span>
-                            </a>
-                            <a href="shop-product-sidebar.html">
-                                <span class="product-thumb-info-image">
-                                    <span class="product-thumb-info-act">
-                                        <span class="product-thumb-info-act-left"><em>Ver</em></span>
-                                        <span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Detalles</em></span>
-                                    </span>
-                                    <img src="<?php echo base_url(); ?>template/img/products/product-4.jpg" class="img-responsive"></img>
-                                </span>
-                            </a>
-                            <span class="product-thumb-info-content">
-                                <a href="shop-product-sidebar.html">
-                                    <h4>Luxury bag</h4>
-                                    <span class="price">
-                                        <span class="amount">$199</span>
-                                    </span>
-                                </a>
-                            </span>
-                        </span>
-                    </li>
+                    <?php 
+                    }
+                    ?>
                 </ul>
             </div>
 

@@ -1,11 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Cart extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session->set_userdata('button', '1');
 	}
 
 	/**
@@ -23,17 +22,24 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function store()
 	{
-		$data['recent_products'] = $this->product_model->getRecentProducts();
+		$id = $this->input->post('id_product');
 
-		if($this->session->userdata('id_user') == FALSE)
+		$data['product'] = $this->product_model->getProduct($id);
+
+		$data = array(
+        'id'      => $data['product'][0]->id_product,
+        'qty'     => $this->input->post('quantity'),
+        'price'   => $data['product'][0]->unit_price,
+        'name'    => $data['product'][0]->title
+		);
+
+		if($this->cart->insert($data))
 		{
-			$this->load->view('index', $data);
+			$this->session->set_userdata('store_status', '1');
 		}
-		else
-		{
-			$this->load->view('productcrud');
-		}
+
+		redirect('product/show/'.$id);
 	}
 }

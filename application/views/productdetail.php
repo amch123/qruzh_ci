@@ -23,9 +23,17 @@ require('header.php');
         <div role="main" class="main shop">
 
             <div class="container">
+                <?php 
+                if(isset($_SESSION['store_status']))
+                {
+                ?>
                     <div class="alert alert-success">
                         <strong>Exito!</strong> Se ha agregado el producto al carro.
                     </div>
+                <?php 
+                    unset($_SESSION['store_status']);
+                }
+                ?>
                 <div class="row">
                     <div class="col-md-12">
                         <hr class="tall">
@@ -38,17 +46,17 @@ require('header.php');
                         <div class="owl-carousel owl-theme" data-plugin-options='{"items": 1}'>
                             <div>
                                 <div class="thumbnail">
-                                    <img src="template/img/products/product-7.jpg" class="img-responsive img-rounded"></img>
+                                    <img src="<?php echo base_url(); ?>template/img/products/product-7.jpg" class="img-responsive img-rounded"></img>
                                 </div>
                             </div>
                             <div>
                                 <div class="thumbnail">
-                                    <img src="template/img/products/product-7-2.jpg" class="img-responsive img-rounded"></img>
+                                    <img src="<?php echo base_url(); ?>template/img/products/product-7-2.jpg" class="img-responsive img-rounded"></img>
                                 </div>
                             </div>
                             <div>
                                 <div class="thumbnail">
-                                    <img src="template/img/products/product-7-3.jpg" class="img-responsive img-rounded"></img>
+                                    <img src="<?php echo base_url(); ?>template/img/products/product-7-3.jpg" class="img-responsive img-rounded"></img>
                                 </div>
                             </div>
                         </div>
@@ -57,24 +65,24 @@ require('header.php');
                     <div class="col-md-6">
 
                         <div class="summary entry-summary">
-                            <h1 class="mb-none"><strong>Nombre</strong></h1>
+                            <h1 class="mb-none"><strong><?php echo $product[0]->title; ?></strong></h1>
 
                             <div title="Rated 5.00 out of 5" class="star-rating">
                                 <span style="width:100%"><strong class="rating">5.00</strong> out of 5</span>
                             </div>
 
                             <p class="price">
-                                <span class="amount">Precio</span>
+                                <span class="amount"><?php echo $product[0]->unit_price; ?></span>
                             </p>
 
-                            <form enctype="multipart/form-data" action="" method="post" class="cart">
+                            <form enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/cart/store" method="post" class="cart">
                                 <div class="quantity">
                                     <input type="button" class="minus" value="-">
                                     <input id="quantity" type="text" class="input-text qty text" title="Qty" value="0" name="quantity" min="1" step="1">
                                     <input type="button" class="plus" value="+">
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-icon">Agregar al carro</button>
-                                <input type="hidden" value="" name="id_product">
+                                <input type="hidden" value="<?php echo $product[0]->id_product; ?>" name="id_product">
                             </form>
 
                             <div class="product_meta">
@@ -92,7 +100,7 @@ require('header.php');
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="productDescription">
-                                    <p>Descripción</p>
+                                    <p><?php echo $product[0]->description; ?></p>
                                 </div>
                             </div>
                         </div>

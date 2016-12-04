@@ -32,7 +32,7 @@ require('header.php');
                                 <div class="featured-box featured-box-primary align-left mt-xlg">
                                     <div class="box-content">
                                         <h4 class="heading-primary text-uppercase mb-md">Ingresa</h4>
-                                        <form action="{{ url('/login') }}" id="frmSignIn" method="post">
+                                        <form action="<?php echo base_url(); ?>/user/sessionStart" id="frmSignIn" method="post">
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">

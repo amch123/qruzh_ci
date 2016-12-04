@@ -43,12 +43,16 @@ require('header.php');
 
                     <div class="row">
                         <ul class="products product-thumb-info-list">
+                            <?php 
+                            foreach($products->result() as $product)
+                            {
+                            ?>
                                 <li class="col-sm-4 col-xs-12 product">
                                     <a href="shop-product-sidebar.html" style="display: none;">
                                         <span class="onsale">Sale!</span>
                                     </a>
                                     <span class="product-thumb-info">
-                                        <a href="#">
+                                        <a href="<?php echo base_url(); ?>index.php/product/show/<?php echo $product->id_product; ?>">
                                             <span class="product-thumb-info-image">
                                                 <span class="product-thumb-info-act">
                                                     <span class="product-thumb-info-act-left"><em>Ver</em></span>
@@ -59,14 +63,15 @@ require('header.php');
                                         </a>
                                         <span class="product-thumb-info-content">
                                             <a href="shop-product-sidebar.html">
-                                                <h4>Nombe</h4>
+                                                <h4><?php echo $product->title; ?></h4>
                                                 <span class="price">
-                                                    <ins><span class="amount">Precio</span></ins>
+                                                    <ins><span class="amount"><?php echo $product->unit_price; ?></span></ins>
                                                 </span>
                                             </a>
                                         </span>
                                     </span>
                                 </li>
+                            <?php } ?>
                         </ul>
                     </div>
 

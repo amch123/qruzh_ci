@@ -10,7 +10,7 @@ require('header.php');
                         <div class="col-md-12">
                             <h1>Registrate<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
-                                <li><a href="{{ url('/') }}">Inicio</a></li>
+                                <li><a href="">Inicio</a></li>
                                 <li class="active">Registrate</li>
                             </ul>
                         </div>
@@ -23,6 +23,17 @@ require('header.php');
 
             <div class="row">
                 <div class="col-md-12">
+                    <?php 
+                    if(isset($_SESSION['store_status']))
+                    {
+                    ?>
+                        <div class="alert alert-success">
+                            <strong>Exito!</strong> Verifique su correo electrónico.
+                        </div>
+                    <?php 
+                        unset($_SESSION['store_status']);
+                    }
+                    ?>
                     <div class="featured-boxes">
                         <div class="row">
                             <div class="col-sm-4">
@@ -31,7 +42,7 @@ require('header.php');
                                 <div class="featured-box featured-box-primary align-left mt-xlg">
                                     <div class="box-content">
                                         <h4 class="heading-primary text-uppercase mb-md">Crear una cuenta</h4>
-                                        <form action="{{ url('/register') }}" id="frmSignUp" method="post">
+                                        <form action="<?php echo base_url(); ?>/user/store" id="frmSignUp" method="post">
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
@@ -58,6 +69,7 @@ require('header.php');
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
+                                                    <input type="hidden" name="id_role" value="2">
                                                     <input type="submit" value="Registrar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
                                                 </div>
                                             </div>

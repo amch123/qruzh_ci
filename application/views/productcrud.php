@@ -8,9 +8,9 @@ require('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Bienvenido<span></span></h1>
+                            <h1>Productos<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
-                                <li><a href="{{ url('/') }}">Inicio</a></li>
+                                <li><a href="{{ url('/product') }}">Porductos</a></li>
                             </ul>
                         </div>
                     </div>
@@ -75,6 +75,8 @@ require('header.php');
                     </aside>
                 </div>
                 <div class="col-md-9">
+                    <a href="<?php echo base_url(); ?>product/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Producto</button></a></i></button>
+                    <hr>
                     <table class="table">
                         <thead>
                             <tr>
@@ -107,7 +109,11 @@ require('header.php');
                     
                                 </td>
                                 <td>
-                            
+                    
+                                </td>
+                                <td>
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    <i class="fa fa-times" aria-hidden="true"></i>
                                 </td>
                             </tr>         
                         </tbody>
