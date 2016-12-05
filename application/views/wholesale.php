@@ -44,6 +44,9 @@ require('header.php');
                             <th>
                                 Precio Mayor
                             </th>
+                            <th>
+                                
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,9 +63,17 @@ require('header.php');
                             <td>
                                 Column content
                             </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">
+                            <td>
+                                <div class="quantity">
+                                    <input type="button" class="minus" value="-">
+                                    <input id="quantity" type="text" class="input-text qty text" title="Qty" value="0" name="quantity" min="1" step="1">
+                                    <input type="button" class="plus" value="+">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-icon">Agregar al carro</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
                                 <img src="<?php echo base_url(); ?>template/img/benefits/benefits-1-thumb.jpg" class="img-responsive">
                             </td>
                             <td>
@@ -73,6 +84,14 @@ require('header.php');
                             </td>
                             <td>
                                 Column content
+                            </td>
+                            <td>
+                                <div class="quantity">
+                                    <input type="button" class="minus" value="-">
+                                    <input id="quantity" type="text" class="input-text qty text" title="Qty" value="0" name="quantity" min="1" step="1">
+                                    <input type="button" class="plus" value="+">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-icon">Agregar al carro</button>
                             </td>
                         </tr>
                     </tbody>
@@ -86,6 +105,7 @@ require('header.php');
             </div> 
         </div>
     </div>
+    
 <?php
 require('footer.php');
 ?>
