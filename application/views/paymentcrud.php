@@ -49,7 +49,7 @@ require('header.php');
                         unset($_SESSION['delete_status']);
                     }
                     ?>
-                    <table id="productcrud" class="table">
+                    <table id="crud" class="table">
                         <thead>
                             <tr>
                                 <th>

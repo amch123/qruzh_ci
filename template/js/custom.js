@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#productcrud').DataTable({
+	$('#crud').DataTable({
 		 responsive: true
 	});
 

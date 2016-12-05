@@ -51,7 +51,7 @@ require('header.php');
                         unset($_SESSION['store_status']);
                     }
                     ?>
-                    <table id="productcrud" class="table table-responsive">
+                    <table id="crud" class="table table-responsive">
                         <thead>
                             <tr>
                                 <th>

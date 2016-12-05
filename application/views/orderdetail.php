@@ -69,7 +69,7 @@ require('header.php');
                     <hr>
                     <h3>Productos de la Orden</h3>
                     <hr>
-                    <table id="productcrud" class="table table-responsive">
+                    <table id="crud" class="table table-responsive">
                         <thead>
                             <tr>
                                 <th>
