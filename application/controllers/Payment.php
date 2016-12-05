@@ -5,7 +5,7 @@ class Payment extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session->set_userdata('account_button', '2');
+		$this->session->set_userdata('account_button', '3');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
 		
@@ -60,9 +60,11 @@ class Payment extends CI_Controller {
 	 */
 	public function show()
 	{
-		$id = $this->uri->segment(3);
+		$id = $this->uri->segment(4);
 
 		$data['payment'] = $this->payment_model->getPayment($id);
+
+		$data['orders_products'] = $this->orderproduct_model->getOrdersProducts($data['payment'][0]->id_order);
 		
 		$this->load->view('paymentdetail', $data);
 	}
@@ -128,7 +130,7 @@ class Payment extends CI_Controller {
 		{
 			$data = array(
 						'delete_status' => '1',
-					);
+						);
 
 			$this->session->set_userdata($data);
 		}

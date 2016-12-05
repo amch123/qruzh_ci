@@ -8,9 +8,9 @@ require('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Detalle de la Orden de Compra<span></span></h1>
+                            <h1>Detalle del Pago<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
-                                <li><a href="<?php echo base_url(); ?>index.php/account/order">Ordenes de Compras</a> / <a href="<?php echo base_url(); ?>index.php/account/order/show/<?php echo $this->uri->segment(4); ?>">Detalle de la Orden de Compra</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/account/payment">Pagos</a> / <a href="<?php echo base_url(); ?>index.php/account/payment/show/<?php echo $this->uri->segment(4); ?>">Detalle del Pago</a></li>
                             </ul>
                         </div>
                     </div>
@@ -27,17 +27,6 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
-                    <?php 
-                    if(isset($_SESSION['delete_status']))
-                    {
-                    ?>
-                        <div class="alert alert-success">
-                            <strong>Exito!</strong> Se ha borrado el producto de la orden.
-                        </div>
-                    <?php 
-                        unset($_SESSION['delete_status']);
-                    }
-                    ?>
                     <table class="table table-bordered">
                          <thead>
                             <tr>
@@ -50,18 +39,24 @@ require('header.php');
                                 <th>
                                     Monto
                                 </th>
+                                <th>
+                                    Tipo de Pago
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    <?php echo $order[0]->name; ?>
+                                    <?php echo $payment[0]->name; ?>
                                 </td>
                                 <td>
-                                    <?php echo $_SESSION['currency']; ?> <?php echo $order[0]->total_tax; ?>
+                                    <?php echo $_SESSION['currency']; ?> <?php echo $payment[0]->total_tax; ?>
                                 </td>
                                 <td>
-                                    <?php echo $_SESSION['currency']; ?> <?php echo $order[0]->total_amount; ?>
+                                    <?php echo $_SESSION['currency']; ?> <?php echo $payment[0]->total_amount; ?>
+                                </td>
+                                <td>
+                                    <?php echo $payment[0]->payment_type; ?>
                                 </td>
                             </tr>
                         </tbody>

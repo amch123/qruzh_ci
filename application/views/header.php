@@ -47,6 +47,7 @@
 
         <!-- Theme Custom CSS -->
         <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+        <link href="//cdn.datatables.net/responsive/2.1.0/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>template/css/custom.css">
 
         <!-- Head Libs -->

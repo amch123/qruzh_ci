@@ -87,10 +87,13 @@ require('header.php');
                                             <?php echo $payment->id_order; ?>
                                         </td>
                                         <td>
-                                            <?php echo $payment->total_amount; ?>
+                                            <?php echo $payment->name; ?>
                                         </td>
                                         <td>
-                                            <?php echo $product->custom_created_at; ?>
+                                            <?php echo $_SESSION['currency']; ?> <?php echo $payment->total_amount; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $payment->custom_created_at; ?>
                                         </td>
                                         <td>
                                             <a href="<?php echo base_url(); ?>index.php/account/payment/show/<?php echo $payment->id_payment; ?>">

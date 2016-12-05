@@ -28,7 +28,7 @@ require('header.php');
                 </div>
                 <div class="col-md-9">
                     <?php 
-                    if(isset($_SESSION['delete_status']))
+                    if(isset($_SESSION['delete_status']) && ($_SESSION['delete_status'] == 1))
                     {
                     ?>
                         <div class="alert alert-success">
@@ -38,7 +38,18 @@ require('header.php');
                         unset($_SESSION['delete_status']);
                     }
                     ?>
-                    <table id="productcrud" class="table">
+                    <?php 
+                    if(isset($_SESSION['delete_status']) && ($_SESSION['delete_status'] == 2))
+                    {
+                    ?>
+                        <div class="alert alert-danger">
+                            <strong>Problema!</strong> Existe un pago con esta orden de compra. Por favor debe cancelar el pago primero para poder borrarla.
+                        </div>
+                    <?php 
+                        unset($_SESSION['delete_status']);
+                    }
+                    ?>
+                    <table id="productcrud" class="table table-responsive">
                         <thead>
                             <tr>
                                 <th>

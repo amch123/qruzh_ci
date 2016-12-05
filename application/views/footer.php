@@ -86,6 +86,7 @@
             
         <!-- Theme Custom -->
         <script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="//cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>template/js/custom.js"></script>
 
         <!-- Theme Initialization Files -->

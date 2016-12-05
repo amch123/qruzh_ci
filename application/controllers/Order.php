@@ -207,17 +207,33 @@ class Order extends CI_Controller {
 	{
 		$id = $this->uri->segment(4);
 
-		$data['status'] = $this->product_model->deleteProduct($id);
+		$data['payment'] = $this->payment_model->getPayment($id);
 
-		if($data['status'] == true)
+		if($data['payment'] == "")
 		{
+			$data['status'] = $this->order_model->deleteOrder($id);
+
+			if($data['status'] == true)
+			{
+				$data = array(
+							'delete_status' => '1',
+						);
+
+				$this->session->set_userdata($data);
+			}
+
+			redirect('account/order');
+		}
+		else
+		{
+
 			$data = array(
-						'delete_status' => '1',
+						'delete_status' => '2',
 					);
 
 			$this->session->set_userdata($data);
+			
+			redirect('account/order');
 		}
-
-		redirect('account/product');
 	}
 }

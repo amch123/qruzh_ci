@@ -10,7 +10,7 @@ require('header.php');
                         <div class="col-md-12">
                             <h1>Envios<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
-                                <li><a href="<?php echo base_url(); ?>index.php/account/shipping">Envios</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/account/shipping">envios</a></li>
                             </ul>
                         </div>
                     </div>
@@ -27,8 +27,19 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
-                    <a href="<?php echo base_url(); ?>index.php/account/user/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Envio</button></a></i></button>
+                    <a href="<?php echo base_url(); ?>index.php/account/shipping/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Envio</button></a></i></button>
                     <hr>
+                    <?php 
+                    if(isset($_SESSION['delete_status']) && ($_SESSION['delete_status'] == 1))
+                    {
+                    ?>
+                        <div class="alert alert-success">
+                            <strong>Exito!</strong> Se ha borrado el envio.
+                        </div>
+                    <?php 
+                        unset($_SESSION['delete_status']);
+                    }
+                    ?>
                     <?php 
                     if(isset($_SESSION['store_status']))
                     {
@@ -40,18 +51,7 @@ require('header.php');
                         unset($_SESSION['store_status']);
                     }
                     ?>
-                    <?php 
-                    if(isset($_SESSION['delete_status']))
-                    {
-                    ?>
-                        <div class="alert alert-success">
-                            <strong>Exito!</strong> Se ha borrado el envio.
-                        </div>
-                    <?php 
-                        unset($_SESSION['delete_status']);
-                    }
-                    ?>
-                    <table id="productcrud" class="table">
+                    <table id="productcrud" class="table table-responsive">
                         <thead>
                             <tr>
                                 <th>
@@ -64,7 +64,7 @@ require('header.php');
                                     Cliente
                                 </th>
                                 <th>
-                                    Empresa de Envio
+                                    Empresa de Envío
                                 </th>
                                 <th>
                                     Fecha de Registro
@@ -86,17 +86,18 @@ require('header.php');
                                             <?php echo $shipping->id_shipping; ?>
                                         </td>
                                         <td>
+                                            <?php echo $shipping->id_order; ?>
+                                        </td>
+                                        <td>
                                             <?php echo $shipping->name; ?>
                                         </td>
                                         <td>
-                                            <?php echo $shipping->shipping_company; ?>
+                                            <?php echo $shipping->company_name; ?>
                                         </td>
                                         <td>
-                                            <?php echo $user->custom_created_at; ?>
+                                            <?php echo $shipping->custom_created_at; ?>
                                         </td>
                                         <td>
-                                            <a href="<?php echo base_url(); ?>index.php/account/shipping/edit/<?php echo $shipping->id_shipping; ?>">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i></a>
                                             <a href="<?php echo base_url(); ?>index.php/account/shipping/delete/<?php echo $shipping->id_shipping; ?>">
                                                 <i class="fa fa-times" aria-hidden="true"></i></a>
                                         </td>

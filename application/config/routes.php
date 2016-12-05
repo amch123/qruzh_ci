@@ -86,9 +86,13 @@ $route['account/payment/show/:num'] = 'payment/show';
 $route['account/payment/delete/:num'] = 'payment/destroy';
 //////////////
 $route['account/shipping'] = 'shipping/index';
+$route['account/shipping/create'] = 'shipping/create';
+$route['account/shipping/store'] = 'shipping/store';
+$route['account/shipping/delete/:num'] = 'shipping/destroy';
 //////////////
 $route['account/setting'] = 'setting/index';
 $route['account/setting/update'] = 'setting/update';
 //////////////
 $route['account/order'] = 'order/index';
 $route['account/order/show/:num'] = 'order/show';
+$route['account/order/delete/:num'] = 'order/destroy';

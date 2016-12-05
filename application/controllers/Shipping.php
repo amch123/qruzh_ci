@@ -84,9 +84,11 @@ class Shipping extends CI_Controller {
 	 */
 	public function create()
 	{
-		$data['categories'] = $this->category_model->getCategories();
+		$data['orders'] = $this->order_model->getOrders();
 
-		$this->load->view('addproduct', $data);
+		$data['shipping_companies'] = $this->shippingcompany_model->getShippingCompanies();
+
+		$this->load->view('addshipping', $data);
 	}
 
 	/**
@@ -106,15 +108,17 @@ class Shipping extends CI_Controller {
 	 */
 	public function store()
 	{
+		$id = $this->input->post('id_order');
+
+		$data['order'] = $this->order_model->getOrder($id);
+
 		$data = array(
-					'id_category' => $this->input->post('id_category'),
-					'title' => $this->input->post('title'),
-					'description' => $this->input->post('description'),
-					'unit_price' => $this->input->post('unit_price'),
-					'wholesale_price' => $this->input->post('wholesale_price'),
+					'id_user' => $data['order'][0]->id_user,
+					'id_order' => $id,
+					'id_shipping_company' => $this->input->post('id_shipping_company')
 				);
 
-		$data['status'] = $this->product_model->storeProduct($data);
+		$data['status'] = $this->shipping_model->storeShipping($data);
 
 		if($data['status'] == true)
 		{
@@ -125,7 +129,7 @@ class Shipping extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 
-		redirect('account/product');
+		redirect('account/shipping');
 	}
 
 	/**
@@ -147,7 +151,7 @@ class Shipping extends CI_Controller {
 	{
 		$id = $this->uri->segment(4);
 
-		$data['status'] = $this->product_model->deleteProduct($id);
+		$data['status'] = $this->shipping_model->deleteShipping($id);
 
 		if($data['status'] == true)
 		{
@@ -158,6 +162,6 @@ class Shipping extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 
-		redirect('account/product');
+		redirect('account/shipping');
 	}
 }

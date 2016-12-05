@@ -23,9 +23,10 @@ class Payment_model extends CI_Model {
 
 	function getPayments()
 	{
-		$this->db->select('payments.*, DATE_FORMAT(payments.created_at, "%d-%m-%Y") as custom_created_at, orders.*');
+		$this->db->select('payments.*, DATE_FORMAT(payments.created_at, "%d-%m-%Y") as custom_created_at, orders.*, users.*');
 		$this->db->where('payments.id_order = orders.id_order');
-		$this->db->from('payments, orders');
+		$this->db->where('payments.id_user = users.id_user');
+		$this->db->from('payments, orders, users');
 		$this->db->order_by("payments.created_at", "desc");
 		$query = $this->db->get();
 
@@ -41,9 +42,11 @@ class Payment_model extends CI_Model {
 
 	function getPayment($id)
 	{
-		$this->db->select('payments.*, orders.*');
-		$this->db->from('payments, orders');
+		$this->db->select('payments.*, orders.*, users.*, payment_types.*');
+		$this->db->from('payments, orders, users, payment_types');
 		$this->db->where('payments.id_order = orders.id_order');
+		$this->db->where('payments.id_user = users.id_user');
+		$this->db->where('payments.id_payment_type = payment_types.id_payment_type');
 		$this->db->where('payments.id_payment = '.$id);
 		$query = $this->db->get()->result();
 

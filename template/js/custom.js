@@ -1,5 +1,7 @@
 $(document).ready(function() {
-	$('#productcrud').DataTable();
+	$('#productcrud').DataTable({
+		 responsive: true
+	});
 
 	$('#quantity').attr('value', '0');
 

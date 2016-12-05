@@ -9,7 +9,7 @@ class Shipping_model extends CI_Model {
 
 	function storeShipping($data)
 	{
-		$query = $this->db->insert('shippings', array('id_user' => $data['id_user'], 'id_order' => $data['id_order']));
+		$query = $this->db->insert('shippings', array('id_user' => $data['id_user'], 'id_order' => $data['id_order'], 'id_shipping_company' => $data['id_shipping_company'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   
@@ -23,9 +23,12 @@ class Shipping_model extends CI_Model {
 
 	function getShippings()
 	{
-		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
-		$this->db->from('shippings');
-		$this->db->order_by("created_at", "desc");
+		$this->db->select('shippings.*, orders.*, users.*, shipping_companies.*, DATE_FORMAT(shippings.created_at, "%d-%m-%Y") as custom_created_at');
+		$this->db->from('shippings, orders, users, shipping_companies');
+		$this->db->where('shippings.id_order = orders.id_order');
+		$this->db->where('shippings.id_user = users.id_user');
+		$this->db->where('shippings.id_shipping_company = shipping_companies.id_shipping_company');
+		$this->db->order_by("shippings.created_at", "desc");
 		$query = $this->db->get();
 
 		if($query->num_rows() > 0)
@@ -40,7 +43,7 @@ class Shipping_model extends CI_Model {
 
 	function deleteShipping($id)
 	{
-		$user = $this->db->delete('shippings', array('id_user' => $id));
+		$user = $this->db->delete('shippings', array('id_shipping' => $id));
 
 		if($user)
 		{
