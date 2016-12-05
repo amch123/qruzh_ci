@@ -12,13 +12,16 @@
                                     <a href="<?php echo base_url(); ?>index.php/account/payment">Pagos</a>
                                 </li>
                                 <li <?php if($_SESSION['account_button'] == 3) { ?> class="active" <?php } ?>>
-                                    <a href="#">Envios</a>
+                                    <a href="<?php echo base_url(); ?>index.php/account/shipping">Envios</a>
                                 </li>
                                 <li <?php if($_SESSION['account_button'] == 4) { ?> class="active" <?php } ?>>
                                     <a href="<?php echo base_url(); ?>index.php/account/user">Usuarios</a>
                                 </li>
-                                <li>
-                                    <a href="#">Configuraciones</a>
+                                <li <?php if($_SESSION['account_button'] == 5) { ?> class="active" <?php } ?>>
+                                    <a href="<?php echo base_url(); ?>index.php/account/category">Categorias</a>
+                                </li>
+                                <li <?php if($_SESSION['account_button'] == 6) { ?> class="active" <?php } ?>>
+                                    <a href="<?php echo base_url(); ?>index.php/account/setting">Configuraciones</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>index.php/user/sessionDestroy">Cerrar Sesión</a>

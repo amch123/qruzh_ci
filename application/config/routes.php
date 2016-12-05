@@ -64,6 +64,7 @@ $route['message/store'] = 'message/store';
 $route['account'] = 'welcome';
 $route['user/sessionDestroy'] = 'user/sessionDestroy';
 $route['payment'] = 'payment/index';
+$route['newletters/store'] = 'newletters/store';
 //////////////
 $route['account/product'] = 'product/index';
 $route['account/product/create'] = 'product/create';
@@ -80,3 +81,8 @@ $route['account/user/edit/:num'] = 'user/edit';
 $route['account/user/update'] = 'user/update';
 //////////////
 $route['account/payment'] = 'payment/index';
+//////////////
+$route['account/shipping'] = 'shipping/index';
+//////////////
+$route['account/setting'] = 'setting/index';
+$route['account/setting/update'] = 'setting/update';

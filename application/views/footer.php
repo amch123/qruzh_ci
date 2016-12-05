@@ -1,26 +1,6 @@
             <footer id="footer" class="color color-primary">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="newsletter">
-                                <h4>Noticias</h4>
-                                <p>Mantente actualizado en todo lo relacionado <br> a nuestros productos.</p>
-                    
-                                <div class="alert alert-success hidden" id="newsletterSuccess">
-                                    <strong>Éxito!</strong> Has sido agregado a nuestra lista de correos electrónicos.
-                                </div>
-                    
-                                <div class="alert alert-danger hidden" id="newsletterError"></div>
-                                <form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST">
-                                    <div class="input-group">
-                                        <input class="form-control" placeholder="Correo Electrónico" name="newsletterEmail" id="newsletterEmail" type="text">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="enviar">Ir!</button>
-                                        </span>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
                         <div class="col-md-3">
                             <div class="contact-details">
                                 <h4>Menú</h4>
@@ -34,11 +14,13 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                        </div>
                         <div class="col-md-3">
                             <h4>Siguenos</h4>
                             <ul class="social-icons">
-                                <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li class="social-icons-facebook"><a href="<?php echo $_SESSION['facebook']; ?>" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li class="social-icons-twitter"><a href="<?php echo $_SESSION['twitter']; ?>" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                             </ul>
                         </div>
                         <div class="col-md-2">
@@ -55,7 +37,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-7">
-                                <p>© MOBILEPHONE 2016. Todos los derechos reservados.</p>
+                                <p>© Mobilephone 2016. Todos los derechos reservados.</p>
                             </div>
                             <div class="col-md-4">
                                 <nav id="sub-menu">

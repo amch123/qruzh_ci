@@ -53,7 +53,7 @@ require('header.php');
                 <div class="col-md-12">
                     <h3 class="heading-primary text-center"><strong>Misión</strong></h3>
                     <p class="lead text-center">
-                    Marcar tendencia en la venta de accesorios para celular innovando día a día buscando siempre la satisfaccion de nuestros clientes ofreciendo productos novedosos y de calidad que nos permitan superar las expectativas de nuestros clientes.
+                    <?php echo $_SESSION['mission']; ?>
                     </p>
                 </div>
             </div>
@@ -68,7 +68,7 @@ require('header.php');
                 <div class="col-md-12">
                     <h3 class="heading-primary text-center"><strong>Visión</strong></h3>
                     <p class="lead text-center">
-                    Posicionamiento y reconocimiento de la marca a nivel nacional en el mercado de los accesorios para celular.
+                    <?php echo $_SESSION['vision']; ?>
                     </p>
                 </div>
             </div>

@@ -1,23 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Message extends CI_Controller {
+class Setting extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-
-		$data['settings'] = $this->setting_model->getSettings(1);
-		
-		$setting_data = array(
-        			'title'  => $data['settings'][0]->title,
-        			'mission'     => $data['settings'][0]->mission,
-        			'vision' => $data['settings'][0]->vision,
-        			'currency' => $data['settings'][0]->currency,
-        			'facebook' => $data['settings'][0]->facebook,
-        			'twitter' => $data['settings'][0]->twitter
-					);
-
-		$this->session->set_userdata($setting_data);
+		$this->session->set_userdata('account_button', '6');
+		$this->session->set_userdata('button', '0');
 	}
 
 	/**
@@ -37,16 +26,16 @@ class Message extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->session->set_userdata('button', '6');
+		$data['setting'] = $this->setting_model->getSettings(1);
 
-		$this->load->view('message');
+		$this->load->view('editsetting', $data);	
 	}
 
 	/**
-	 * Store Page for this controller.
+	 * Update Page for this controller.
 	 *
 	 * Maps to the following URL
-	 * 		http://example.com/index.php/category/store
+	 * 		http://example.com/index.php/category/destroy/{$id}
 	 *
 	 * Since this controller is set as the default controller in
 	 * config/routes.php, it's displayed at http://example.com/
@@ -55,26 +44,19 @@ class Message extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function store()
+	public function update()
 	{
-		$data = array(
-					'name' => $this->input->post('name'),
-					'email' => $this->input->post('email'),
-					'subject' => $this->input->post('subject'),
-					'message' => $this->input->post('message'),
-				);
-
-		$data['status'] = $this->message_model->storeMessage($data);
-
+		$data['status'] = $this->setting_model->updateSetting($this->input->post());
+		
 		if($data['status'] == true)
 		{
 			$data = array(
-						'store_status' => '1',
+						'update_status' => '1',
 					);
 
 			$this->session->set_userdata($data);
 		}
-
-		redirect('contact');
+		
+		redirect('account/setting');
 	}
 }

@@ -5,6 +5,19 @@ class Wholesale extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+
+		$data['settings'] = $this->setting_model->getSettings(1);
+		
+		$setting_data = array(
+        			'title'  => $data['settings'][0]->title,
+        			'mission'     => $data['settings'][0]->mission,
+        			'vision' => $data['settings'][0]->vision,
+        			'currency' => $data['settings'][0]->currency,
+        			'facebook' => $data['settings'][0]->facebook,
+        			'twitter' => $data['settings'][0]->twitter
+					);
+
+		$this->session->set_userdata($setting_data);
 	}
 
 	/**

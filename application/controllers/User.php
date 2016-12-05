@@ -6,6 +6,19 @@ class User extends CI_Controller {
 	{
 		parent::__construct();
 		$this->session->set_userdata('account_button', '4');
+
+		$data['settings'] = $this->setting_model->getSettings(1);
+		
+		$setting_data = array(
+        			'title'  => $data['settings'][0]->title,
+        			'mission'     => $data['settings'][0]->mission,
+        			'vision' => $data['settings'][0]->vision,
+        			'currency' => $data['settings'][0]->currency,
+        			'facebook' => $data['settings'][0]->facebook,
+        			'twitter' => $data['settings'][0]->twitter
+					);
+
+		$this->session->set_userdata($setting_data);
 	}
 
 	/**

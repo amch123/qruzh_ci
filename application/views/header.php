@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">   
 
-        <title>Qruzh</title>  
+        <title><?php echo $_SESSION['title']; ?></title>  
 
         <meta name="keywords" content="HTML5 Template" />
         <meta name="description" content="Porto - Responsive HTML5 Template">
@@ -110,8 +110,8 @@
                                             <i class="fa fa-bars"></i>
                                         </button>
                                         <ul class="header-social-icons social-icons hidden-xs">
-                                            <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                            <li class="social-icons-facebook"><a href="<?php echo $_SESSION['facebook']; ?>" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                            <li class="social-icons-twitter"><a href="<?php echo $_SESSION['twitter']; ?>" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                                         </ul>
                                         <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
                                             <nav>
@@ -147,8 +147,8 @@
                                                         </a>
                                                     </li>
                                                     <li class="dropdown dropdown-mega dropdown-mega-shop" id="headerShop">
-                                                        <a class="dropdown-toggle" href="page-login.html">
-                                                            <i class="fa fa-shopping-cart"></i> Carro (1) - $299
+                                                        <a class="dropdown-toggle" href="#">
+                                                            <i class="fa fa-shopping-cart"></i> Carro (<?php echo $this->cart->total_items(); ?>) - <?php echo $_SESSION['currency']; ?> <?php echo $this->cart->total(); ?>
                                                         </a>
                                                         <ul class="dropdown-menu">
                                                             <li>
@@ -175,8 +175,7 @@
                                                                             <tr>
                                                                                 <td class="actions" colspan="6">
                                                                                     <div class="actions-continue">
-                                                                                        <button type="submit" class="btn btn-default">View All</button>
-                                                                                        <button type="submit" class="btn pull-right btn-primary">Proceed to Checkout <i class="fa fa-angle-right ml-xs"></i></button>
+                                                                                        <a href="<?php echo base_url(); ?>index.php/cart"><button type="button" class="btn btn-default">Ver Todo</button></a>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>

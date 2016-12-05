@@ -49,16 +49,6 @@ require('header.php');
                                     <img src="<?php echo base_url(); ?>template/img/products/product-7.jpg" class="img-responsive img-rounded"></img>
                                 </div>
                             </div>
-                            <div>
-                                <div class="thumbnail">
-                                    <img src="<?php echo base_url(); ?>template/img/products/product-7-2.jpg" class="img-responsive img-rounded"></img>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="thumbnail">
-                                    <img src="<?php echo base_url(); ?>template/img/products/product-7-3.jpg" class="img-responsive img-rounded"></img>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
