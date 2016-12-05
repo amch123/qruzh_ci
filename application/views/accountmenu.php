@@ -41,7 +41,7 @@
                                     <a href="<?php echo base_url(); ?>index.php/account/payment">Tus Pagos</a>
                                 </li>
                                 <li <?php if($_SESSION['account_button_client'] == 3) { ?> class="active" <?php } ?>>
-                                    <a href="<?php echo base_url(); ?>index.php/account/shipping">Envios</a>
+                                    <a href="<?php echo base_url(); ?>index.php/account/shipping">Tus Envios</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>index.php/user/sessionDestroy">Cerrar Sesión</a>

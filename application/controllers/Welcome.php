@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->session->set_userdata('button', '1');
 		$this->session->set_userdata('account_button', '0');
+		$this->session->set_userdata('account_button_client', '0');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
 
