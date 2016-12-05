@@ -27,6 +27,17 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
+                    <?php 
+                    if(isset($_SESSION['update_status']))
+                    {
+                    ?>
+                        <div class="alert alert-success">
+                            <strong>Exito!</strong> Se ha editado el producto.
+                        </div>
+                    <?php 
+                        unset($_SESSION['update_status']);
+                    }
+                    ?>
                     <div class="featured-boxes">
                         <div class="row">
                             <div class="col-sm-1">
