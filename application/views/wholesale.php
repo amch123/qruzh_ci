@@ -29,77 +29,55 @@ require('header.php');
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-
-                        <div>
-                            <div>
-                                <div>
-                                    <img src="<?php echo base_url(); ?>template/img/device.png" class="img-responsive" width="300" height="211">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="summary entry-summary">
-                            <h1 class="mb-none"><strong>Cargador</strong></h1>
-                            <div class="review_num">
-                        </div>
-
-                        <p class="price">
-                            <span class="amount">$22</span>
-                        </p>
-
-                        <form enctype="multipart/form-data" method="post" class="cart">
-                            <div class="quantity">
-                                <input type="button" class="minus" value="-">
-                                <input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                <input type="button" class="plus" value="+">
-                            </div>
-                            <button href="#" class="btn btn-primary btn-icon">Agregar al carro</button>
-                        </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <hr class="tall">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div>
-                            <div>
-                                <div>
-                                    <img src="<?php echo base_url(); ?>template/img/device.png" class="img-responsive" width="300" height="211">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="summary entry-summary">
-                            <h1 class="mb-none"><strong>Cargador</strong></h1>
-                            <div class="review_num">
-                        </div>
-
-                        <p class="price">
-                            <span class="amount">$22</span>
-                        </p>
-
-                        <form enctype="multipart/form-data" method="post" class="cart">
-                            <div class="quantity">
-                                <input type="button" class="minus" value="-">
-                                <input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                <input type="button" class="plus" value="+">
-                            </div>
-                            <button href="#" class="btn btn-primary btn-icon">Agregar al carro</button>
-                        </form>
-                    </div>
-                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Producto
+                            </th>
+                            <th>
+                                Descripción
+                            </th>
+                            <th>
+                                Precio Detal
+                            </th>
+                            <th>
+                                Precio Mayor
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active">
+                            <td scope="row">
+                                <img src="<?php echo base_url(); ?>template/img/benefits/benefits-1-thumb.jpg" class="img-responsive">
+                            </td>
+                            <td>
+                                Column content
+                            </td>
+                             <td>
+                                Column content
+                            </td>
+                            <td>
+                                Column content
+                            </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                <img src="<?php echo base_url(); ?>template/img/benefits/benefits-1-thumb.jpg" class="img-responsive">
+                            </td>
+                            <td>
+                                Column content
+                            </td>
+                            <td>
+                                Column content
+                            </td>
+                            <td>
+                                Column content
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+               
                 <div class="row">
                     <div class="col-md-12">
                         <hr class="tall">
