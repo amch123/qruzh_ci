@@ -6,6 +6,7 @@ class Payment extends CI_Controller {
 	{
 		parent::__construct();
 		$this->session->set_userdata('account_button', '3');
+		$this->session->set_userdata('account_button_client', '2');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
 		
@@ -38,7 +39,16 @@ class Payment extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['payments'] = $this->payment_model->getPayments();
+		if(isset($_SESSION['id_role']) && ($_SESSION['id_role'] == 2))
+		{
+			$id = $_SESSION['id_user'];
+		}
+		else
+		{
+			$id = "";
+		}
+
+		$data['payments'] = $this->payment_model->getPayments($id);
 
 		$this->load->view('paymentcrud', $data);	
 	}

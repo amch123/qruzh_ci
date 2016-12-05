@@ -6,6 +6,7 @@ class Shipping extends CI_Controller {
 	{
 		parent::__construct();
 		$this->session->set_userdata('account_button', '3');
+		$this->session->set_userdata('account_button_client', '3');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
 		
@@ -38,7 +39,16 @@ class Shipping extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['shippings'] = $this->shipping_model->getShippings();
+		if(isset($_SESSION['id_role']) && ($_SESSION['id_role'] == 2))
+		{
+			$id = $_SESSION['id_user'];
+		}
+		else
+		{
+			$id = "";
+		}
+
+		$data['shippings'] = $this->shipping_model->getShippings($id);
 
 		$this->load->view('shippingcrud', $data);	
 	}

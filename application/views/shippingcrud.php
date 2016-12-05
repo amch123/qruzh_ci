@@ -27,6 +27,7 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
+                    <?php echo base_url(); ?>
                     <a href="<?php echo base_url(); ?>index.php/account/shipping/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Envio</button></a></i></button>
                     <hr>
                     <?php 

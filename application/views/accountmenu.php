@@ -34,14 +34,14 @@
                             else if($_SESSION['id_role'] == 2)
                             {
                             ?>
-                                <li>
-                                    <a href="#">Tus Compras</a>
+                                <li <?php if($_SESSION['account_button_client'] == 1) { ?> class="active" <?php } ?>>
+                                    <a href="<?php echo base_url(); ?>index.php/account/order">Tus Compras</a>
                                 </li>
-                                <li class="active">
-                                    <a href="#">Tus Pagos</a>
+                                <li <?php if($_SESSION['account_button_client'] == 2) { ?> class="active" <?php } ?>>
+                                    <a href="<?php echo base_url(); ?>index.php/account/payment">Tus Pagos</a>
                                 </li>
-                                <li class="active">
-                                    <a href="#">Envios</a>
+                                <li <?php if($_SESSION['account_button_client'] == 3) { ?> class="active" <?php } ?>>
+                                    <a href="<?php echo base_url(); ?>index.php/account/shipping">Envios</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>index.php/user/sessionDestroy">Cerrar Sesión</a>

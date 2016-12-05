@@ -21,13 +21,19 @@ class Shipping_model extends CI_Model {
 		}
 	}
 
-	function getShippings()
+	function getShippings($id = NULL)
 	{
 		$this->db->select('shippings.*, orders.*, users.*, shipping_companies.*, DATE_FORMAT(shippings.created_at, "%d-%m-%Y") as custom_created_at');
 		$this->db->from('shippings, orders, users, shipping_companies');
 		$this->db->where('shippings.id_order = orders.id_order');
 		$this->db->where('shippings.id_user = users.id_user');
 		$this->db->where('shippings.id_shipping_company = shipping_companies.id_shipping_company');
+
+		if($id != NULL)
+		{
+			$this->db->where('shippings.id_user', $id);
+		}
+
 		$this->db->order_by("shippings.created_at", "desc");
 		$query = $this->db->get();
 
