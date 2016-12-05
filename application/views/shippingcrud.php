@@ -27,9 +27,15 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
-                    <?php echo base_url(); ?>
-                    <a href="<?php echo base_url(); ?>index.php/account/shipping/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Envio</button></a></i></button>
-                    <hr>
+                    <?php
+                    if($_SESSION['id_role'] == 1)
+                    {
+                    ?>
+                        <a href="<?php echo base_url(); ?>index.php/account/shipping/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Envio</button></a>
+                        <hr>
+                    <?php
+                    }
+                    ?>
                     <?php 
                     if(isset($_SESSION['delete_status']) && ($_SESSION['delete_status'] == 1))
                     {

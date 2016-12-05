@@ -59,24 +59,31 @@ require('header.php');
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <label>Rol</label>
-                                                        <select class="form-control" name="id_role" required>
-                                                            <option value="">-Seleccione-</option>
-                                                            <?php
-                                                            foreach($roles->result() as $role)
-                                                            {
-                                                            ?>
-                                                                <option <?php if($role->id_role == $user[0]->id_role) {?> selected <?php } ?> value="<?php echo $role->id_role; ?>"><?php echo $role->role; ?></option>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </select>
+                                            <?php
+                                            if($_SESSION['id_role'] == 1)
+                                            {
+                                            ?>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <label>Rol</label>
+                                                            <select class="form-control" name="id_role" required>
+                                                                <option value="">-Seleccione-</option>
+                                                                <?php
+                                                                foreach($roles->result() as $role)
+                                                                {
+                                                                ?>
+                                                                    <option <?php if($role->id_role == $user[0]->id_role) {?> selected <?php } ?> value="<?php echo $role->id_role; ?>"><?php echo $role->role; ?></option>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php
+                                            }
+                                            ?>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <input type="hidden" name="id_user" value="<?php echo $user[0]->id_user; ?>">
