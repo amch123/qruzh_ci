@@ -43,6 +43,9 @@
                                 <li <?php if($_SESSION['account_button_client'] == 3) { ?> class="active" <?php } ?>>
                                     <a href="<?php echo base_url(); ?>index.php/account/shipping">Tus Envios</a>
                                 </li>
+                                <li <?php if($_SESSION['account_button_client'] == 4) { ?> class="active" <?php } ?>>
+                                    <a href="<?php echo base_url(); ?>index.php/account/user/edit/<?php echo $_SESSION['id_user']; ?>">Tus Datos</a>
+                                </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>index.php/user/sessionDestroy">Cerrar Sesión</a>
                                 </li>
