@@ -69,33 +69,33 @@ require('header.php');
                                                                             </a>
                                                                         </td>
                                                                         <td class="product-name">
-                                                                            <a href="shop-product-sidebar.html">Photo Camera</a>
+                                                                            <a href="shop-product-sidebar.html"><?php echo $items['name']; ?></a>
                                                                         </td>
                                                                         <td class="product-price">
-                                                                            <span class="amount">$299</span>
+                                                                            <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['price']; ?></span>
                                                                         </td>
                                                                         <td class="product-quantity">
                                                                             <form enctype="multipart/form-data" method="post" class="cart">
                                                                                 <div class="quantity">
-                                                                                    <input type="button" class="minus" value="-">
-                                                                                    <input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                                                                    <input type="button" class="plus" value="+">
+                                                                                    <input type="number" class="input-text qty text" title="Qty" value="<?php echo $items['qty']; ?>" name="quantity" min="0" step="1">
                                                                                 </div>
                                                                             </form>
                                                                         </td>
                                                                         <td class="product-subtotal">
-                                                                            <span class="amount">$299</span>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="actions" colspan="6">
-                                                                            <div class="actions-continue">
-                                                                                <input type="submit" value="Update Cart" name="update_cart" class="btn btn-default">
-                                                                            </div>
+                                                                            <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['qty']*$items['price']; ?></span>
                                                                         </td>
                                                                     </tr>
                                                             <?php
                                                                 }
+                                                            ?>
+                                                                <tr>
+                                                                    <td class="actions" colspan="6">
+                                                                        <div class="actions-continue">
+                                                                            <input type="submit" value="Actualizar Carro" name="update_cart" class="btn btn-default">
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php
                                                             }
                                                             else
                                                             {
@@ -145,28 +145,20 @@ require('header.php');
                                         <div class="col-sm-6">
                                             <div class="featured-box featured-box-primary align-left mt-xlg">
                                                 <div class="box-content">
-                                                    <h4 class="heading-primary text-uppercase mb-md">Cart Totals</h4>
+                                                    <h4 class="heading-primary text-uppercase mb-md">Total</h4>
                                                     <table class="cart-totals">
                                                         <tbody>
                                                             <tr class="cart-subtotal">
                                                                 <th>
-                                                                    <strong>Cart Subtotal</strong>
+                                                                    <strong>Subtotal</strong>
                                                                 </th>
                                                                 <td>
-                                                                    <strong><span class="amount">$431</span></strong>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="shipping">
-                                                                <th>
-                                                                    Shipping
-                                                                </th>
-                                                                <td>
-                                                                    Free Shipping<input type="hidden" value="free_shipping" id="shipping_method" name="shipping_method">
+                                                                    <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $this->cart->total(); ?></span></strong>
                                                                 </td>
                                                             </tr>
                                                             <tr class="total">
                                                                 <th>
-                                                                    <strong>Order Total</strong>
+                                                                    <strong>Total</strong>
                                                                 </th>
                                                                 <td>
                                                                     <strong><span class="amount">$431</span></strong>
@@ -184,7 +176,7 @@ require('header.php');
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="actions-continue">
-                                            <button type="submit" class="btn pull-right btn-primary btn-lg">Proceed to Checkout <i class="fa fa-angle-right ml-xs"></i></button>
+                                            <button type="submit" class="btn pull-right btn-primary btn-lg">Proceder a Pagar <i class="fa fa-angle-right ml-xs"></i></button>
                                         </div>
                                     </div>
                                 </div>

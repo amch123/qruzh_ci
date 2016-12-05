@@ -7,6 +7,8 @@ class Cart extends CI_Controller {
 		parent::__construct();
 
 		$data['settings'] = $this->setting_model->getSettings(1);
+
+		$this->session->set_userdata('button', '0');
 		
 		$setting_data = array(
         			'title'  => $data['settings'][0]->title,

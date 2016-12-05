@@ -38,6 +38,24 @@ class Product_model extends CI_Model {
 		}
 	}
 
+	function getProductsCategories($id)
+	{
+		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
+		$this->db->from('products');
+		$this->db->where('id_category', $id);
+		$this->db->order_by("created_at", "desc");
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0)
+		{
+			return $query;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getRecentProducts()
 	{
 		$this->db->select('*');
@@ -58,9 +76,10 @@ class Product_model extends CI_Model {
 
 	function getProduct($id)
 	{
-		$this->db->select('*');
-		$this->db->from('products');
-		$this->db->where('id_product = '.$id);
+		$this->db->select('products.*, categories.*');
+		$this->db->from('products, categories');
+		$this->db->where('products.id_category = categories.id_category');
+		$this->db->where('products.id_product = '.$id);
 		$query = $this->db->get()->result();
 
 		if(count($query) > 0)

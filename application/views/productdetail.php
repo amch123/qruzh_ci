@@ -57,12 +57,8 @@ require('header.php');
                         <div class="summary entry-summary">
                             <h1 class="mb-none"><strong><?php echo $product[0]->title; ?></strong></h1>
 
-                            <div title="Rated 5.00 out of 5" class="star-rating">
-                                <span style="width:100%"><strong class="rating">5.00</strong> out of 5</span>
-                            </div>
-
                             <p class="price">
-                                <span class="amount"><?php echo $product[0]->unit_price; ?></span>
+                                <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $product[0]->unit_price; ?></span>
                             </p>
 
                             <form enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/cart/store" method="post" class="cart">
@@ -76,7 +72,7 @@ require('header.php');
                             </form>
 
                             <div class="product_meta">
-                                <span class="posted_in">Categorías: <a rel="tag" href="#">Cargadores</a>, <a rel="tag" href="#">Accesorios</a>.</span>
+                                <span class="posted_in">Categorías: <a rel="tag" href="<?php echo base_url(); ?>index.php/product/category/<?php echo $product[0]->id_category; ?>"><?php echo $product[0]->category_name; ?></a>.</span>
                             </div>
                         </div>
                     </div>

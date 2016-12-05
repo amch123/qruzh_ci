@@ -114,7 +114,7 @@ require('header.php');
                                 <a href="shop-product-sidebar.html">
                                     <h4><?php echo $recent_product->title; ?></h4>
                                     <span class="price">
-                                        <ins><span class="amount"><?php echo $recent_product->unit_price; ?></span></ins>
+                                        <ins><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $recent_product->unit_price; ?></span></ins>
                                     </span>
                                 </a>
                             </span>

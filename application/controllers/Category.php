@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Product extends CI_Controller {
+class Category extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session->set_userdata('button', '0');
-		$this->session->set_userdata('account_button', '1');
+		$this->session->set_userdata('button', '3');
+		$this->session->set_userdata('account_button', '0');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
 		
@@ -37,50 +37,17 @@ class Product extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$url = $this->uri->segment(1);
-
-		$data['products'] = $this->product_model->getProducts();
-
-		if($url == "account")
-		{
-			$this->load->view('productcrud', $data);
-		}
-		else
-		{
-			$data['categories'] = $this->category_model->getCategories();
-
-			$this->session->set_userdata('button', '3');
-
-			$this->load->view('product', $data);
-		}	
-	}
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function show()
 	{
 		$this->session->set_userdata('button', '3');
 
 		$id = $this->uri->segment(3);
 
-		$data['product'] = $this->product_model->getProduct($id);
+		$data['products'] = $this->product_model->getProductsCategories($id);
+
+		$data['categories'] = $this->category_model->getCategories();
 		
-		$this->load->view('productdetail', $data);
+		$this->load->view('product', $data);
 	}
 
 	/**

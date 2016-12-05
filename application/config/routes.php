@@ -65,6 +65,7 @@ $route['account'] = 'welcome';
 $route['user/sessionDestroy'] = 'user/sessionDestroy';
 $route['payment'] = 'payment/index';
 $route['newletters/store'] = 'newletters/store';
+$route['product/category/:num'] = 'category/show';
 //////////////
 $route['account/product'] = 'product/index';
 $route['account/product/create'] = 'product/create';
