@@ -82,8 +82,13 @@ $route['account/user/edit/:num'] = 'user/edit';
 $route['account/user/update'] = 'user/update';
 //////////////
 $route['account/payment'] = 'payment/index';
+$route['account/payment/show/:num'] = 'payment/show';
+$route['account/payment/delete/:num'] = 'payment/destroy';
 //////////////
 $route['account/shipping'] = 'shipping/index';
 //////////////
 $route['account/setting'] = 'setting/index';
 $route['account/setting/update'] = 'setting/update';
+//////////////
+$route['account/order'] = 'order/index';
+$route['account/order/show/:num'] = 'order/show';

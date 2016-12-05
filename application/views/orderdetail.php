@@ -8,9 +8,9 @@ require('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Pagos<span></span></h1>
+                            <h1>Detalle de la Orden de Compra<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
-                                <li><a href="<?php echo base_url(); ?>index.php/account/payment">Pagos</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/account/order">Ordenes de Compras</a> / <a href="<?php echo base_url(); ?>index.php/account/order/show/<?php echo $this->uri->segment(4); ?>">Detalle de la Orden de Compra</a></li>
                             </ul>
                         </div>
                     </div>
@@ -28,27 +28,47 @@ require('header.php');
                 </div>
                 <div class="col-md-9">
                     <?php 
-                    if(isset($_SESSION['store_status']))
-                    {
-                    ?>
-                        <div class="alert alert-success">
-                            <strong>Exito!</strong> Se ha guardado el pago.
-                        </div>
-                    <?php 
-                        unset($_SESSION['store_status']);
-                    }
-                    ?>
-                    <?php 
                     if(isset($_SESSION['delete_status']))
                     {
                     ?>
                         <div class="alert alert-success">
-                            <strong>Exito!</strong> Se ha borrado el pago.
+                            <strong>Exito!</strong> Se ha borrado el producto de la orden.
                         </div>
                     <?php 
                         unset($_SESSION['delete_status']);
                     }
                     ?>
+                    <table class="table table-bordered">
+                         <thead>
+                            <tr>
+                                <th>
+                                    Cliente
+                                </th>
+                                <th>
+                                    Impuesto
+                                </th>
+                                <th>
+                                    Monto
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <?php echo $order[0]->name; ?>
+                                </td>
+                                <td>
+                                    <?php echo $_SESSION['currency']; ?> <?php echo $order[0]->total_tax; ?>
+                                </td>
+                                <td>
+                                    <?php echo $_SESSION['currency']; ?> <?php echo $order[0]->total_amount; ?>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <h3>Productos de la Orden</h3>
+                    <hr>
                     <table id="productcrud" class="table">
                         <thead>
                             <tr>
@@ -56,47 +76,41 @@ require('header.php');
                                     Id
                                 </th>
                                 <th>
-                                    Id Orden
+                                    Producto
                                 </th>
                                 <th>
-                                    Cliente
+                                    Cantidad
                                 </th>
                                 <th>
-                                    Monto
+                                    Precio
                                 </th>
                                 <th>
-                                    Fecha de Registro
-                                </th>
-                                <th>
-                                    
+                                    Subtotal
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            if($payments != "")
+                            if($orders_products != "")
                             {
-                                foreach($payments->result() as $payment)
+                                foreach($orders_products->result() as $order_product)
                                 {
                             ?>
                                     <tr>
                                         <td>
-                                            <?php echo $payment->id_payment; ?>
+                                            <?php echo $order_product->id_product; ?>
                                         </td>
                                         <td>
-                                            <?php echo $payment->id_order; ?>
+                                            <?php echo $order_product->title; ?>
                                         </td>
                                         <td>
-                                            <?php echo $payment->total_amount; ?>
+                                            <?php echo $order_product->quantity; ?>
                                         </td>
                                         <td>
-                                            <?php echo $product->custom_created_at; ?>
+                                            <?php echo $_SESSION['currency']; ?> <?php echo $order_product->unit_price; ?>
                                         </td>
                                         <td>
-                                            <a href="<?php echo base_url(); ?>index.php/account/payment/show/<?php echo $payment->id_payment; ?>">
-                                                <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                            <a href="<?php echo base_url(); ?>index.php/account/payment/delete/<?php echo $payment->id_payment; ?>">
-                                                <i class="fa fa-times" aria-hidden="true"></i></a>
+                                            <?php echo $_SESSION['currency']; ?> <?php echo $order_product->unit_price*$order_product->quantity; ?>
                                         </td>
                                     </tr> 
                             <?php

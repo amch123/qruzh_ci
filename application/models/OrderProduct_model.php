@@ -1,15 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Payment_model extends CI_Model {
+class OrderProduct_model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->database();
 	}
 
-	function storePayment($data)
+	function storeOrder($data)
 	{
-		$query = $this->db->insert('payments', array('id_order' => $data['id_order'], 'status' => $data['status'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('products', array('id_category' => $data['id_category'], 'title' => $data['title'], 'description' => $data['description'], 'unit_price' => $data['unit_price'], 'wholesale_price' => $data['wholesale_price'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   
@@ -21,12 +21,12 @@ class Payment_model extends CI_Model {
 		}
 	}
 
-	function getPayments()
+	function getOrdersProducts($id)
 	{
-		$this->db->select('payments.*, DATE_FORMAT(payments.created_at, "%d-%m-%Y") as custom_created_at, orders.*');
-		$this->db->where('payments.id_order = orders.id_order');
-		$this->db->from('payments, orders');
-		$this->db->order_by("payments.created_at", "desc");
+		$this->db->select('orders_products.*, products.*');
+		$this->db->from('orders_products, products');
+		$this->db->where('orders_products.id_product = products.id_product');
+		$this->db->where('orders_products.id_order', $id);
 		$query = $this->db->get();
 
 		if($query->num_rows() > 0)
@@ -39,12 +39,12 @@ class Payment_model extends CI_Model {
 		}
 	}
 
-	function getPayment($id)
+	function getOrder($id)
 	{
-		$this->db->select('payments.*, orders.*');
-		$this->db->from('payments, orders');
-		$this->db->where('payments.id_order = orders.id_order');
-		$this->db->where('payments.id_payment = '.$id);
+		$this->db->select('products.*, categories.*');
+		$this->db->from('products, categories');
+		$this->db->where('products.id_category = categories.id_category');
+		$this->db->where('products.id_product = '.$id);
 		$query = $this->db->get()->result();
 
 		if(count($query) > 0)
@@ -57,9 +57,9 @@ class Payment_model extends CI_Model {
 		}
 	}
 
-	function deletePayment($id)
+	function deleteProduct($id)
 	{
-		$product = $this->db->delete('payments', array('id_payment' => $id));
+		$product = $this->db->delete('products', array('id_product' => $id));
 
 		if($product)
 		{
