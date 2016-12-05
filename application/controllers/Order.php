@@ -7,6 +7,7 @@ class Order extends CI_Controller {
 		parent::__construct();
 		$this->session->set_userdata('button', '0');
 		$this->session->set_userdata('account_button', '2');
+		$this->session->set_userdata('account_button_client', '1');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
 		
@@ -39,7 +40,16 @@ class Order extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['orders'] = $this->order_model->getOrders();
+		if(isset($_SESSION['id_role']) && ($_SESSION['id_role'] == 2))
+		{
+			$id = $_SESSION['id_user'];
+		}
+		else
+		{
+			$id = "";
+		}
+
+		$data['orders'] = $this->order_model->getOrders($id);
 
 		$this->load->view('ordercrud', $data);
 	}

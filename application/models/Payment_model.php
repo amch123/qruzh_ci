@@ -21,11 +21,17 @@ class Payment_model extends CI_Model {
 		}
 	}
 
-	function getPayments()
+	function getPayments($id = NULL)
 	{
 		$this->db->select('payments.*, DATE_FORMAT(payments.created_at, "%d-%m-%Y") as custom_created_at, orders.*, users.*');
 		$this->db->where('payments.id_order = orders.id_order');
 		$this->db->where('payments.id_user = users.id_user');
+
+		if($id != NULL)
+		{
+			$this->db->where('payments.id_user', $id);
+		}
+
 		$this->db->from('payments, orders, users');
 		$this->db->order_by("payments.created_at", "desc");
 		$query = $this->db->get();

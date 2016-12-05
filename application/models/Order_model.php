@@ -21,11 +21,17 @@ class Order_model extends CI_Model {
 		}
 	}
 
-	function getOrders()
+	function getOrders($id = NULL)
 	{
 		$this->db->select('orders.*, DATE_FORMAT(orders.created_at, "%d-%m-%Y") as custom_created_at, users.*');
 		$this->db->from('orders, users');
 		$this->db->where('orders.id_user = users.id_user');
+
+		if($id != NULL)
+		{
+			$this->db->where('orders.id_user', $id);
+		}
+
 		$this->db->order_by("orders.created_at", "desc");
 		$query = $this->db->get();
 
