@@ -5,8 +5,8 @@ class Category extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session->set_userdata('button', '3');
-		$this->session->set_userdata('account_button', '0');
+		$this->session->set_userdata('button', '0');
+		$this->session->set_userdata('account_button', '6');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
 		
@@ -20,6 +20,28 @@ class Category extends CI_Controller {
 					);
 
 		$this->session->set_userdata($setting_data);
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function index()
+	{
+		$data['categories'] = $this->category_model->getCategories();
+		
+		$this->load->view('categorycrud', $data);
 	}
 
 	/**
@@ -67,9 +89,7 @@ class Category extends CI_Controller {
 	 */
 	public function create()
 	{
-		$data['categories'] = $this->category_model->getCategories();
-
-		$this->load->view('addproduct', $data);
+		$this->load->view('addcategory');
 	}
 
 	/**
@@ -91,11 +111,9 @@ class Category extends CI_Controller {
 	{
 		$id = $this->uri->segment(4);
 
-		$data['product'] = $this->product_model->getProduct($id);
+		$data['category'] = $this->category_model->getCategory($id);
 
-		$data['categories'] = $this->category_model->getCategories();
-
-		$this->load->view('editproduct', $data);
+		$this->load->view('editcategory', $data);
 	}
 
 	/**
@@ -113,7 +131,7 @@ class Category extends CI_Controller {
 	 */
 	public function update()
 	{
-		$data['status'] = $this->product_model->updateProduct($this->input->post());
+		$data['status'] = $this->category_model->updateCategory($this->input->post());
 		
 		if($data['status'] == true)
 		{
@@ -124,7 +142,7 @@ class Category extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 		
-		redirect('account/product/edit/'.$this->input->post('id_product'));
+		redirect('account/category/edit/'.$this->input->post('id_category'));
 	}
 
 	/**
@@ -145,14 +163,10 @@ class Category extends CI_Controller {
 	public function store()
 	{
 		$data = array(
-					'id_category' => $this->input->post('id_category'),
-					'title' => $this->input->post('title'),
-					'description' => $this->input->post('description'),
-					'unit_price' => $this->input->post('unit_price'),
-					'wholesale_price' => $this->input->post('wholesale_price'),
+					'category_name' => $this->input->post('category_name')
 				);
 
-		$data['status'] = $this->product_model->storeProduct($data);
+		$data['status'] = $this->category_model->storeCategory($data);
 
 		if($data['status'] == true)
 		{
@@ -163,7 +177,7 @@ class Category extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 
-		redirect('account/product');
+		redirect('account/category');
 	}
 
 	/**
@@ -185,7 +199,7 @@ class Category extends CI_Controller {
 	{
 		$id = $this->uri->segment(4);
 
-		$data['status'] = $this->product_model->deleteProduct($id);
+		$data['status'] = $this->category_model->deleteCategory($id);
 
 		if($data['status'] == true)
 		{
@@ -196,6 +210,6 @@ class Category extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 
-		redirect('account/product');
+		redirect('account/category');
 	}
 }

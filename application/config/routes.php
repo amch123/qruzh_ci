@@ -96,3 +96,10 @@ $route['account/setting/update'] = 'setting/update';
 $route['account/order'] = 'order/index';
 $route['account/order/show/:num'] = 'order/show';
 $route['account/order/delete/:num'] = 'order/destroy';
+//////////////
+$route['account/category'] = 'category/index';
+$route['account/category/create'] = 'category/create';
+$route['account/category/edit/:num'] = 'category/edit';
+$route['account/category/delete/:num'] = 'category/destroy';
+$route['account/category/store'] = 'category/store';
+$route['account/category/update'] = 'category/update';
