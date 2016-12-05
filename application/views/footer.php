@@ -43,16 +43,12 @@
                                 <nav id="sub-menu">
                                     <ul>
                                         <li>Powered by</li>
+                                        <li><a href="#" class="logo">
+                                        <img src="<?php echo base_url(); ?>template/img/logo-footer.png"></img>
+                                        </a></li>
                                     </ul>
                                 </nav>
-                            </div>
-                            <div class="col-md-1">
-                                <nav id="sub-menu">
-                                    <a href="#" class="logo">
-                                        <img src="<?php echo base_url(); ?>template/img/logo-footer.png"></img>
-                                    </a>
-                                </nav>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
                 </div>

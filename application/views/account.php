@@ -27,7 +27,11 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
-
+                    <div>
+                        <div class="thumbnail">
+                            <img src="<?php echo base_url(); ?>template/img/products/product-20.jpg" class="img-responsive img-rounded"></img>
+                        </div>
+                    </div>
                 </div>
 
             </div>
