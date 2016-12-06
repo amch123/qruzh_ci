@@ -27,6 +27,17 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
+                    <?php 
+                    if(isset($_SESSION['error']))
+                    {
+                    ?>
+                        <div class="alert alert-danger">
+                            <?php echo $_SESSION['error']; ?>
+                        </div>
+                    <?php 
+                        unset($_SESSION['error']);
+                    }
+                    ?>
                     <div class="featured-boxes">
                         <div class="row">
                             <div class="col-sm-1">
@@ -40,7 +51,7 @@ require('header.php');
                                                     <div class="col-md-3">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <img src="<?php echo base_url(); ?>template/img/products/product-2.jpg" class="img-responsive"></img>
+                                                        <img src="<?php echo base_url(); ?>pre_uploads/<?php echo $_SESSION['image']; ?>" class="img-responsive"></img>
                                                     </div>
                                                     <div class="col-md-3">
                                                     </div>
@@ -130,13 +141,23 @@ require('header.php');
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="defaultModalLabel">Default Modal Title</h4>
+                    <h4 class="modal-title" id="defaultModalLabel">Agregar Imagen</h4>
                 </div>
                 <div class="modal-body">
-                    <p></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <form action="<?php echo base_url(); ?>index.php/account/image/store" id="frmSignUp" enctype="multipart/form-data" method="post">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="file" name="image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="submit" value="Guardar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

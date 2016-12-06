@@ -58,6 +58,9 @@ require('header.php');
                                     Id
                                 </th>
                                 <th>
+                                    Imagen
+                                </th>
+                                <th>
                                     Titulo
                                 </th>
                                 <th>
@@ -84,6 +87,9 @@ require('header.php');
                                     <tr>
                                         <td>
                                             <?php echo $product->id_product; ?>
+                                        </td>
+                                        <td>
+                                            <img src="<?php echo base_url(); ?>pre_uploads/<?php echo $product->image; ?>" class="img-responsive"></img>
                                         </td>
                                         <td>
                                             <?php echo $product->title; ?>

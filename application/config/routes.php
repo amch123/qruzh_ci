@@ -73,6 +73,8 @@ $route['account/product/store'] = 'product/store';
 $route['account/product/delete/:num'] = 'product/destroy';
 $route['account/product/edit/:num'] = 'product/edit';
 $route['account/product/update'] = 'product/update';
+$route['account/image/store'] = 'image/store';
+$route['account/image/edit/:num'] = 'image/store';
 //////////////
 $route['account/user'] = 'user/index';
 $route['account/user/create'] = 'user/create';

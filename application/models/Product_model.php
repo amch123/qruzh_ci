@@ -9,7 +9,7 @@ class Product_model extends CI_Model {
 
 	function storeProduct($data)
 	{
-		$query = $this->db->insert('products', array('id_category' => $data['id_category'], 'title' => $data['title'], 'description' => $data['description'], 'unit_price' => $data['unit_price'], 'wholesale_price' => $data['wholesale_price'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('products', array('id_category' => $data['id_category'], 'title' => $data['title'], 'description' => $data['description'], 'unit_price' => $data['unit_price'], 'wholesale_price' => $data['wholesale_price'], 'image' => $data['image'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   
@@ -113,6 +113,7 @@ class Product_model extends CI_Model {
 		$this->db->set('description', $data['description']);
 		$this->db->set('unit_price', $data['unit_price']);
 		$this->db->set('wholesale_price', $data['wholesale_price']);
+		$this->db->set('image', $data['image']);
 		$this->db->where('id_product',  $data['id_product']);
 		$query = $this->db->update('products');
 
