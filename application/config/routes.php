@@ -66,6 +66,7 @@ $route['user/sessionDestroy'] = 'user/sessionDestroy';
 $route['payment'] = 'payment/index';
 $route['newletters/store'] = 'newletters/store';
 $route['product/category/:num'] = 'category/show';
+$route['wholesalecart/store'] = 'wholesalecart/store';
 //////////////
 $route['account/product'] = 'product/index';
 $route['account/product/create'] = 'product/create';
@@ -73,6 +74,8 @@ $route['account/product/store'] = 'product/store';
 $route['account/product/delete/:num'] = 'product/destroy';
 $route['account/product/edit/:num'] = 'product/edit';
 $route['account/product/update'] = 'product/update';
+$route['account/image/store'] = 'image/store';
+$route['account/image/edit/:num'] = 'image/store';
 //////////////
 $route['account/user'] = 'user/index';
 $route['account/user/create'] = 'user/create';

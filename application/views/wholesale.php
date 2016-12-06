@@ -1,5 +1,5 @@
 <?php
-require('header.php');
+require('wholesaleheader.php');
 ?>
 	<div role="main" class="main shop">
 
@@ -22,7 +22,18 @@ require('header.php');
         <div role="main" class="main shop">
 
             <div class="container">
-
+                <?php 
+                if(isset($_SESSION['store_status']))
+                {
+                ?>
+                    <div class="alert alert-success">
+                        <strong>Exito!</strong> Se ha agregado el producto al carro.
+                    </div>
+                <?php 
+                    unset($_SESSION['store_status']);
+                }
+                ?>
+                
                 <div class="row">
                     <div class="col-md-12">
                         <hr class="tall">
@@ -36,7 +47,7 @@ require('header.php');
                                 Producto
                             </th>
                             <th>
-                                Descripción
+                                Titulo
                             </th>
                             <th>
                                 Precio Detal
@@ -45,55 +56,71 @@ require('header.php');
                                 Precio Mayor
                             </th>
                             <th>
+                                Stock
+                            </th>
+                            <th>
                                 
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="active">
-                            <td scope="row">
-                                <img src="<?php echo base_url(); ?>template/img/benefits/benefits-1-thumb.jpg" class="img-responsive">
-                            </td>
-                            <td>
-                                Column content
-                            </td>
-                             <td>
-                                Column content
-                            </td>
-                            <td>
-                                Column content
-                            </td>
-                            <td>
-                                <div class="quantity">
-                                    <input type="button" class="minus" value="-">
-                                    <input id="quantity" type="text" class="input-text qty text" title="Qty" value="0" name="quantity" min="1" step="1">
-                                    <input type="button" class="plus" value="+">
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-icon">Agregar al carro</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">
-                                <img src="<?php echo base_url(); ?>template/img/benefits/benefits-1-thumb.jpg" class="img-responsive">
-                            </td>
-                            <td>
-                                Column content
-                            </td>
-                            <td>
-                                Column content
-                            </td>
-                            <td>
-                                Column content
-                            </td>
-                            <td>
-                                <div class="quantity">
-                                    <input type="button" class="minus" value="-">
-                                    <input id="quantity" type="text" class="input-text qty text" title="Qty" value="0" name="quantity" min="1" step="1">
-                                    <input type="button" class="plus" value="+">
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-icon">Agregar al carro</button>
-                            </td>
-                        </tr>
+                        <?php
+                        $i = 1;
+
+                        foreach($products->result() as $product)
+                        {
+                        ?>
+                            <tr class="active">
+                                <td scope="row">
+                                    <img width="75px" height="75px" src="<?php echo base_url(); ?>uploads/<?php echo $product->image; ?>" class="img-responsive"></img>
+                                </td>
+                                <td>
+                                    <?php echo $product->title; ?>
+                                </td>
+                                 <td>
+                                    <?php echo $_SESSION['currency']; ?> <?php echo $product->unit_price; ?>
+                                </td>
+                                <td>
+                                    <?php echo $_SESSION['currency']; ?> <?php echo $product->wholesale_price; ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    if($product->stock > 0)
+                                    {
+                                    ?>
+                                        <?php echo $product->stock; ?> Unidad(es)
+                                    <?php
+                                    }
+                                    else
+                                    {
+                                    ?>
+                                        Agotado
+                                    <?php
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <form enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/wholesalecart/store" method="post" class="cart">
+                                        <?php
+                                        if($product->stock > 0)
+                                        {
+                                        ?>
+                                        <div class="quantity">
+                                            <input id="quantity" type="number" class="input-text qty text" title="Qty" value="0" name="quantity<?php echo $i; ?>" min="1" step="1">
+                                        </div>
+                                        <input type="hidden" value="<?php echo $product->id_product; ?>" class="input-text qty text" title="Qty" value="0" name="id_product<?php echo $i; ?>" min="1" step="1">
+                                        <input type="hidden" class="input-text qty text" title="Qty" value="<?php echo $i; ?>" name="records">
+                                        <button type="submit" class="btn btn-primary btn-icon">Agregar al carro</button>
+                                        <?php
+                                        }
+                                        ?>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php
+                            $i = $i + 1;
+                        }
+                        ?>
                     </tbody>
                 </table>
                

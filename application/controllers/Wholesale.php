@@ -18,6 +18,8 @@ class Wholesale extends CI_Controller {
 					);
 
 		$this->session->set_userdata($setting_data);
+
+		$this->shop2 = new Udp_cart("shop2");
 	}
 
 	/**
@@ -39,6 +41,8 @@ class Wholesale extends CI_Controller {
 	{
 		$this->session->set_userdata('button', '4');
 
-		$this->load->view('wholesale');
+		$data['products'] = $this->product_model->getProducts();
+
+		$this->load->view('wholesale', $data);
 	}
 }

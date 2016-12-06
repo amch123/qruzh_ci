@@ -20,6 +20,8 @@ class Product extends CI_Controller {
 					);
 
 		$this->session->set_userdata($setting_data);
+
+		$this->shop1 = new Udp_cart("shop1");
 	}
 
 	/**
@@ -128,6 +130,8 @@ class Product extends CI_Controller {
 
 		$data['categories'] = $this->category_model->getCategories();
 
+		$this->session->set_userdata(array('image' => $data['product'][0]->image));
+
 		$this->load->view('editproduct', $data);
 	}
 
@@ -183,12 +187,16 @@ class Product extends CI_Controller {
 					'description' => $this->input->post('description'),
 					'unit_price' => $this->input->post('unit_price'),
 					'wholesale_price' => $this->input->post('wholesale_price'),
+					'stock' => $this->input->post('stock'),
+					'image' => $_SESSION['image']
 				);
 
 		$data['status'] = $this->product_model->storeProduct($data);
 
 		if($data['status'] == true)
 		{
+			copy('./pre_uploads/'. $_SESSION['image'], './uploads/'. $_SESSION['image']);
+
 			$data = array(
 						'store_status' => '1',
 					);

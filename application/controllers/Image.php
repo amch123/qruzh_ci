@@ -1,10 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Message extends CI_Controller {
+class Image extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->session->set_userdata('account_button', '3');
+		$this->session->set_userdata('account_button_client', '2');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
 		
@@ -37,46 +39,52 @@ class Message extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->session->set_userdata('button', '6');
-
-		$this->load->view('message');
-	}
-
-	/**
-	 * Store Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/category/store
-	 *
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function store()
 	{
-		$data = array(
-					'name' => $this->input->post('name'),
-					'email' => $this->input->post('email'),
-					'subject' => $this->input->post('subject'),
-					'message' => $this->input->post('message'),
-				);
+		$url = $this->uri->segment(3);
 
-		$data['status'] = $this->message_model->storeMessage($data);
+		$config['upload_path']          = './pre_uploads/';
+		$config['allowed_types']        = 'gif|jpg|png';
+    	$config['max_size']             = 100;
+		$config['max_width']            = 1024;
+  	 	$config['max_height']           = 768;
+  	 	$config['encrypt_name']         = TRUE;
 
-		if($data['status'] == true)
-		{
-			$data = array(
-						'store_status' => '1',
-					);
+      	$this->load->library('upload', $config);
+
+  		if ( ! $this->upload->do_upload('image'))
+  		{
+          	$error = array('error' => $this->upload->display_errors());
+
+			$this->session->set_userdata($error);
+
+            if($url == "edit")
+			{
+				redirect('account/product/edit/'.$this->uri->segment(4));
+			}
+			else
+			{
+				redirect('account/product/create');
+			}
+   		}
+    	else
+  		{
+  			$upload_data = array('upload_data' => $this->upload->data());
+
+  			$data = array(
+						'image' => $upload_data['upload_data']['file_name']
+						);
 
 			$this->session->set_userdata($data);
-		}
 
-		redirect('contact');
+			if($url == "edit")
+			{
+				redirect('account/product/edit/'.$this->uri->segment(4));
+			}
+			else
+			{
+				redirect('account/product/create');
+			}
+  		}
 	}
 }

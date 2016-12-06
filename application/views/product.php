@@ -67,7 +67,7 @@ require('header.php');
                                                         <span class="product-thumb-info-act-left"><em>Ver</em></span>
                                                         <span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Detalles</em></span>
                                                     </span>
-                                                    <img src="<?php echo base_url(); ?>template/img/products/product-2.jpg" class="img-responsive"></img>
+                                                    <img src="<?php echo base_url(); ?>uploads/<?php echo $product->image; ?>" class="img-responsive"></img>
                                                 </span>
                                             </a>
                                             <span class="product-thumb-info-content">

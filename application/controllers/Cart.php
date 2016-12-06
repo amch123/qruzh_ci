@@ -20,6 +20,8 @@ class Cart extends CI_Controller {
 					);
 
 		$this->session->set_userdata($setting_data);
+
+		$this->shop1 = new Udp_cart("shop1");
 	}
 
 	/**
@@ -70,7 +72,7 @@ class Cart extends CI_Controller {
         'name'    => $data['product'][0]->title
 		);
 
-		if($this->cart->insert($data))
+		if($this->shop1->insert($data))
 		{
 			$this->session->set_userdata('store_status', '1');
 		}

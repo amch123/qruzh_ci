@@ -149,7 +149,7 @@
                                                     </li>
                                                     <li class="dropdown dropdown-mega dropdown-mega-shop" id="headerShop">
                                                         <a class="dropdown-toggle" href="#">
-                                                            <i class="fa fa-shopping-cart"></i> Carro (<?php echo $this->shop1->total_articles(); ?>) - <?php echo $_SESSION['currency']; ?> <?php echo $this->shop1->total_cart(); ?>
+                                                            <i class="fa fa-shopping-cart"></i> Carro (<?php echo $this->shop2->total_articles(); ?>) - <?php echo $_SESSION['currency']; ?> <?php echo $this->shop2->total_cart(); ?>
                                                         </a>
                                                         <ul class="dropdown-menu">
                                                             <li>
@@ -176,7 +176,7 @@
                                                                             <tr>
                                                                                 <td class="actions" colspan="6">
                                                                                     <div class="actions-continue">
-                                                                                        <a href="<?php echo base_url(); ?>index.php/cart"><button type="button" class="btn btn-default">Ver Todo</button></a>
+                                                                                        <a href="<?php echo base_url(); ?>index.php/wholesalecart"><button type="button" class="btn btn-default">Ver Todo</button></a>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>

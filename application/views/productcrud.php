@@ -58,6 +58,9 @@ require('header.php');
                                     Id
                                 </th>
                                 <th>
+                                    Imagen
+                                </th>
+                                <th>
                                     Titulo
                                 </th>
                                 <th>
@@ -65,6 +68,9 @@ require('header.php');
                                 </th>
                                 <th>
                                     Precio al Mayor
+                                </th>
+                                <th>
+                                    Stock
                                 </th>
                                 <th>
                                     Fecha de Registro
@@ -86,6 +92,9 @@ require('header.php');
                                             <?php echo $product->id_product; ?>
                                         </td>
                                         <td>
+                                            <img src="<?php echo base_url(); ?>pre_uploads/<?php echo $product->image; ?>" class="img-responsive"></img>
+                                        </td>
+                                        <td>
                                             <?php echo $product->title; ?>
                                         </td>
                                         <td>
@@ -93,6 +102,9 @@ require('header.php');
                                         </td>
                                         <td>
                                             <?php echo $product->wholesale_price; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $product->stock; ?> Unidad(es)
                                         </td>
                                         <td>
                                             <?php echo $product->custom_created_at; ?>

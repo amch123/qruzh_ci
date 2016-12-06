@@ -1,5 +1,5 @@
 <?php
-require('header.php');
+require('wholesaleheader.php');
 ?>
 	<div role="main" class="main shop">
 
@@ -22,7 +22,7 @@ require('header.php');
                                                 <form method="post" action="">
                                                     <table class="shop_table cart">
                                                         <?php
-                                                        if($this->shop1->total_articles() > 0)
+                                                        if($this->shop2->total_articles() > 0)
                                                         {
                                                         ?>
                                                             <thead>
@@ -52,9 +52,9 @@ require('header.php');
                                                         ?>
                                                         <tbody>
                                                             <?php
-                                                            if($this->shop1->total_articles() > 0)
+                                                            if($this->shop2->total_articles() > 0)
                                                             {
-                                                                foreach($this->shop1->get_content() as $items)
+                                                                foreach($this->shop2->get_content() as $items)
                                                                 {
                                                             ?>
                                                                     <tr class="cart_table_item">
@@ -118,7 +118,7 @@ require('header.php');
                             </div>
 
                             <?php
-                            if($this->shop1->total_articles() > 0)
+                            if($this->shop2->total_articles() > 0)
                             {
                             ?>
                                 <div class="featured-boxes">
@@ -153,7 +153,7 @@ require('header.php');
                                                                     <strong>Subtotal</strong>
                                                                 </th>
                                                                 <td>
-                                                                    <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $this->shop1->total_cart(); ?></span></strong>
+                                                                    <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $this->shop2->total_cart(); ?></span></strong>
                                                                 </td>
                                                             </tr>
                                                             <tr class="total">
