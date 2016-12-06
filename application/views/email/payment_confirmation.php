@@ -26,7 +26,7 @@
                                         <tr>
                                             <td colspan="3" rowspan="3" bgcolor="#FFFFFF" style="padding:0">
                                                 <!-- inicio contenido -->
-                                                <a href="#"><img src="template/img/header.jpg" width="600" alt="" style="display:block; border:0; margin:0 0 44px; background:#ffffff;"></a>                                                <!-- inicio articulos -->
+                                                <a href="#"><img src="<?php echo base_url(); ?>template/img/header.jpg" width="600" alt="" style="display:block; border:0; margin:0 0 44px; background:#ffffff;"></a>                                                <!-- inicio articulos -->
                                                 <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                                     <tbody>
                                                         <tr valign="top">
@@ -38,7 +38,7 @@
                                                             </td>
                                                             <td colspan="3">
                                                             <p align="center" style="font-size:14px; line-height:22px; font-weight:bold; color:#333333; margin:0 0 5px;">&nbsp;</p>
-                                                            <p align="center" style="margin:0 0 10px; font-size:20px; line-height:18px; color:#333333;">Su envio está en proceso. </p>
+                                                            <p align="center" style="margin:0 0 10px; font-size:20px; line-height:18px; color:#333333;">Su pago ha sido confirmado. </p>
                                                             <p>&nbsp;</p>
                                                             <p>&nbsp;</p>
                                                             </td>
@@ -61,8 +61,8 @@
                                                             <td width="26"><p style="margin:0; font-size:1px; line-height:1px;">&nbsp;</p>
                                                             </td>
                                                             <td width="114">
-                                                                <a href="#" target="_blank" style="float:left; width:24px; height:24px; margin:6px 15px 10px 0;"><img src="facebook.png" width="30" height="30" alt="facebook" style="display:block; margin:0; border:0; background:#eeeeee;"></a>
-                                                                <a href="#" target="_blank" style="float:left; width:24px; height:24px; margin:6px 15px 10px 0;"><img src="twitter.png" width="30" height="30" alt="twitter" style="display:block; margin:0; border:0; background:#eeeeee;"></a>
+                                                                <a href="#" target="_blank" style="float:left; width:24px; height:24px; margin:6px 15px 10px 0;"><img src="<?php echo base_url(); ?>template/img/facebook.png" width="30" height="30" alt="facebook" style="display:block; margin:0; border:0; background:#eeeeee;"></a>
+                                                                <a href="#" target="_blank" style="float:left; width:24px; height:24px; margin:6px 15px 10px 0;"><img src="<?php echo base_url(); ?>template/img/twitter.png" width="30" height="30" alt="twitter" style="display:block; margin:0; border:0; background:#eeeeee;"></a>
                                                             </td>
                                                             <td width="30"><p style="margin:0; font-size:1px; line-height:1px;">&nbsp;</p>
                                                             </td>
