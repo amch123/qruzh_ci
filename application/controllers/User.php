@@ -251,6 +251,16 @@ class User extends CI_Controller {
 
 		if($data['status'] == true)
 		{
+			$email = $this->input->post('email');
+
+			$this->email->from('info@qruzh.com.mx', 'MobilePhone');
+			$this->email->to($email);
+
+			$this->email->subject('Activar la cuenta de MobilePhone');
+			$this->email->message($this->email_model->getEmail(1));
+
+			$this->email->send();
+
 			$data = array(
 						'store_status' => '1',
 					);
