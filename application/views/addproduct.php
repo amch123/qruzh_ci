@@ -51,7 +51,14 @@ require('header.php');
                                                     <div class="col-md-3">
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <?php
+                                                        if(isset($_SESSION['image']))
+                                                        {
+                                                        ?>
                                                         <img src="<?php echo base_url(); ?>pre_uploads/<?php echo $_SESSION['image']; ?>" class="img-responsive"></img>
+                                                        <?php 
+                                                        }
+                                                        ?>
                                                     </div>
                                                     <div class="col-md-3">
                                                     </div>
@@ -113,6 +120,14 @@ require('header.php');
                                                     <div class="col-md-12">
                                                         <label>Precio al Mayor</label>
                                                         <input type="text" name="wholesale_price" value="" class="form-control input-lg" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label>Stock</label>
+                                                        <input type="text" name="stock" value="" class="form-control input-lg" required>
                                                     </div>
                                                 </div>
                                             </div>

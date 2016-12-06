@@ -20,6 +20,8 @@ class Product extends CI_Controller {
 					);
 
 		$this->session->set_userdata($setting_data);
+
+		$this->shop1 = new Udp_cart("shop1");
 	}
 
 	/**
@@ -185,6 +187,7 @@ class Product extends CI_Controller {
 					'description' => $this->input->post('description'),
 					'unit_price' => $this->input->post('unit_price'),
 					'wholesale_price' => $this->input->post('wholesale_price'),
+					'stock' => $this->input->post('stock'),
 					'image' => $_SESSION['image']
 				);
 

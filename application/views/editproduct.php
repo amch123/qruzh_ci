@@ -38,6 +38,17 @@ require('header.php');
                         unset($_SESSION['update_status']);
                     }
                     ?>
+                    <?php 
+                    if(isset($_SESSION['error']))
+                    {
+                    ?>
+                        <div class="alert alert-danger">
+                            <?php echo $_SESSION['error']; ?>
+                        </div>
+                    <?php 
+                        unset($_SESSION['error']);
+                    }
+                    ?>
                     <div class="featured-boxes">
                         <div class="row">
                             <div class="col-sm-1">
@@ -51,7 +62,20 @@ require('header.php');
                                                     <div class="col-md-3">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <img src="<?php echo base_url(); ?>pre_uploads/<?php echo $_SESSION['image']; ?>" class="img-responsive"></img>
+                                                        <?php
+                                                        if($product[0]->image == $_SESSION['image'])
+                                                        {
+                                                        ?>
+                                                            <img src="<?php echo base_url(); ?>uploads/<?php echo $_SESSION['image']; ?>" class="img-responsive"></img>
+                                                        <?php
+                                                        }
+                                                        else
+                                                        {
+                                                        ?>
+                                                            <img src="<?php echo base_url(); ?>pre_uploads/<?php echo $_SESSION['image']; ?>" class="img-responsive"></img>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </div>
                                                     <div class="col-md-3">
                                                     </div>
@@ -117,8 +141,16 @@ require('header.php');
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label>Stock</label>
+                                                        <input type="text" name="wholesale_price" value="<?php echo $product[0]->stock; ?>" class="form-control input-lg" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="text" name="image" value="<?php echo $_SESSION['image']; ?>" class="form-control input-lg" required>
+                                                    <input type="hidden" name="image" value="<?php echo $_SESSION['image']; ?>" class="form-control input-lg" required>
                                                     <input type="hidden" name="id_product" value="<?php echo $product[0]->id_product; ?>">
                                                     <input type="submit" value="Editar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
                                                 </div>

@@ -46,7 +46,7 @@ require('header.php');
                         <div class="owl-carousel owl-theme" data-plugin-options='{"items": 1}'>
                             <div>
                                 <div class="thumbnail">
-                                    <img src="<?php echo base_url(); ?>template/img/products/product-7.jpg" class="img-responsive img-rounded"></img>
+                                    <img src="<?php echo base_url(); ?>uploads/<?php echo $product[0]->image; ?>" class="img-responsive"></img>
                                 </div>
                             </div>
                         </div>

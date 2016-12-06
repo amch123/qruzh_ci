@@ -9,7 +9,7 @@ class Product_model extends CI_Model {
 
 	function storeProduct($data)
 	{
-		$query = $this->db->insert('products', array('id_category' => $data['id_category'], 'title' => $data['title'], 'description' => $data['description'], 'unit_price' => $data['unit_price'], 'wholesale_price' => $data['wholesale_price'], 'image' => $data['image'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('products', array('id_category' => $data['id_category'], 'title' => $data['title'], 'description' => $data['description'], 'unit_price' => $data['unit_price'], 'wholesale_price' => $data['wholesale_price'], 'stock' => $data['stock'], 'image' => $data['image'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   

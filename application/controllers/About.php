@@ -18,6 +18,8 @@ class About extends CI_Controller {
 					);
 
 		$this->session->set_userdata($setting_data);
+
+		$this->shop1 = new Udp_cart("shop1");
 	}
 
 	/**

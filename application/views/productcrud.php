@@ -70,6 +70,9 @@ require('header.php');
                                     Precio al Mayor
                                 </th>
                                 <th>
+                                    Stock
+                                </th>
+                                <th>
                                     Fecha de Registro
                                 </th>
                                 <th>
@@ -99,6 +102,9 @@ require('header.php');
                                         </td>
                                         <td>
                                             <?php echo $product->wholesale_price; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $product->stock; ?> Unidad(es)
                                         </td>
                                         <td>
                                             <?php echo $product->custom_created_at; ?>

@@ -66,6 +66,7 @@ $route['user/sessionDestroy'] = 'user/sessionDestroy';
 $route['payment'] = 'payment/index';
 $route['newletters/store'] = 'newletters/store';
 $route['product/category/:num'] = 'category/show';
+$route['wholesalecart/store'] = 'wholesalecart/store';
 //////////////
 $route['account/product'] = 'product/index';
 $route['account/product/create'] = 'product/create';
