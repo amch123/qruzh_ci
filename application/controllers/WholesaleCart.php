@@ -71,7 +71,8 @@ class Wholesalecart extends CI_Controller {
 	       	'id'      => $data['product'][0]->id_product,
 	        'qty'     => $this->input->post('quantity'.$i),
 	        'price'   => $data['product'][0]->wholesale_price,
-	        'name'    => $data['product'][0]->title
+	        'name'    => $data['product'][0]->title,
+	        'options' => array('image' => $data['product'][0]->image)
 		);
 
 		if($this->shop2->insert($data))

@@ -17,6 +17,17 @@ require('header.php');
                             <div class="featured-boxes">
                                 <div class="row">
                                     <div class="col-md-12">
+                                        <?php 
+                                        if(isset($_SESSION['delete_status']))
+                                        {
+                                        ?>
+                                            <div class="alert alert-success">
+                                                <strong>Exito!</strong> Se ha borrado el producto del carro.
+                                            </div>
+                                        <?php 
+                                            unset($_SESSION['delete_status']);
+                                        }
+                                        ?>
                                         <div class="featured-box featured-box-primary align-left mt-sm">
                                             <div class="box-content">
                                                 <form method="post" action="">
@@ -59,17 +70,17 @@ require('header.php');
                                                             ?>
                                                                     <tr class="cart_table_item">
                                                                         <td class="product-remove">
-                                                                            <a title="Remove this item" class="remove" href="#">
+                                                                            <a title="Remove this item" class="remove" href="<?php echo base_url(); ?>index.php/cart/destroy/<?php echo $items['rowid']; ?>">
                                                                                 <i class="fa fa-times"></i>
                                                                             </a>
                                                                         </td>
                                                                         <td class="product-thumbnail">
-                                                                            <a href="shop-product-sidebar.html">
-                                                                                <img width="100" height="100" alt="" class="img-responsive" src="img/products/product-1.jpg">
+                                                                            <a href="<?php echo base_url(); ?>index.php/product/show/<?php echo $items['id']; ?>">
+                                                                                <img width="100" height="100" src="<?php echo base_url(); ?>uploads/<?php echo $items['options']['image']; ?>" class="img-responsive"></img>
                                                                             </a>
                                                                         </td>
                                                                         <td class="product-name">
-                                                                            <a href="shop-product-sidebar.html"><?php echo $items['name']; ?></a>
+                                                                            <a href="<?php echo base_url(); ?>index.php/product/show/<?php echo $items['id']; ?>"><?php echo $items['name']; ?></a>
                                                                         </td>
                                                                         <td class="product-price">
                                                                             <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['price']; ?></span>

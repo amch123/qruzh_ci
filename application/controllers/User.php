@@ -253,11 +253,16 @@ class User extends CI_Controller {
 		{
 			$email = $this->input->post('email');
 
+			$message = $this->email_model->getEmail(1);
+
+			$message = $message[0]->email;
+
 			$this->email->from('info@qruzh.com.mx', 'MobilePhone');
+			$this->email->set_mailtype("html");
 			$this->email->to($email);
 
 			$this->email->subject('Activar la cuenta de MobilePhone');
-			$this->email->message($this->email_model->getEmail(1));
+			$this->email->message($message);
 
 			$this->email->send();
 

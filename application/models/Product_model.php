@@ -21,10 +21,33 @@ class Product_model extends CI_Model {
 		}
 	}
 
-	function getProducts()
+	function totalProducts() {
+        return $this->db->count_all("products");
+    }
+
+	function getProducts($limit, $start)
+	{
+		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
+		$this->db->limit($limit, $start);
+		$this->db->from('products');
+		$this->db->order_by("created_at", "desc");
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0)
+		{
+			return $query;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function searchProducts($value)
 	{
 		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
 		$this->db->from('products');
+		$this->db->like('title', $value);
 		$this->db->order_by("created_at", "desc");
 		$query = $this->db->get();
 

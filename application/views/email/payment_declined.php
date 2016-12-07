@@ -38,7 +38,7 @@
                                                             </td>
                                                             <td colspan="3">
                                                             <p align="center" style="font-size:14px; line-height:22px; font-weight:bold; color:#333333; margin:0 0 5px;">&nbsp;</p>
-                                                            <p align="center" style="margin:0 0 10px; font-size:20px; line-height:18px; color:#333333;">Su pago ha sido rechazado. </p>
+                                                            <p align="center" style="margin:0 0 10px; font-size:20px; line-height:18px; color:#333333;">Su pago para la orden de compra N- $numero ha sido rechazado. </p>
                                                             <p>&nbsp;</p>
                                                             <p>&nbsp;</p>
                                                             </td>

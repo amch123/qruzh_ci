@@ -43,10 +43,10 @@ class Product extends CI_Controller {
 	{
 		$url = $this->uri->segment(1);
 
-		$data['products'] = $this->product_model->getProducts();
-
 		if($url == "account")
 		{
+			$data['products'] = $this->product_model->getProducts();
+
 			$this->load->view('productcrud', $data);
 		}
 		else
@@ -55,8 +55,123 @@ class Product extends CI_Controller {
 
 			$this->session->set_userdata('button', '3');
 
+			$this->load->library('pagination');
+
+			$config["base_url"] = base_url() . "index.php/product/page";
+        	$config["total_rows"] = $this->product_model->totalProducts();
+
+			$config["per_page"] = 20;
+			$config['num_links'] = 4;
+        
+	        $config['full_tag_open'] = '<ul class="pagination pull-right">';
+	        $config['full_tag_close'] = '</ul>';
+	        $config['first_link'] = false;
+	        $config['last_link'] = false;
+	        $config['first_tag_open'] = '<li>';
+	        $config['first_tag_close'] = '</li>';
+	        $config['prev_link'] = '&laquo';
+	        $config['prev_tag_open'] = '<li class="prev">';
+	        $config['prev_tag_close'] = '</li>';
+	        $config['next_link'] = '&raquo';
+	        $config['next_tag_open'] = '<li>';
+	        $config['next_tag_close'] = '</li>';
+	        $config['last_tag_open'] = '<li>';
+	        $config['last_tag_close'] = '</li>';
+	        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+	        $config['cur_tag_close'] = '</a></li>';
+	        $config['num_tag_open'] = '<li>';
+	        $config['num_tag_close'] = '</li>';
+
+
+	        $this->pagination->initialize($config);
+
+	        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+	        $data['products'] = $this->product_model->getProducts($config["per_page"], $page);
+
+        	$data["links"] = $this->pagination->create_links();
+
+        	$data["total"] = $this->product_model->totalProducts();
+
+        	$data["start"] = $this->product_model->totalProducts()/$config["per_page"];
+
+        	$data["limit"] = $config["per_page"];
+
 			$this->load->view('product', $data);
 		}	
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function search()
+	{
+		$data['categories'] = $this->category_model->getCategories();
+
+		$this->session->set_userdata('button', '3');
+
+		if($this->input->post('search') != "")
+		{
+			$data['products'] = $this->product_model->searchProducts($this->input->post('search'));
+
+			$this->load->library('pagination');
+
+			$config["base_url"] = base_url() . "index.php/product/search/".$this->input->post('search')."/page";
+        	$config["total_rows"] = $this->product_model->totalProducts();
+    	}
+    	else
+    	{
+    		$search = $this->uri->segment(3);
+    		
+			$data['products'] = $this->product_model->searchProducts($search);
+
+			$this->load->library('pagination');
+
+			$config["base_url"] = base_url() . "index.php/product/search/".$search."/page";
+        	$config["total_rows"] = $this->product_model->totalProducts();
+    	}
+
+        $config["per_page"] = 20;
+        $config['num_links'] = 4;
+        
+        $config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+        $config['first_link'] = false;
+        $config['last_link'] = false;
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['prev_link'] = '&laquo';
+        $config['prev_tag_open'] = '<li class="prev">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = '&raquo';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+
+        $this->pagination->initialize($config);
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+        $data["links"] = $this->pagination->create_links();
+
+		$this->load->view('product', $data);
 	}
 
 	/**

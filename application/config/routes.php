@@ -67,6 +67,11 @@ $route['payment'] = 'payment/index';
 $route['newletters/store'] = 'newletters/store';
 $route['product/category/:num'] = 'category/show';
 $route['wholesalecart/store'] = 'wholesalecart/store';
+$route['product/search'] = 'product/search';
+$route['product/search/:any/page/:num'] = 'product/search';
+$route['product/page/:num'] = 'product/index';
+$route['product/page'] = 'product/index';
+$route['cart/destroy/:any'] = 'cart/destroy';
 //////////////
 $route['account/product'] = 'product/index';
 $route['account/product/create'] = 'product/create';
