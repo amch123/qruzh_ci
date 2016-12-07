@@ -15,6 +15,7 @@ class Shipping extends CI_Controller {
         			'mission'     => $data['settings'][0]->mission,
         			'vision' => $data['settings'][0]->vision,
         			'currency' => $data['settings'][0]->currency,
+        			'tax' => $data['settings'][0]->tax,
         			'facebook' => $data['settings'][0]->facebook,
         			'twitter' => $data['settings'][0]->twitter
 					);
@@ -175,5 +176,35 @@ class Shipping extends CI_Controller {
 		}
 
 		redirect('account/shipping');
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function sessionShipping()
+	{
+		$id = $this->input->post('id_shipping_company');
+
+		$data['shipping_company'] = $this->shippingcompany_model->getShippingCompany($id);
+
+		$_SESSION['id_shipping_company'] = $data['shipping_company'][0]->id_shipping_company;
+
+		$_SESSION['shipping_company'] = $data['shipping_company'][0]->company_name;
+
+		$_SESSION['shipping_price'] = $data['shipping_company'][0]->shipping_price;
+
+		redirect('account/order/checkout');
 	}
 }

@@ -68,6 +68,12 @@ require('header.php');
                                     Total
                                 </th>
                                 <th>
+                                    Envio
+                                </th>
+                                <th>
+                                    Estatus
+                                </th>
+                                <th>
                                     Fecha
                                 </th>
                                 <th>
@@ -97,6 +103,12 @@ require('header.php');
                                         </td>
                                         <td>
                                             <?php echo $_SESSION['currency']; ?> <?php echo $order->total_amount; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $order->company_name; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $order->order_status; ?>
                                         </td>
                                         <td>
                                             <?php echo $order->custom_created_at; ?>

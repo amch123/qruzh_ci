@@ -7,20 +7,6 @@ class Setting_model extends CI_Model {
 		$this->load->database();
 	}
 
-	function storeUser($data)
-	{
-		$query = $this->db->insert('users', array('name' => $data['name'], 'email' => $data['email'], 'password' => $data['password'], 'id_role' => $data['id_role'], 'created_at' => date('Y-m-d')));
-
-		if($query)
-		{   
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 	function getSettings($id)
 	{
 		$this->db->select('*');
@@ -44,6 +30,7 @@ class Setting_model extends CI_Model {
 		$this->db->set('mission', $data['mission']);
 		$this->db->set('vision', $data['vision']);
 		$this->db->set('currency', $data['currency']);
+		$this->db->set('tax', $data['tax']);
 		$this->db->set('facebook', $data['facebook']);
 		$this->db->set('twitter', $data['twitter']);
 		$this->db->where('id_setting',  $data['id_setting']);

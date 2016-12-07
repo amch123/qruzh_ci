@@ -59,14 +59,12 @@ require('wholesaleheader.php');
                                                             ?>
                                                                     <tr class="cart_table_item">
                                                                         <td class="product-remove">
-                                                                            <a title="Remove this item" class="remove" href="#">
+                                                                            <a title="Remove this item" class="remove" href="<?php echo base_url(); ?>index.php/wholesalecart/destroy/<?php echo $items['rowid']; ?>">
                                                                                 <i class="fa fa-times"></i>
                                                                             </a>
                                                                         </td>
                                                                         <td class="product-thumbnail">
-                                                                            <a href="shop-product-sidebar.html">
-                                                                                <img width="100" height="100" alt="" class="img-responsive" src="img/products/product-1.jpg">
-                                                                            </a>
+                                                                            <img width="100" height="100" src="<?php echo base_url(); ?>uploads/<?php echo $items['options']['image']; ?>" class="img-responsive"></img>
                                                                         </td>
                                                                         <td class="product-name">
                                                                             <a href="shop-product-sidebar.html"><?php echo $items['name']; ?></a>

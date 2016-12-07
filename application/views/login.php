@@ -59,6 +59,7 @@ require('header.php');
                                                     </span>
                                                 </div>
                                                 <div class="col-md-6">
+                                                    <input type="hidden" name="checkout" value="<?php if($this->uri->segment(2) == "checkout") { ?> 1<?php } ?>">
                                                     <input type="submit" value="Ingresar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
                                                 </div>
                                             </div>

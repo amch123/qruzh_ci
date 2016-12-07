@@ -28,9 +28,28 @@ require('header.php');
                                             unset($_SESSION['delete_status']);
                                         }
                                         ?>
+                                        <?php 
+                                        if(isset($_SESSION['error']))
+                                        {
+                                            for($i = 0; $i < count($_SESSION['error']); $i++)
+                                            {
+                                        ?>
+                                            <div class="alert alert-danger">
+                                                <strong>Error!</strong> Los siguientes productos solo tienen la siguiente disponibilidad:
+                                            </div>
+                                            <div class="alert alert-danger">
+                                                <?php echo $_SESSION['error'][$i]; ?>
+                                            </div>
+                                        <?php 
+                                            }
+
+                                            unset($_SESSION['error']);
+                                        }
+                                        ?>
+
                                         <div class="featured-box featured-box-primary align-left mt-sm">
                                             <div class="box-content">
-                                                <form method="post" action="">
+                                                <form method="post" action="<?php echo base_url(); ?>index.php/cart/totalCheck">
                                                     <table class="shop_table cart">
                                                         <?php
                                                         if($this->shop1->total_articles() > 0)
@@ -65,6 +84,8 @@ require('header.php');
                                                             <?php
                                                             if($this->shop1->total_articles() > 0)
                                                             {
+                                                                $i = 0;
+
                                                                 foreach($this->shop1->get_content() as $items)
                                                                 {
                                                             ?>
@@ -88,17 +109,19 @@ require('header.php');
                                                                         <td class="product-quantity">
                                                                             <form enctype="multipart/form-data" method="post" class="cart">
                                                                                 <div class="quantity">
-                                                                                    <input type="number" class="input-text qty text" title="Qty" value="<?php echo $items['qty']; ?>" name="quantity" min="0" step="1">
+                                                                                    <input type="number" class="input-text qty text" title="Qty" value="<?php echo $items['qty']; ?>" name="quantity<?php echo $i; ?>" min="0" step="1">
                                                                                 </div>
                                                                             </form>
                                                                         </td>
                                                                         <td class="product-subtotal">
-                                                                            <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['qty']*$items['price']; ?></span>
+                                                                            <span class="amount">
+                                                                                <?php echo $_SESSION['currency']; ?> <?php echo $items['qty']*$items['price']; ?></span>
                                                                         </td>
                                                                     </tr>
-                                                            <?php
+                                                                <?php
+                                                                    $i = $i + 1;
                                                                 }
-                                                            ?>
+                                                                ?>
                                                                 <tr>
                                                                     <td class="actions" colspan="6">
                                                                         <div class="actions-continue">
@@ -132,65 +155,83 @@ require('header.php');
                             if($this->shop1->total_articles() > 0)
                             {
                             ?>
-                                <div class="featured-boxes">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="featured-box featured-box-primary align-left mt-xlg">
-                                                <div class="box-content">
-                                                    <h4 class="heading-primary text-uppercase mb-md">Empresa de Envio</h4>
-                                                    <form action="/" id="frmCalculateShipping" method="post">
+                                <form id="searchForm" action="<?php echo base_url(); ?>index.php/shipping/sessionshipping" method="post">
+                                    <div class="featured-boxes">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="featured-box featured-box-primary align-left mt-xlg">
+                                                    <div class="box-content">
+                                                        <h4 class="heading-primary text-uppercase mb-md">Empresa de Envio</h4>
+
                                                         <div class="row">
                                                             <div class="form-group">
                                                                 <div class="col-md-12">
                                                                     <label>Empresa</label>
-                                                                    <select class="form-control">
+                                                                    <select name="id_shipping_company" class="form-control" required>
                                                                         <option value="">-Seleccione-</option>
+                                                                        <?php
+                                                                        foreach($shipping_companies->result() as $shipping_company)
+                                                                            {        
+                                                                        ?>
+                                                                            <option value="<?php echo $shipping_company->id_shipping_company; ?>"><?php echo $shipping_company->company_name; ?></option>
+                                                                        <?php
+                                                                        }       
+                                                                        ?>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="featured-box featured-box-primary align-left mt-xlg">
-                                                <div class="box-content">
-                                                    <h4 class="heading-primary text-uppercase mb-md">Total</h4>
-                                                    <table class="cart-totals">
-                                                        <tbody>
-                                                            <tr class="cart-subtotal">
-                                                                <th>
-                                                                    <strong>Subtotal</strong>
-                                                                </th>
-                                                                <td>
-                                                                    <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $this->shop1->total_cart(); ?></span></strong>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="total">
-                                                                <th>
-                                                                    <strong>Total</strong>
-                                                                </th>
-                                                                <td>
-                                                                    <strong><span class="amount">$431</span></strong>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                            <div class="col-sm-6">
+                                                <div class="featured-box featured-box-primary align-left mt-xlg">
+                                                    <div class="box-content">
+                                                        <h4 class="heading-primary text-uppercase mb-md">Total</h4>
+                                                        <table class="cart-totals">
+                                                            <tbody>
+                                                                <tr class="cart-subtotal">
+                                                                    <th>
+                                                                        <strong>Subtotal</strong>
+                                                                    </th>
+                                                                    <td>
+                                                                        <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $this->shop1->total_cart(); ?></span></strong>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tax">
+                                                                    <th>
+                                                                        <strong>Tax (<?php echo $_SESSION['tax']; ?> %)</strong>
+                                                                    </th>
+                                                                    <td>
+                                                                        <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $tax = ($this->shop1->total_cart() * 12)/100; ?></span></strong>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="total">
+                                                                    <th>
+                                                                        <strong>Total</strong>
+                                                                    </th>
+                                                                    <td>
+                                                                        <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $tax + $this->shop1->total_cart(); ?></span></strong>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
+                                            </div>
+                                        
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="actions-continue">
+                                                <button type="submit" class="btn pull-right btn-primary btn-lg">Proceder a Pagar <i class="fa fa-angle-right ml-xs"></i></button>
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="actions-continue">
-                                            <button type="submit" class="btn pull-right btn-primary btn-lg">Proceder a Pagar <i class="fa fa-angle-right ml-xs"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             <?php
                             }
                             ?>

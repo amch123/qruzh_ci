@@ -9,7 +9,37 @@ class Order_model extends CI_Model {
 
 	function storeOrder($data)
 	{
-		$query = $this->db->insert('products', array('id_category' => $data['id_category'], 'title' => $data['title'], 'description' => $data['description'], 'unit_price' => $data['unit_price'], 'wholesale_price' => $data['wholesale_price'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('orders', array('id_user' => $data['id_user'], 'id_shipping_company' => $data['id_shipping_company'], 'subtotal' => $data['subtotal'], 'total_tax' => $data['total_tax'], 'total_shipping' => $data['total_shipping'], 'total_amount' => $data['total_amount'], 'status' => '2', 'created_at' => date('Y-m-d')));
+
+		if($query)
+		{   
+			$id = $this->db->select('id_order')->order_by('id_order','desc')->limit(1)->get('orders')->row('id_order');
+
+			return $id;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function storeOrderShipping($data)
+	{
+		$query = $this->db->insert('orders_shippings', array('id_order' => $data['id_order'], 'name' => $data['name'], 'lastname' => $data['lastname'], 'adress' => $data['adress'], 'city' => $data['city'], 'phone' => $data['phone']));
+
+		if($query)
+		{   
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function storeOrderProduct($data)
+	{
+		$query = $this->db->insert('orders_products', array('id_order' => $data['id_order'], 'id_product' => $data['id_product'], 'quantity' => $data['quantity']));
 
 		if($query)
 		{   
@@ -23,9 +53,11 @@ class Order_model extends CI_Model {
 
 	function getOrders($id = NULL)
 	{
-		$this->db->select('orders.*, DATE_FORMAT(orders.created_at, "%d-%m-%Y") as custom_created_at, users.*');
-		$this->db->from('orders, users');
+		$this->db->select('orders.*, DATE_FORMAT(orders.created_at, "%d-%m-%Y") as custom_created_at, users.*, shipping_companies.*, order_statuses.*');
+		$this->db->from('orders, users, shipping_companies, order_statuses');
 		$this->db->where('orders.id_user = users.id_user');
+		$this->db->where('orders.id_shipping_company = shipping_companies.id_shipping_company');
+		$this->db->where('orders.status = order_statuses.id_order_status');
 
 		if($id != NULL)
 		{

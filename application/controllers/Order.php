@@ -16,6 +16,7 @@ class Order extends CI_Controller {
         			'mission'     => $data['settings'][0]->mission,
         			'vision' => $data['settings'][0]->vision,
         			'currency' => $data['settings'][0]->currency,
+        			'tax' => $data['settings'][0]->tax,
         			'facebook' => $data['settings'][0]->facebook,
         			'twitter' => $data['settings'][0]->twitter
 					);
@@ -178,18 +179,43 @@ class Order extends CI_Controller {
 	 */
 	public function store()
 	{
+		$tax = ($this->shop1->total_cart() * 12)/100;
+
 		$data = array(
-					'id_category' => $this->input->post('id_category'),
-					'title' => $this->input->post('title'),
-					'description' => $this->input->post('description'),
-					'unit_price' => $this->input->post('unit_price'),
-					'wholesale_price' => $this->input->post('wholesale_price'),
+					'id_user' => $_SESSION['id_user'],
+					'id_shipping_company' => $_SESSION['id_shipping_company'],
+					'subtotal' => $this->shop1->total_cart(),
+					'total_tax' => $tax,
+					'total_shipping' => $_SESSION['shipping_price'],
+					'total_amount' => $tax + $_SESSION['shipping_price'] + $this->shop1->total_cart()
 				);
 
-		$data['status'] = $this->product_model->storeProduct($data);
+		$id_order = $this->order_model->storeOrder($data);
+
+		$data = array(
+					'id_order' => $id_order,
+					'name' => $this->input->post('name'),
+					'lastname' => $this->input->post('lastname'),
+					'adress' => $this->input->post('adress'),
+					'city' => $this->input->post('city'),
+					'phone' => $this->input->post('phone')
+				);
+
+		$data['status'] = $this->order_model->storeOrderShipping($data);
 
 		if($data['status'] == true)
 		{
+			foreach($this->shop1->get_content() as $items) {
+				$data = array(
+					'id_order' => $id_order,
+					'id_product' => $items['id'],
+					'quantity' => $items['qty']
+				);
+
+				$data['status'] = $this->order_model->storeOrderProduct($data);
+			}
+
+
 			$data = array(
 						'store_status' => '1',
 					);
@@ -197,7 +223,7 @@ class Order extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 
-		redirect('account/product');
+		redirect('account/order');
 	}
 
 	/**
@@ -246,6 +272,33 @@ class Order extends CI_Controller {
 			$this->session->set_userdata($data);
 			
 			redirect('account/order');
+		}
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function checkout()
+	{
+		if(isset($_SESSION['id_user']))
+		{
+			$this->load->view('checkout');
+		}
+		else
+		{
+			redirect('login/checkout');
 		}
 	}
 }

@@ -12,7 +12,7 @@ require('header.php');
                             <ul class="breadcrumb breadcrumb-valign-mid">
                                 <li><a href="#">Inicio</a></li>
                                 <li><a href="#">Productos</a></li>
-                                <li class="active">Cargador</li>
+                                <li class="active"><?php echo $product[0]->title; ?></li>
                             </ul>
                         </div>
                     </div>
@@ -32,6 +32,17 @@ require('header.php');
                     </div>
                 <?php 
                     unset($_SESSION['store_status']);
+                }
+                ?>
+                <?php 
+                if(isset($_SESSION['error']))
+                {
+                ?>
+                    <div class="alert alert-danger">
+                        El producto <strong><?php echo $_SESSION['error']; ?></strong> tiene disponible solo <strong><?php echo $_SESSION['stock']; ?></strong> unidad(es)
+                    </div>
+                <?php 
+                    unset($_SESSION['error']);
                 }
                 ?>
                 <div class="row">

@@ -15,6 +15,7 @@ class User extends CI_Controller {
         			'mission'     => $data['settings'][0]->mission,
         			'vision' => $data['settings'][0]->vision,
         			'currency' => $data['settings'][0]->currency,
+        			'tax' => $data['settings'][0]->tax,
         			'facebook' => $data['settings'][0]->facebook,
         			'twitter' => $data['settings'][0]->twitter
 					);
@@ -105,7 +106,14 @@ class User extends CI_Controller {
 
 			$this->session->set_userdata($data);
 
-			redirect('account');
+			if($this->input->post('checkout') == 1)
+			{
+				redirect('account/order/checkout');
+			}
+			else
+			{
+				redirect('account');
+			}
 		}
 		else
 		{

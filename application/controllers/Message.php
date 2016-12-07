@@ -13,6 +13,7 @@ class Message extends CI_Controller {
         			'mission'     => $data['settings'][0]->mission,
         			'vision' => $data['settings'][0]->vision,
         			'currency' => $data['settings'][0]->currency,
+        			'tax' => $data['settings'][0]->tax,
         			'facebook' => $data['settings'][0]->facebook,
         			'twitter' => $data['settings'][0]->twitter
 					);

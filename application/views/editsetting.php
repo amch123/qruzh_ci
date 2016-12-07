@@ -70,6 +70,14 @@ require('header.php');
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
+                                                        <label>Impuesto (%)</label>
+                                                        <input type="text" name="tax" value="<?php echo $setting[0]->tax; ?>" class="form-control input-lg" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
                                                         <label>Facebook</label>
                                                         <input type="text" name="facebook" value="<?php echo $setting[0]->facebook; ?>" class="form-control input-lg" required>
                                                     </div>

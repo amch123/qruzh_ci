@@ -70,9 +70,9 @@
                             <div class="header-column">
                                 <div class="header-row">
                                     <div class="header-search hidden-xs">
-                                        <form id="searchForm" action="page-search-results.html" method="get">
+                                        <form id="searchForm" action="<?php echo base_url(); ?>index.php/product/search" method="post">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="q" id="q" placeholder="Buscar..." required>
+                                                <input type="text" class="form-control" name="search" id="q" placeholder="Buscar..." required>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                                                 </span>
@@ -156,23 +156,41 @@
                                                                 <div class="dropdown-mega-content">
                                                                     <table class="cart">
                                                                         <tbody>
+                                                                            <?php
+                                                                            if($this->shop2->total_articles() > 0)
+                                                                            {
+                                                                                $i = 0;
+
+                                                                                foreach($this->shop2->get_content() as $items)
+                                                                                {
+                                                                            ?>
                                                                             <tr>
                                                                                 <td class="product-thumbnail">
-                                                                                    <a href="shop-product-sidebar.html">
-                                                                                        <img width="100" height="100" alt="" class="img-responsive" src="template/img/products/product-1.jpg">
+                                                                                    <a href="<?php echo base_url(); ?>index.php/wholesale">
+                                                                                        <img width="100" height="100" src="<?php echo base_url(); ?>uploads/<?php echo $items['options']['image']; ?>" class="img-responsive"></img>
                                                                                     </a>
                                                                                 </td>
                                                                                 <td class="product-name">
-                                                                                    <a href="shop-product-sidebar.html">Photo Camera
+                                                                                    <a href="<?php echo base_url(); ?>index.php/wholesale"><?php echo $items['name']; ?>
                                                                                     <br>
-                                                                                    <span class="amount"><strong>$299</strong></span></a>
+                                                                                    <span class="amount"><strong><?php echo $_SESSION['currency']; ?> <?php echo $items['price']; ?></strong></span></a>
                                                                                 </td>
                                                                                 <td class="product-actions">
-                                                                                    <a title="Remove this item" class="remove" href="#">
+                                                                                    <a title="Remove this item" class="remove" href="<?php echo base_url(); ?>index.php/wholesalecart/destroy/<?php echo $items['rowid']; ?>">
                                                                                         <i class="fa fa-times"></i>
                                                                                     </a>
                                                                                 </td>
                                                                             </tr>
+                                                                            <?php
+                                                                                    $i = $i + 1;
+
+                                                                                    if ($i == 2) 
+                                                                                    {
+                                                                                        break;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ?>
                                                                             <tr>
                                                                                 <td class="actions" colspan="6">
                                                                                     <div class="actions-continue">

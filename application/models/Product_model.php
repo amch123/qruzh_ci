@@ -25,7 +25,7 @@ class Product_model extends CI_Model {
         return $this->db->count_all("products");
     }
 
-	function getProducts($limit, $start)
+	function getProducts($limit = NULL, $start = NULL)
 	{
 		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
 		$this->db->limit($limit, $start);
@@ -143,6 +143,23 @@ class Product_model extends CI_Model {
 		if($query)
 		{
 			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function checkStock($id = NULL)
+	{
+		$this->db->select('*');
+		$this->db->where('id_product', $id);
+		$this->db->from('product');
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0)
+		{
+			return $query;
 		}
 		else
 		{

@@ -37,7 +37,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-7">
-                                <p>© Mobilephone 2016. Todos los derechos reservados.</p>
+                                <p>© Mobilephone <?php echo date('Y'); ?>. Todos los derechos reservados.</p>
                             </div>
                             <div class="col-md-4">
                                 <nav id="sub-menu">
