@@ -1,13 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Order extends CI_Controller {
+class Shop extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
 		$this->session->set_userdata('button', '0');
-		$this->session->set_userdata('account_button', '2');
-		$this->session->set_userdata('account_button_client', '1');
+		$this->session->set_userdata('account_button', '7');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
 		
@@ -43,18 +42,9 @@ class Order extends CI_Controller {
 	 */
 	public function index()
 	{
-		if(isset($_SESSION['id_role']) && ($_SESSION['id_role'] == 2))
-		{
-			$id = $_SESSION['id_user'];
-		}
-		else
-		{
-			$id = "";
-		}
+		$data['shops'] = $this->shop_model->getShops();
 
-		$data['orders'] = $this->order_model->getOrders($id);
-
-		$this->load->view('ordercrud', $data);
+		$this->load->view('shopcrud', $data);
 	}
 
 	/**
@@ -102,9 +92,9 @@ class Order extends CI_Controller {
 	 */
 	public function create()
 	{
-		$data['categories'] = $this->category_model->getCategories();
+		$data['states'] = $this->state_model->getStates();
 
-		$this->load->view('addproduct', $data);
+		$this->load->view('addshop', $data);
 	}
 
 	/**
@@ -179,43 +169,15 @@ class Order extends CI_Controller {
 	 */
 	public function store()
 	{
-		$tax = ($this->shop1->total_cart() * 12)/100;
-
 		$data = array(
-					'id_user' => $_SESSION['id_user'],
-					'id_shipping_company' => $_SESSION['id_shipping_company'],
-					'subtotal' => $this->shop1->total_cart(),
-					'total_tax' => $tax,
-					'total_shipping' => $_SESSION['shipping_price'],
-					'total_amount' => $tax + $_SESSION['shipping_price'] + $this->shop1->total_cart()
+					'id_state' => $this->input->post('id_state'),
+					'shop_name' => $this->input->post('shop_name')
 				);
 
-		$id_order = $this->order_model->storeOrder($data);
-
-		$data = array(
-					'id_order' => $id_order,
-					'name' => $this->input->post('name'),
-					'lastname' => $this->input->post('lastname'),
-					'adress' => $this->input->post('adress'),
-					'city' => $this->input->post('city'),
-					'phone' => $this->input->post('phone')
-				);
-
-		$data['status'] = $this->order_model->storeOrderShipping($data);
+		$data['status'] = $this->shop_model->storeShop($data);
 
 		if($data['status'] == true)
 		{
-			foreach($this->shop1->get_content() as $items) {
-				$data = array(
-					'id_order' => $id_order,
-					'id_product' => $items['id'],
-					'quantity' => $items['qty']
-				);
-
-				$data['status'] = $this->order_model->storeOrderProduct($data);
-			}
-
-
 			$data = array(
 						'store_status' => '1',
 					);
@@ -223,7 +185,7 @@ class Order extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 
-		redirect('account/order');
+		redirect('account/shop');
 	}
 
 	/**
@@ -245,60 +207,17 @@ class Order extends CI_Controller {
 	{
 		$id = $this->uri->segment(4);
 
-		$data['payment'] = $this->payment_model->getPayment($id);
+		$data['status'] = $this->shop_model->deleteShop($id);
 
-		if($data['payment'] == "")
+		if($data['status'] == true)
 		{
-			$data['status'] = $this->order_model->deleteOrder($id);
-
-			if($data['status'] == true)
-			{
-				$data = array(
-							'delete_status' => '1',
+			$data = array(
+						'delete_status' => '1',
 						);
 
-				$this->session->set_userdata($data);
-			}
-
-			redirect('account/order');
-		}
-		else
-		{
-
-			$data = array(
-						'delete_status' => '2',
-					);
-
 			$this->session->set_userdata($data);
-			
-			redirect('account/order');
 		}
-	}
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function checkout()
-	{
-		if(isset($_SESSION['id_user']))
-		{
-			$this->load->view('checkout');
-		}
-		else
-		{
-			redirect('login/checkout');
-		}
+		redirect('account/shop');
 	}
 }

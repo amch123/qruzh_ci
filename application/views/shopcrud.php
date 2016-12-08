@@ -8,9 +8,9 @@ require('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Ordenes de Compras<span></span></h1>
+                            <h1>Tiendas<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
-                                <li><a href="<?php echo base_url(); ?>index.php/account/order">Ordenes de Compras</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/account/shop">Tiendas</a></li>
                             </ul>
                         </div>
                     </div>
@@ -27,15 +27,17 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
+                    <a href="<?php echo base_url(); ?>index.php/account/shop/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Tienda</button></a></i></button>
+                    <hr>
                     <?php 
-                    if(isset($_SESSION['delete_status']) && ($_SESSION['delete_status'] == 1))
+                    if(isset($_SESSION['store_status']))
                     {
                     ?>
                         <div class="alert alert-success">
-                            <strong>Exito!</strong> Se ha borrado la orden de compra.
+                            <strong>Exito!</strong> Se ha agregado la tienda.
                         </div>
                     <?php 
-                        unset($_SESSION['delete_status']);
+                        unset($_SESSION['store_status']);
                     }
                     ?>
                     <?php 
@@ -50,11 +52,11 @@ require('header.php');
                     }
                     ?>
                     <?php 
-                    if(isset($_SESSION['delete_status']) && ($_SESSION['delete_status'] == 2))
+                    if(isset($_SESSION['delete_status']))
                     {
                     ?>
-                        <div class="alert alert-danger">
-                            <strong>Problema!</strong> Existe un pago con esta orden de compra. Por favor debe cancelar el pago primero para poder borrarla.
+                        <div class="alert alert-success">
+                            <strong>Problema!</strong> Se ha borrado la tienda.
                         </div>
                     <?php 
                         unset($_SESSION['delete_status']);
@@ -67,25 +69,10 @@ require('header.php');
                                     Id
                                 </th>
                                 <th>
-                                    Cliente
+                                    Estado
                                 </th>
                                 <th>
-                                    Subtotal
-                                </th>
-                                <th>
-                                    Impuesto
-                                </th>
-                                <th>
-                                    Total
-                                </th>
-                                <th>
-                                    Envio
-                                </th>
-                                <th>
-                                    Estatus
-                                </th>
-                                <th>
-                                    Fecha
+                                    Tienda
                                 </th>
                                 <th>
                                     
@@ -94,40 +81,25 @@ require('header.php');
                         </thead>
                         <tbody>
                             <?php
-                            if($orders != "")
+                            if($shops != "")
                             {
-                                foreach($orders->result() as $order)
+                                foreach($shops->result() as $shop)
                                 {
                             ?>
                                     <tr>
                                         <td>
-                                            <?php echo $order->id_order; ?>
+                                            <?php echo $shop->id_shop; ?>
                                         </td>
                                         <td>
-                                            <?php echo $order->name; ?>
+                                            <?php echo $shop->state; ?>
                                         </td>
                                         <td>
-                                            <?php echo $_SESSION['currency']; ?> <?php echo $order->subtotal; ?>
+                                            <?php echo $shop->shop_name; ?>
                                         </td>
                                         <td>
-                                            <?php echo $_SESSION['currency']; ?> <?php echo $order->total_tax; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $_SESSION['currency']; ?> <?php echo $order->total_amount; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $order->company_name; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $order->order_status; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $order->custom_created_at; ?>
-                                        </td>
-                                        <td>
-                                            <a href="<?php echo base_url(); ?>index.php/account/order/show/<?php echo $order->id_order; ?>">
-                                                <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                            <a href="<?php echo base_url(); ?>index.php/account/order/delete/<?php echo $order->id_order; ?>">
+                                            <a href="<?php echo base_url(); ?>index.php/account/shop/edit/<?php echo $shop->id_shop; ?>">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            <a href="<?php echo base_url(); ?>index.php/account/shop/delete/<?php echo $shop->id_shop; ?>">
                                                 <i class="fa fa-times" aria-hidden="true"></i></a>
                                         </td>
                                     </tr> 

@@ -110,6 +110,7 @@ $route['account/order/show/:num'] = 'order/show';
 $route['account/order/delete/:num'] = 'order/destroy';
 $route['account/order/checkout'] = 'order/checkout';
 $route['account/order/store'] = 'order/store';
+$route['account/order/update'] = 'order/update';
 //////////////
 $route['account/category'] = 'category/index';
 $route['account/category/create'] = 'category/create';
@@ -117,3 +118,8 @@ $route['account/category/edit/:num'] = 'category/edit';
 $route['account/category/delete/:num'] = 'category/destroy';
 $route['account/category/store'] = 'category/store';
 $route['account/category/update'] = 'category/update';
+//////////////
+$route['account/shop'] = 'shop/index';
+$route['account/shop/create'] = 'shop/create';
+$route['account/shop/store'] = 'shop/store';
+$route['account/shop/delete/:num'] = 'shop/destroy';

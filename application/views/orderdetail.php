@@ -38,34 +38,70 @@ require('header.php');
                         unset($_SESSION['delete_status']);
                     }
                     ?>
-                    <table class="table table-bordered">
-                         <thead>
-                            <tr>
-                                <th>
-                                    Cliente
-                                </th>
-                                <th>
-                                    Impuesto
-                                </th>
-                                <th>
-                                    Monto
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <?php echo $order[0]->name; ?>
-                                </td>
-                                <td>
-                                    <?php echo $_SESSION['currency']; ?> <?php echo $order[0]->total_tax; ?>
-                                </td>
-                                <td>
-                                    <?php echo $_SESSION['currency']; ?> <?php echo $order[0]->total_amount; ?>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <?php 
+                    if($_SESSION['id_role'] == 1)
+                    {
+                    ?>
+                        <hr>
+                        <form action="<?php echo base_url(); ?>index.php/account/order/update" id="frmSignUp" method="post">
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>Estatus de la Orden de Compra</label>
+                                        <select class="form-control" name="id_order_status" required>
+                                            <option value="">-Seleccione-</option>
+                                            <?php
+                                            foreach($statuses->result() as $status)
+                                            {
+                                            ?>
+                                                <option <?php if($order[0]->status == $status->id_order_status) { ?> selected="true" <?php } ?> value="<?php echo $status->id_order_status; ?>"><?php echo $status->order_status; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                                                    
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="hidden" name="id_order" value="<?php echo $order[0]->id_order; ?>">
+                                    <input type="submit" value="Editar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
+                                </div>
+                            </div>
+                        </form>
+                    <?php 
+                    }
+                    ?>
+                        <hr>
+                        <table class="table table-bordered">
+                             <thead>
+                                <tr>
+                                    <th>
+                                        Cliente
+                                    </th>
+                                    <th>
+                                        Impuesto
+                                    </th>
+                                    <th>
+                                        Monto
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <?php echo $order[0]->name; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $_SESSION['currency']; ?> <?php echo $order[0]->total_tax; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $_SESSION['currency']; ?> <?php echo $order[0]->total_amount; ?>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     <hr>
                     <h3>Productos de la Orden</h3>
                     <hr>

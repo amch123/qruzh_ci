@@ -5,7 +5,7 @@ class Setting extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session->set_userdata('account_button', '6');
+		$this->session->set_userdata('account_button', '8');
 		$this->session->set_userdata('button', '0');
 
 		$this->shop1 = new Udp_cart("shop1");
