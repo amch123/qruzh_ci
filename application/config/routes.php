@@ -76,6 +76,8 @@ $route['product/page'] = 'product/index';
 $route['cart/destroy/:any'] = 'cart/destroy';
 $route['cart/totalCheck'] = 'cart/totalCheck';
 $route['shipping/sessionshipping'] = 'shipping/sessionShipping';
+$route['user/forgotpassword'] = 'user/forgotpassword';
+$route['user/recoverpassword'] = 'user/recoverpassword';
 //////////////
 $route['account/product'] = 'product/index';
 $route['account/product/create'] = 'product/create';

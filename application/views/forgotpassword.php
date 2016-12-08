@@ -8,10 +8,10 @@ require('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Ingresar<span></span></h1>
+                            <h1>Recuperar contraseña<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
                                 <li><a href="{{ url('/') }}">Inicio</a></li>
-                                <li class="active">Ingresar</li>
+                                <li class="active">Recuperar contraseña</li>
                             </ul>
                         </div>
                     </div>
@@ -31,8 +31,8 @@ require('header.php');
                             <div class="col-sm-4">
                                 <div class="featured-box featured-box-primary align-left mt-xlg">
                                     <div class="box-content">
-                                        <h4 class="heading-primary text-uppercase mb-md">Ingresa</h4>
-                                        <form action="<?php echo base_url(); ?>index.php/user/sessionStart" id="frmSignIn" method="post">
+                                        <h4 class="heading-primary text-uppercase mb-md">¿Olvido Contraseña?</h4>
+                                        <form action="<?php echo base_url(); ?>index.php/user/recoverpassword" id="frmSignIn" method="post">
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
@@ -42,25 +42,8 @@ require('header.php');
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <a class="pull-right" href="<?php echo base_url(); ?>index.php/user/forgotpassword">(Olvidó la contraseña?)</a>
-                                                        <label>Contraseña</label>
-                                                        <input type="password" name="password" value="" class="form-control input-lg">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <span class="remember-box checkbox">
-                                                        <label for="rememberme">
-                                                            <input type="checkbox" name="remember"> Recordarme
-                                                        </label>
-                                                    </span>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="hidden" name="checkout" value="<?php if($this->uri->segment(2) == "checkout") { ?> 1<?php } ?>">
-                                                    <input type="submit" value="Ingresar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
+                                                <div class="col-md-12">
+                                                    <input type="submit" value="Recuperar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
                                                 </div>
                                             </div>
                                         </form>

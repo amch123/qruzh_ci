@@ -38,6 +38,22 @@ class User_model extends CI_Model {
 		}
 	}
 
+	function recoverpassword($data)
+	{
+		$query = $this->db->get_where('users', 
+									array('email =' => $data['email']))
+									->result();
+
+		if(count($query) > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getUsers()
 	{
 		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
@@ -92,6 +108,22 @@ class User_model extends CI_Model {
 		$this->db->set('email', $data['email']);
 		$this->db->set('password', md5($data['password']));
 		$this->db->set('id_role', $data['id_role']);
+		$this->db->where('id_user',  $data['id_user']);
+		$query = $this->db->update('users');
+
+		if($query)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function updateUser($data)
+	{
+		$this->db->set('password', $data['password']);
 		$this->db->where('id_user',  $data['id_user']);
 		$query = $this->db->update('users');
 
