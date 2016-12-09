@@ -38,12 +38,11 @@ class User_model extends CI_Model {
 		}
 	}
 
-	function recoverpassword($data)
+	function recoverPassword($data)
 	{
 		$query = $this->db->get_where('users', 
 									array('email =' => $data['email']))
 									->result();
-
 		if(count($query) > 0)
 		{
 			return true;
@@ -121,7 +120,7 @@ class User_model extends CI_Model {
 		}
 	}
 
-	function updateUser($data)
+	function updatePassword($data)
 	{
 		$this->db->set('password', $data['password']);
 		$this->db->where('id_user',  $data['id_user']);

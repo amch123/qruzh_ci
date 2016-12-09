@@ -24,6 +24,28 @@ require('header.php');
 
             <div class="row">
                 <div class="col-md-12">
+                    <?php 
+                    if(isset($_SESSION['update_status']) && ($_SESSION['update_status'] == 1))
+                    {
+                    ?>
+                        <div class="alert alert-success">
+                            <strong>Exito!</strong> Se ha enviado un correo para la recuperación de la contraseña.
+                        </div>
+                    <?php 
+                        unset($_SESSION['update_status']);
+                    }
+                    ?>
+                    <?php 
+                    if(isset($_SESSION['update_status']) && ($_SESSION['update_status'] == 0))
+                    {
+                    ?>
+                        <div class="alert alert-danger">
+                            <strong>Error!</strong> No se ha conseguido el usuario en el sistema.
+                        </div>
+                    <?php 
+                        unset($_SESSION['update_status']);
+                    }
+                    ?>
                     <div class="featured-boxes">
                         <div class="row">
                             <div class="col-sm-4">

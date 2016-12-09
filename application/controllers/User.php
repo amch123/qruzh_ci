@@ -84,7 +84,7 @@ class User extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function forgotpassword()
+	public function forgotPassword()
 	{
 		$this->session->set_userdata('button', '0');
 
@@ -106,7 +106,7 @@ class User extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function recoverpassword()
+	public function recoverPassword()
 	{
 		$this->session->set_userdata('button', '0');
 
@@ -114,7 +114,7 @@ class User extends CI_Controller {
 					'email' => $this->input->post('email')
 				);
 
-		$status = $this->user_model->recoverpassword($data);
+		$status = $this->user_model->recoverPassword($data);
 
 		if($status)
 		{
@@ -157,7 +157,7 @@ class User extends CI_Controller {
                                         <tr>
                                             <td colspan="3" rowspan="3" bgcolor="#FFFFFF" style="padding:0">
                                                 <!-- inicio contenido -->
-                                                <a href="#"><img src="<?php echo base_url(); ?>template/img/header.jpg" width="600" alt="" style="display:block; border:0; margin:0 0 44px; background:#ffffff;"></a>                                                <!-- inicio articulos -->
+                                                <a href="#"><img src="'. base_url() .'template/img/header.jpg" width="600" alt="" style="display:block; border:0; margin:0 0 44px; background:#ffffff;"></a>                                                <!-- inicio articulos -->
                                                 <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                                     <tbody>
                                                         <tr valign="top">
@@ -196,8 +196,8 @@ class User extends CI_Controller {
                                                             <td width="26"><p style="margin:0; font-size:1px; line-height:1px;">&nbsp;</p>
                                                             </td>
                                                             <td width="114">
-                                                                <a href="<?php echo $_SESSION["facebook"]; ?>" target="_blank" style="float:left; width:24px; height:24px; margin:6px 15px 10px 0;"><img src="<?php echo base_url(); ?>template/img/facebook.png" width="30" height="30" alt="facebook" style="display:block; margin:0; border:0; background:#eeeeee;"></a>
-                                                                <a href="<?php echo $_SESSION["twitter"]; ?>" target="_blank" style="float:left; width:24px; height:24px; margin:6px 15px 10px 0;"><img src="<?php echo base_url(); ?>template/img/twitter.png" width="30" height="30" alt="twitter" style="display:block; margin:0; border:0; background:#eeeeee;"></a>
+                                                                <a href="'. $_SESSION["facebook"] .'" target="_blank" style="float:left; width:24px; height:24px; margin:6px 15px 10px 0;"><img src="'. base_url() .'template/img/facebook.png" width="30" height="30" alt="facebook" style="display:block; margin:0; border:0; background:#eeeeee;"></a>
+                                                                <a href="'.$_SESSION["twitter"].'" target="_blank" style="float:left; width:"24px"; height:"24px"; margin:6px 15px 10px 0;"><img src="'. base_url() .'template/img/twitter.png" width="30" height="30" alt="twitter" style="display:block; margin:0; border:0; background:#eeeeee;"></a>
                                                             </td>
                                                             <td width="30"><p style="margin:0; font-size:1px; line-height:1px;">&nbsp;</p>
                                                             </td>
@@ -235,7 +235,7 @@ class User extends CI_Controller {
 
 			$this->session->set_userdata($data);
 		}
-		else 
+		else
 		{
 			$data = array(
 						'update_status' => '0');
@@ -261,7 +261,7 @@ class User extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function newpassword()
+	public function newPassword()
 	{
 		$this->session->set_userdata('button', '0');
 
@@ -283,7 +283,7 @@ class User extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function updatepassword()
+	public function updatePassword()
 	{
 		$data['status'] = $this->user_model->updatePassword($this->input->post());
 		
@@ -296,7 +296,7 @@ class User extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 		
-		redirect('user/login);
+		redirect('user/login');
 	}
 
 	/**
@@ -308,7 +308,7 @@ class User extends CI_Controller {
 	 * 		http://example.com/index.php/welcome/index
 	 *	- or -
 	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
+	 * config/routes.php, its displayed at http://example.com/
 	 *
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
