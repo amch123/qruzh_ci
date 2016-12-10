@@ -9,7 +9,7 @@ class User_model extends CI_Model {
 
 	function storeUser($data)
 	{
-		$query = $this->db->insert('users', array('name' => $data['name'], 'email' => $data['email'], 'password' => $data['password'], 'id_role' => $data['id_role'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('users', array('name' => $data['name'], 'email' => $data['email'], 'password' => $data['password'], 'id_role' => $data['id_role'], 'status' => $data['status'], 'activation_code' => $data['activation_code'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   
@@ -45,7 +45,7 @@ class User_model extends CI_Model {
 									->result();
 		if(count($query) > 0)
 		{
-			return true;
+			return $query;
 		}
 		else
 		{
@@ -122,11 +122,44 @@ class User_model extends CI_Model {
 
 	function updatePassword($data)
 	{
-		$this->db->set('password', $data['password']);
-		$this->db->where('id_user',  $data['id_user']);
+		$this->db->set('password', md5($data['password']));
+		$this->db->where('activation_code',  $data['activation_code']);
 		$query = $this->db->update('users');
 
 		if($query)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function activateUser($data)
+	{
+		$this->db->set('status', 1);
+		$this->db->where('activation_code',  $data['activation_code']);
+		$query = $this->db->update('users');
+
+		if($query)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function checkUser($code)
+	{
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where("activation_code", $code);
+		$query = $this->db->get()->result();
+
+		if(count($query) > 0)
 		{
 			return true;
 		}

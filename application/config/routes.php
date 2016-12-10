@@ -78,6 +78,8 @@ $route['cart/totalCheck'] = 'cart/totalCheck';
 $route['shipping/sessionshipping'] = 'shipping/sessionShipping';
 $route['user/forgotpassword'] = 'user/forgotPassword';
 $route['user/recoverpassword'] = 'user/recoverPassword';
+$route['user/activate/:any'] = 'user/activateUser';
+$route['user/newpassword/:any'] = 'user/newPassword';
 //////////////
 $route['account/product'] = 'product/index';
 $route['account/product/create'] = 'product/create';
