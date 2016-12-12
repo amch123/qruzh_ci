@@ -44,11 +44,22 @@ require('header.php');
             }
             ?>
             <?php 
-            if(isset($_SESSION['login_status']))
+            if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == 0))
             {
             ?>
                 <div class="alert alert-danger">
                     <strong>Error!</strong> El usuario aún no está activado. Verifique el correo.
+                </div>
+            <?php 
+                unset($_SESSION['login_status']);
+            }
+            ?>
+            <?php 
+            if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == 2))
+            {
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Error!</strong> Ingrese correctamente los datos.
                 </div>
             <?php 
                 unset($_SESSION['login_status']);

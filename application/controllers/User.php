@@ -371,7 +371,13 @@ class User extends CI_Controller {
 		}
 		else
 		{
-			redirect('/');
+			$data = array(
+						'login_status' => 2
+						);
+
+			$this->session->set_userdata($data);
+
+			redirect('login');
 		}
 	}
 

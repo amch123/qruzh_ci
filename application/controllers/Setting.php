@@ -5,6 +5,14 @@ class Setting extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		
+		if(!isset($_SESSION['id_user']))
+		{
+			session_destroy();
+
+			redirect('/');
+		}
+
 		$this->session->set_userdata('account_button', '8');
 		$this->session->set_userdata('button', '0');
 

@@ -100,6 +100,7 @@ $route['account/user/update'] = 'user/update';
 $route['account/payment'] = 'payment/index';
 $route['account/payment/show/:num'] = 'payment/show';
 $route['account/payment/delete/:num'] = 'payment/destroy';
+$route['account/payment/create'] = 'payment/create';
 //////////////
 $route['account/shipping'] = 'shipping/index';
 $route['account/shipping/create'] = 'shipping/create';

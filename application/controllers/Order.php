@@ -5,6 +5,16 @@ class Order extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		
+		if(!isset($_SESSION['id_user']))
+		{
+			session_destroy();
+
+			redirect('/');
+		}
+
+		//////////
+		
 		$this->session->set_userdata('button', '0');
 		$this->session->set_userdata('account_button', '2');
 		$this->session->set_userdata('account_button_client', '1');
