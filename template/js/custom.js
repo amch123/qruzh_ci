@@ -3,10 +3,16 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   if (restore) selObj.selectedIndex=0;
 }
 
+$(window).load(function(){
+	$('#myModal').modal('show');
+});
+
 $(document).ready(function() {
 	$('#crud').DataTable({
 		 responsive: true
 	});
+
+	$('#myModal').modal({backdrop: 'static', keyboard: false})
 
 	$('#quantity').attr('value', '0');
 

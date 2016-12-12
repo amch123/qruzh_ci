@@ -1,3 +1,16 @@
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             <footer id="footer" class="color color-primary">
                 <div class="container">
                     <div class="row">
