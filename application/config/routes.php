@@ -80,6 +80,7 @@ $route['user/forgotpassword'] = 'user/forgotPassword';
 $route['user/recoverpassword'] = 'user/recoverPassword';
 $route['user/activate/:any'] = 'user/activateUser';
 $route['user/newpassword/:any'] = 'user/newPassword';
+$route['state/store/:num'] = 'state/store';
 //////////////
 $route['account/product'] = 'product/index';
 $route['account/product/create'] = 'product/create';
@@ -131,3 +132,4 @@ $route['account/shop/store'] = 'shop/store';
 $route['account/shop/delete/:num'] = 'shop/destroy';
 $route['account/shop/edit/:num'] = 'shop/edit';
 $route['account/shop/update'] = 'shop/update';
+//////////////

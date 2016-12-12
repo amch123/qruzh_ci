@@ -21,6 +21,13 @@ class Wholesale extends CI_Controller {
 		$this->session->set_userdata($setting_data);
 
 		$this->shop2 = new Udp_cart("shop2");
+
+		if(!isset($_SESSION['my_state']))
+		{
+			$_SESSION['url'] = $_SERVER["REQUEST_URI"];
+		}
+
+		$_SESSION['states'] = $this->state_model->getStates();
 	}
 
 	/**

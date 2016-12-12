@@ -1,26 +1,39 @@
-
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label>Escoge tu Estado</label>
-                                        <select class="form-control" name="id_order_status" required>
-                                            <option value="">-Seleccione-</option>
-                                        </select>
+            <?php
+            if(!isset($_SESSION['my_state']))
+            {
+            ?>
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label>Selecciona tu Estado</label>
+                                            <select class="form-control" name="id_state" onchange="MM_jumpMenu('parent',this,0)" required>
+                                                <option value="">-Seleccione-</option>
+                                                <?php
+                                                foreach($_SESSION['states']->result() as $state)
+                                                {
+                                                ?>
+                                                    <option value="<?php echo base_url(); ?>index.php/state/store/<?php echo $state->id_state; ?>"><?php echo $state->state; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
-
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
+            <?php
+            }
+            ?>
             <footer id="footer" class="color color-primary">
                 <div class="container">
                     <div class="row">

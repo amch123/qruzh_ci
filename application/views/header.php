@@ -81,6 +81,9 @@
                                     </div>
                                     <nav class="header-nav-top">
                                         <ul class="nav nav-pills">
+                                            <li class="hidden-xs">
+                                                <a href="<?php echo base_url(); ?>index.php/state/create"><i class="fa fa-angle-right"></i> Selecciona tu estado</a>
+                                            </li>
                                             <?php
                                             if(!isset($_SESSION['id_user']))
                                             {
