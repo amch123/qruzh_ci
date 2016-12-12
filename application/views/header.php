@@ -62,7 +62,7 @@
                         <div class="header-row">
                             <div class="header-column">
                                 <div class="header-logo">
-                                    <a href="#">
+                                    <a href="<?php echo base_url(); ?>index.php">
                                     <img src="<?php echo base_url(); ?>template/img/logo.png" width="141" height="74" data-sticky-width="82" data-sticky-height="40" data-sticky-top="33"></img>
                                     </a>
                                 </div>
