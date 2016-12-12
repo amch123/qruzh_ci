@@ -76,8 +76,10 @@ $route['product/page'] = 'product/index';
 $route['cart/destroy/:any'] = 'cart/destroy';
 $route['cart/totalCheck'] = 'cart/totalCheck';
 $route['shipping/sessionshipping'] = 'shipping/sessionShipping';
-$route['user/forgotpassword'] = 'user/forgotpassword';
-$route['user/recoverpassword'] = 'user/recoverpassword';
+$route['user/forgotpassword'] = 'user/forgotPassword';
+$route['user/recoverpassword'] = 'user/recoverPassword';
+$route['user/activate/:any'] = 'user/activateUser';
+$route['user/newpassword/:any'] = 'user/newPassword';
 //////////////
 $route['account/product'] = 'product/index';
 $route['account/product/create'] = 'product/create';
@@ -98,6 +100,7 @@ $route['account/user/update'] = 'user/update';
 $route['account/payment'] = 'payment/index';
 $route['account/payment/show/:num'] = 'payment/show';
 $route['account/payment/delete/:num'] = 'payment/destroy';
+$route['account/payment/create'] = 'payment/create';
 //////////////
 $route['account/shipping'] = 'shipping/index';
 $route['account/shipping/create'] = 'shipping/create';
@@ -125,3 +128,5 @@ $route['account/shop'] = 'shop/index';
 $route['account/shop/create'] = 'shop/create';
 $route['account/shop/store'] = 'shop/store';
 $route['account/shop/delete/:num'] = 'shop/destroy';
+$route['account/shop/edit/:num'] = 'shop/edit';
+$route['account/shop/update'] = 'shop/update';

@@ -58,13 +58,10 @@ class Shop_model extends CI_Model {
 
 	function updateShop($data)
 	{
-		$this->db->set('id_category', $data['id_category']);
-		$this->db->set('title', $data['title']);
-		$this->db->set('description', $data['description']);
-		$this->db->set('unit_price', $data['unit_price']);
-		$this->db->set('wholesale_price', $data['wholesale_price']);
-		$this->db->where('id_product',  $data['id_product']);
-		$query = $this->db->update('products');
+		$this->db->set('id_state', $data['id_state']);
+		$this->db->set('shop_name', $data['shop_name']);
+		$this->db->where('id_shop',  $data['id_shop']);
+		$query = $this->db->update('shops');
 
 		if($query)
 		{

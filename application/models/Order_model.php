@@ -77,6 +77,29 @@ class Order_model extends CI_Model {
 		}
 	}
 
+	function getAcceptedOrders($id = NULL)
+	{
+		$this->db->select('orders.*, DATE_FORMAT(orders.created_at, "%d-%m-%Y") as custom_created_at, users.*, shipping_companies.*, order_statuses.*');
+		$this->db->from('orders, users, shipping_companies, order_statuses');
+		$this->db->where('orders.id_user = users.id_user');
+		$this->db->where('orders.id_shipping_company = shipping_companies.id_shipping_company');
+		$this->db->where('orders.status = order_statuses.id_order_status');
+
+		$this->db->where('orders.status', 1);
+
+		$this->db->order_by("orders.created_at", "desc");
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0)
+		{
+			return $query;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getOrder($id)
 	{
 		$this->db->select('orders.*, users.*');

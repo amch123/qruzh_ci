@@ -5,6 +5,14 @@ class Payment extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		
+		if(!isset($_SESSION['id_user']))
+		{
+			session_destroy();
+
+			redirect('/');
+		}
+
 		$this->session->set_userdata('account_button', '3');
 		$this->session->set_userdata('account_button_client', '2');
 
@@ -54,6 +62,28 @@ class Payment extends CI_Controller {
 		$data['payments'] = $this->payment_model->getPayments($id);
 
 		$this->load->view('paymentcrud', $data);	
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function create()
+	{
+		$data['orders'] = $this->order_model->getAcceptedOrders();
+
+		$this->load->view('addpayment', $data);
 	}
 
 	/**

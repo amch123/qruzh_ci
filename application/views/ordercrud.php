@@ -50,6 +50,17 @@ require('header.php');
                     }
                     ?>
                     <?php 
+                    if(isset($_SESSION['placed_status']))
+                    {
+                    ?>
+                        <div class="alert alert-success">
+                            <strong>Exito!</strong> Se ha guardado la orden de compra. Debe esperar a ser aprobada para pagar. Gracias.
+                        </div>
+                    <?php 
+                        unset($_SESSION['placed_status']);
+                    }
+                    ?>
+                    <?php 
                     if(isset($_SESSION['delete_status']) && ($_SESSION['delete_status'] == 2))
                     {
                     ?>

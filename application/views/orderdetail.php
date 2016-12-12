@@ -54,7 +54,7 @@ require('header.php');
                                             foreach($statuses->result() as $status)
                                             {
                                             ?>
-                                                <option <?php if($order[0]->status == $status->id_order_status) { ?> selected="true" <?php } ?> value="<?php echo $status->id_order_status; ?>"><?php echo $status->order_status; ?></option>
+                                                <option <?php if($order[0]->status == $status->id_order_status) { ?> selected <?php } ?> value="<?php echo $status->id_order_status; ?>"><?php echo $status->order_status; ?></option>
                                             <?php
                                             }
                                             ?>

@@ -27,6 +27,8 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
+                    <a href="<?php echo base_url(); ?>index.php/account/payment/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Pago</button></a></i></button>
+                    <hr>
                     <?php 
                     if(isset($_SESSION['store_status']))
                     {

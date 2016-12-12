@@ -8,9 +8,9 @@ require('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Tiendas<span></span></h1>
+                            <h1>Pagos<span></span></h1>
                             <ul class="breadcrumb breadcrumb-valign-mid">
-                                <li><a href="<?php echo base_url(); ?>index.php/account/shop/create">Editar Tienda</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/account/payment/create">Agregar Pago</a></li>
                             </ul>
                         </div>
                     </div>
@@ -27,17 +27,6 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
-                    <?php 
-                    if(isset($_SESSION['error']))
-                    {
-                    ?>
-                        <div class="alert alert-danger">
-                            <?php echo $_SESSION['error']; ?>
-                        </div>
-                    <?php 
-                        unset($_SESSION['error']);
-                    }
-                    ?>
                     <div class="featured-boxes">
                         <div class="row">
                             <div class="col-sm-1">
@@ -45,18 +34,18 @@ require('header.php');
                             <div class="col-sm-10">
                                 <div class="featured-box featured-box-primary align-left mt-xlg">
                                     <div class="box-content">
-                                        <form action="<?php echo base_url(); ?>index.php/account/shop/update" id="frmSignUp" method="post">
+                                        <form action="<?php echo base_url(); ?>index.php/account/product/store" id="frmSignUp" method="post">
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <label>Estados</label>
-                                                        <select class="form-control" name="id_state" required>
+                                                        <label>Orden de Compra a Pagar</label>
+                                                        <select class="form-control" name="id_category" required>
                                                             <option value="">-Seleccione-</option>
                                                             <?php
-                                                            foreach($states->result() as $state)
+                                                            foreach($orders->result() as $order)
                                                             {
                                                             ?>
-                                                                <option <?php if($shop[0]->id_state == $state->id_state) { ?> selected <?php } ?> value="<?php echo $state->id_state; ?>"><?php echo $state->state; ?></option>
+                                                                <option value="<?php echo $order->id_order; ?>"><?php echo $order->id_order; ?></option>
                                                             <?php
                                                             }
                                                             ?>
@@ -65,17 +54,8 @@ require('header.php');
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <label>Nombre de la Tienda</label>
-                                                        <input type="text" name="shop_name" value="<?php echo $shop[0]->shop_name; ?>" class="form-control input-lg" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="hidden" name="id_shop" value="<?php echo $shop[0]->id_shop; ?>">
-                                                    <input type="submit" value="Editar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
+                                                    <input type="submit" value="Guardar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
                                                 </div>
                                             </div>
                                         </form>
@@ -91,6 +71,33 @@ require('header.php');
 
         </div>
 
+    </div>
+
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="defaultModalLabel">Agregar Imagen</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="<?php echo base_url(); ?>index.php/account/image/store" id="frmSignUp" enctype="multipart/form-data" method="post">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="file" name="image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="submit" value="Guardar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 <?php
 require('footer.php');
