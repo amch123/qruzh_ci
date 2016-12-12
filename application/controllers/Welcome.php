@@ -47,7 +47,7 @@ class Welcome extends CI_Controller {
 		{
 			$data['recent_products'] = $this->product_model->getRecentProducts();
 
-			$this->load->view('email/payment_status', $data);
+			$this->load->view('index', $data);
 		}
 		else
 		{
