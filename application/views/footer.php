@@ -1,11 +1,21 @@
-            <!-- Modal -->
+
             <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-body">
-                        <p>Some text in the modal.</p>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>Escoge tu Estado</label>
+                                        <select class="form-control" name="id_order_status" required>
+                                            <option value="">-Seleccione-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
