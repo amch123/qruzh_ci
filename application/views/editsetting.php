@@ -92,6 +92,14 @@ require('header.php');
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label>Paypal</label>
+                                                        <input type="text" name="paypal" value="<?php echo $setting[0]->paypal; ?>" class="form-control input-lg" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-12">
                                                     <input type="hidden" name="id_setting" value="<?php echo $setting[0]->id_setting; ?>">
                                                     <input type="submit" value="Editar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">

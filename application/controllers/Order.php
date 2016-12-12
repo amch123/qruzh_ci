@@ -91,7 +91,7 @@ class Order extends CI_Controller {
 		$data['order'] = $this->order_model->getOrder($id);
 
 		$data['orders_products'] = $this->orderproduct_model->getOrdersProducts($id);
-		
+
 		$this->load->view('orderdetail', $data);
 	}
 
@@ -335,7 +335,13 @@ class Order extends CI_Controller {
 				$data['status'] = $this->order_model->storeOrderProduct($data);
 			}
 
+			$this->shop1->destroy();
 
+
+			/////////
+
+			////////
+			
 			$data = array(
 						'placed_status' => '1',
 					);

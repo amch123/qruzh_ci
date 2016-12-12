@@ -33,6 +33,7 @@ class Setting_model extends CI_Model {
 		$this->db->set('tax', $data['tax']);
 		$this->db->set('facebook', $data['facebook']);
 		$this->db->set('twitter', $data['twitter']);
+		$this->db->set('paypal', $data['paypal']);
 		$this->db->where('id_setting',  $data['id_setting']);
 		$query = $this->db->update('settings');
 

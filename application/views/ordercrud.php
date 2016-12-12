@@ -130,7 +130,18 @@ require('header.php');
                                             <?php echo $order->company_name; ?>
                                         </td>
                                         <td>
-                                            <?php echo $order->order_status; ?>
+                                            <?php
+                                            if($order->order_status == 'Aprobada')
+                                            {
+                                            ?>
+                                                <a href="<?php echo base_url(); ?>index.php/payment/create">Pagar</a>
+                                            <?php
+                                            }
+                                            else
+                                            {
+                                                echo $order->order_status; 
+                                            }
+                                            ?>
                                         </td>
                                         <td>
                                             <?php echo $order->custom_created_at; ?>

@@ -79,7 +79,7 @@ class Order_model extends CI_Model {
 
 	function getAcceptedOrders($id = NULL)
 	{
-		$this->db->select('orders.*, DATE_FORMAT(orders.created_at, "%d-%m-%Y") as custom_created_at, users.*, shipping_companies.*, order_statuses.*');
+		$this->db->select('orders.*, DATE_FORMAT(orders.created_at, "%d-%m-%Y") as custom_created_at, users.*, shipping_companies.*, order_statuses.*, orders.status as order_status');
 		$this->db->from('orders, users, shipping_companies, order_statuses');
 		$this->db->where('orders.id_user = users.id_user');
 		$this->db->where('orders.id_shipping_company = shipping_companies.id_shipping_company');
@@ -102,7 +102,7 @@ class Order_model extends CI_Model {
 
 	function getOrder($id)
 	{
-		$this->db->select('orders.*, users.*');
+		$this->db->select('orders.*, users.*, orders.status');
 		$this->db->from('orders, users');
 		$this->db->where('orders.id_user = users.id_user');
 		$this->db->where('orders.id_order = '.$id);

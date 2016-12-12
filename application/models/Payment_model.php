@@ -9,7 +9,7 @@ class Payment_model extends CI_Model {
 
 	function storePayment($data)
 	{
-		$query = $this->db->insert('payments', array('id_order' => $data['id_order'], 'status' => $data['status'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('payments', array('id_order' => $data['id_order'], 'id_user' => $data['id_user'], 'id_payment_type' => $data['id_payment_type'], 'status' => $data['status'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   

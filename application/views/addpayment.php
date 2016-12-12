@@ -34,18 +34,18 @@ require('header.php');
                             <div class="col-sm-10">
                                 <div class="featured-box featured-box-primary align-left mt-xlg">
                                     <div class="box-content">
-                                        <form action="<?php echo base_url(); ?>index.php/account/product/store" id="frmSignUp" method="post">
+                                        <form action="https://www.paypal.com/cgi-bin/webscr" id="frmSignUp" method="post">
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
                                                         <label>Orden de Compra a Pagar</label>
-                                                        <select class="form-control" name="id_category" required>
-                                                            <option value="">-Seleccione-</option>
+                                                         <select class="form-control" name="id_order" onchange="MM_jumpMenu('parent',this,0)" required>
+                                                            <option value="<?php echo base_url(); ?>index.php/payment/create">-Seleccione-</option>
                                                             <?php
                                                             foreach($orders->result() as $order)
                                                             {
                                                             ?>
-                                                                <option value="<?php echo $order->id_order; ?>"><?php echo $order->id_order; ?></option>
+                                                                <option  <?php if($order->id_order == $_SESSION['id_order']) { ?> selected <? } ?>value="<?php echo base_url(); ?>index.php/payment/getValues/<?php echo $order->id_order; ?>">Orden N- <?php echo $order->id_order; ?>. Monto a pagar <?php echo $_SESSION['currency']; ?> <?php echo $order->total_amount; ?></option>
                                                             <?php
                                                             }
                                                             ?>
@@ -55,7 +55,36 @@ require('header.php');
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="submit" value="Guardar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
+                                                    <?php 
+                                                    if(isset($_SESSION['id_order']))
+                                                     {
+                                                    ?>
+                                                        <!-- obligatory form paypal -->
+                                                        <input type='hidden' name='cmd' value='_xclick'>
+                                                        <input type='hidden' name='business' value='Gustavo.bolanos@biowaynetwork.com'>
+                                                        <input type='hidden' name='item_name' value="Orden Nro: <?php echo $_SESSION['id_order']; ?>">   
+                                                        <input type='hidden' name='item_number' value="<?php echo $_SESSION['id_order']; ?>">
+                                                        <input type="hidden"  name='amount' 
+                                                            value="<?php echo $_SESSION['total_amount']; ?>"
+                                                            >
+                                                        <input type='hidden' name='page_style' value='primary'>
+                                                        <input type='hidden' name='no_shipping' value='1'>
+                                                        <input type='hidden' name='return' value='<?php echo base_url(); ?>index.php/payment/store' >
+                                                        <input type='hidden' name='rm' value='2'>
+                                                        <input type='hidden' name='cancel_return' value='<?php echo base_url(); ?>index.php/payment'>
+                                                        <input type='hidden' name='no_note' value='1'>
+                                                        <input type='hidden' name='currency_code' value='MXN'>
+                                                        <input type='hidden' name='cn' value='PP-BuyNowBF'>
+                                                        <input type='hidden' name='custom' value=''>
+                                                        <input type='hidden' name='night_phone_a' value=''>
+                                                        <input type='hidden' name='night_phone_c' value=''>
+                                                        <input type='hidden' name='lc' value='es'>
+                                                        <input type='hidden' name='country' value='MX'>
+                                                    <?php 
+                                                    }
+                                                    ?>
+                                                    <input type="submit" value="Pagar" class="btn btn-warning btn-lg btn-block pull-right mb-xl" data-loading-text="Loading...">
+                                                
                                                 </div>
                                             </div>
                                         </form>
