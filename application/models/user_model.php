@@ -121,7 +121,7 @@ class User_model extends CI_Model {
 		}
 	}
 
-	function updateUser($data)
+	function updatePassword($data)
 	{
 		$this->db->set('password', $data['password']);
 		$this->db->where('id_user',  $data['id_user']);

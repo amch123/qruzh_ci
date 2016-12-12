@@ -145,6 +145,8 @@ class Payment extends CI_Controller {
 						'delete_status' => '1',
 						);
 
+			
+
 			$this->session->set_userdata($data);
 		}
 
