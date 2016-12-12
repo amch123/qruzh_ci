@@ -116,11 +116,11 @@ class Shop extends CI_Controller {
 	{
 		$id = $this->uri->segment(4);
 
-		$data['product'] = $this->product_model->getProduct($id);
+		$data['shop'] = $this->shop_model->getShop($id);
 
-		$data['categories'] = $this->category_model->getCategories();
+		$data['states'] = $this->state_model->getStates();
 
-		$this->load->view('editproduct', $data);
+		$this->load->view('editshop', $data);
 	}
 
 	/**
@@ -138,7 +138,7 @@ class Shop extends CI_Controller {
 	 */
 	public function update()
 	{
-		$data['status'] = $this->orderstatus_model->updateStatus($this->input->post());
+		$data['status'] = $this->shop_model->updateShop($this->input->post());
 		
 		if($data['status'] == true)
 		{
@@ -149,7 +149,7 @@ class Shop extends CI_Controller {
 			$this->session->set_userdata($data);
 		}
 		
-		redirect('account/order');
+		redirect('account/shop');
 	}
 
 	/**

@@ -128,3 +128,5 @@ $route['account/shop'] = 'shop/index';
 $route['account/shop/create'] = 'shop/create';
 $route['account/shop/store'] = 'shop/store';
 $route['account/shop/delete/:num'] = 'shop/destroy';
+$route['account/shop/edit/:num'] = 'shop/edit';
+$route['account/shop/update'] = 'shop/update';

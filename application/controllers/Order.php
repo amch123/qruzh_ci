@@ -227,7 +227,7 @@ class Order extends CI_Controller {
 
 
 			$data = array(
-						'store_status' => '1',
+						'placed_status' => '1',
 					);
 
 			$this->session->set_userdata($data);

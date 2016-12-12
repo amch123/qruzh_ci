@@ -45,7 +45,7 @@ require('header.php');
                     {
                     ?>
                         <div class="alert alert-success">
-                            <strong>Exito!</strong> Se ha cambiado el estatus de la orden.
+                            <strong>Exito!</strong> Se ha editado la tienda.
                         </div>
                     <?php 
                         unset($_SESSION['update_status']);
