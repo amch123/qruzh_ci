@@ -25,7 +25,8 @@ class Payment extends CI_Controller {
         			'currency' => $data['settings'][0]->currency,
         			'tax' => $data['settings'][0]->tax,
         			'facebook' => $data['settings'][0]->facebook,
-        			'twitter' => $data['settings'][0]->twitter
+        			'twitter' => $data['settings'][0]->twitter,
+        			'paypal' => $data['settings'][0]->paypal
 					);
 
 		$this->session->set_userdata($setting_data);
@@ -101,6 +102,37 @@ class Payment extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function getValues()
+	{
+		$id = $this->uri->segment(3);
+
+		$data['order'] = $this->order_model->getOrder($id);
+
+		if(count($data['order']) > 0) 
+		{
+			$_SESSION['id_order'] = $data['order'][0]->id_order;
+
+			$_SESSION['total_amount'] = $data['order'][0]->total_amount;
+		}
+
+		redirect('/payment/create');
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
 	public function show()
 	{
 		$id = $this->uri->segment(4);
@@ -130,8 +162,10 @@ class Payment extends CI_Controller {
 	public function store()
 	{
 		$data = array(
-					'id_order' => $this->input->post('id_ordr'),
-					'status' => 2,
+					'id_order' => $_SESSION['id_order'],
+					'id_user' => $_SESSION['id_user'],
+					'id_payment_type' => 2,
+					'status' => 2
 				);
 
 		$data['status'] = $this->payment_model->storePayment($data);
