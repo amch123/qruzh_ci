@@ -27,6 +27,8 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
+                    <a href="<?php echo base_url(); ?>index.php/account/state/add"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Estado</button></a></i></button>
+                    <hr>
                     <table id="crud" class="table table-responsive">
                         <thead>
                             <tr>
@@ -59,7 +61,13 @@ require('header.php');
                                             <?php echo $state->state; ?>
                                         </td>
                                         <td>
-                                            <?php echo $state->id_shop; ?>
+                                            <?php echo $state->shop_name; ?>
+                                        </td>
+                                         <td>
+                                            <a href="<?php echo base_url(); ?>index.php/account/state/edit/<?php echo $state->id_state; ?>">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            <a href="<?php echo base_url(); ?>index.php/account/state/delete/<?php echo $state->id_state; ?>">
+                                                <i class="fa fa-times" aria-hidden="true"></i></a>
                                         </td>
                                     </tr> 
                             <?php

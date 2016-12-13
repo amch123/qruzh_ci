@@ -34,18 +34,26 @@ require('header.php');
                             <div class="col-sm-10">
                                 <div class="featured-box featured-box-primary align-left mt-xlg">
                                     <div class="box-content">
-                                        <form action="<?php echo base_url(); ?>index.php/account/shipping/store" id="frmSignUp" method="post">
+                                        <form action="<?php echo base_url(); ?>index.php/account/state/store" id="frmSignUp" method="post">
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <label>Selecciona tu Estado</label>
-                                                        <select class="form-control" name="id_state" onchange="MM_jumpMenu('parent',this,0)" required>
+                                                        <label>Nombre del Estado</label>
+                                                        <input type="text" name="state" value="" class="form-control input-lg" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label>Selecciona la tienda</label>
+                                                        <select class="form-control" name="id_shop" required>
                                                             <option value="">-Seleccione-</option>
                                                             <?php
-                                                            foreach($_SESSION['states']->result() as $state)
+                                                            foreach($shops->result() as $shop)
                                                             {
                                                             ?>
-                                                                <option value="<?php echo base_url(); ?>index.php/state/store/<?php echo $state->id_state; ?>"><?php echo $state->state; ?></option>
+                                                                <option value="<?php echo $shop->id_shop; ?>"><?php echo $shop->shop_name; ?></option>
                                                             <?php
                                                             }
                                                             ?>
@@ -71,23 +79,6 @@ require('header.php');
 
         </div>
 
-    </div>
-
-    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="defaultModalLabel">Default Modal Title</h4>
-                </div>
-                <div class="modal-body">
-                    <p></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
     </div>
 <?php
 require('footer.php');

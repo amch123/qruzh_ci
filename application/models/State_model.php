@@ -23,6 +23,20 @@ class State_model extends CI_Model {
 			return false;
 		}
 	}
+	
+	function storeState($data)
+	{
+		$query = $this->db->insert('states', array('state' => $data['state'], 'id_shop' => $data['id_shop']));
+
+		if($query)
+		{   
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 
 /* End of file product.php */
