@@ -134,3 +134,5 @@ $route['account/shop/edit/:num'] = 'shop/edit';
 $route['account/shop/update'] = 'shop/update';
 //////////////
 $route['account/state'] = 'state/index';
+$route['account/state/add'] = 'state/add';
+$route['account/state/store'] = 'state/store';

@@ -68,15 +68,11 @@ class State extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function store()
+	public function create()
 	{
-		$id = $this->uri->segment(3);
+		unset($_SESSION['my_state']);
 
-		$_SESSION['my_state'] = $id;
-
-		$_SESSION['url'] = str_replace("/index.php/", "/", $_SESSION['url']);
-
-		redirect($_SESSION['url']);
+		redirect('/');
 	}
 
 	/**
@@ -94,10 +90,47 @@ class State extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function create()
+	public function add()
 	{
-		unset($_SESSION['my_state']);
+		$data['shops'] = $this->shop_model->getShops();
 
-		redirect('/');
+		$this->load->view('addstate', $data);
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function store()
+	{
+		$data = array(
+					'id_state' => $this->input->post('id_state'),
+					'state' => $this->input->post('state'),
+					'id_shop' => $this->input->post('id_shop')
+				);
+
+		$data['status'] = $this->state_model->storeState($data);
+
+		if($data['status'] == true)
+		{
+			$data = array(
+						'store_status' => '1',
+					);
+
+			$this->session->set_userdata($data);
+		}
+
+		redirect('account/state');
 	}
 }
