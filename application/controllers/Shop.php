@@ -49,9 +49,9 @@ class Shop extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['shops'] = $this->shop_model->getShops();
+		$data['shops'] = $this->state_model->getShops();
 
-		$this->load->view('shopcrud', $data);
+		$this->load->view('shop', $data);
 	}
 
 	/**
