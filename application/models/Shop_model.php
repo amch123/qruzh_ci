@@ -9,9 +9,8 @@ class Shop_model extends CI_Model {
 
 	function getShops()
 	{
-		$this->db->select('shops.*, states.*');
-		$this->db->from('shops, states');
-		$this->db->where('shops.id_state = states.id_state');
+		$this->db->select('*');
+		$this->db->from('shops');
 		$query = $this->db->get();
 
 		if($query->num_rows() > 0)

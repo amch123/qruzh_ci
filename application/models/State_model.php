@@ -23,6 +23,24 @@ class State_model extends CI_Model {
 			return false;
 		}
 	}
+
+	function getState($id)
+	{
+		$this->db->select('states.*, shops.*');
+		$this->db->from('states, shops');
+		$this->db->where('states.id_shop = shops.id_shop');
+		$this->db->where('states.id_state = '.$id);
+		$query = $this->db->get()->result();
+
+		if(count($query) > 0)
+		{
+			return $query;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 	function storeState($data)
 	{
@@ -30,6 +48,37 @@ class State_model extends CI_Model {
 
 		if($query)
 		{   
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function deleteState($id)
+	{
+		$shop = $this->db->delete('states', array('id_state' => $id));
+
+		if($shop)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function updateState($data)
+	{
+		$this->db->set('state', $data['state']);
+		$this->db->set('id_shop', $data['id_shop']);
+		$this->db->where('id_state',  $data['id_state']);
+		$query = $this->db->update('states');
+
+		if($query)
+		{
 			return true;
 		}
 		else

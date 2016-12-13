@@ -27,8 +27,30 @@ require('header.php');
                     ?>
                 </div>
                 <div class="col-md-9">
-                    <a href="<?php echo base_url(); ?>index.php/account/state/add"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Estado</button></a></i></button>
+                    <a href="<?php echo base_url(); ?>index.php/account/state/create"><button type="button" class="btn btn-default mr-xs mb-sm">Agregar Estado</button></a></i></button>
                     <hr>
+                    <?php 
+                    if(isset($_SESSION['store_status']))
+                    {
+                    ?>
+                        <div class="alert alert-success">
+                            <strong>Exito!</strong> Se ha guardado el estado.
+                        </div>
+                    <?php 
+                        unset($_SESSION['store_status']);
+                    }
+                    ?>
+                    <?php 
+                    if(isset($_SESSION['delete_status']))
+                    {
+                    ?>
+                        <div class="alert alert-success">
+                            <strong>Exito!</strong> Se ha borrado el estado.
+                        </div>
+                    <?php 
+                        unset($_SESSION['delete_status']);
+                    }
+                    ?>
                     <table id="crud" class="table table-responsive">
                         <thead>
                             <tr>

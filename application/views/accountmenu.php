@@ -26,10 +26,10 @@
                                 <li <?php if($_SESSION['account_button'] == 7) { ?> class="active" <?php } ?>>
                                     <a href="<?php echo base_url(); ?>index.php/account/state">Estados</a>
                                 </li>
-                                <li <?php if($_SESSION['account_button'] == 7) { ?> class="active" <?php } ?>>
+                                <li <?php if($_SESSION['account_button'] == 8) { ?> class="active" <?php } ?>>
                                     <a href="<?php echo base_url(); ?>index.php/account/shop">Tiendas</a>
                                 </li>
-                                <li <?php if($_SESSION['account_button'] == 8) { ?> class="active" <?php } ?>>
+                                <li <?php if($_SESSION['account_button'] == 9) { ?> class="active" <?php } ?>>
                                     <a href="<?php echo base_url(); ?>index.php/account/setting">Configuraciones</a>
                                 </li>
                                 <li>

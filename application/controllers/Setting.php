@@ -13,7 +13,7 @@ class Setting extends CI_Controller {
 			redirect('/');
 		}
 
-		$this->session->set_userdata('account_button', '8');
+		$this->session->set_userdata('account_button', '9');
 		$this->session->set_userdata('button', '0');
 
 		$this->shop1 = new Udp_cart("shop1");
