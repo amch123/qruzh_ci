@@ -227,6 +227,8 @@ class Product extends CI_Controller {
 	{
 		$data['categories'] = $this->category_model->getCategories();
 
+		$data['shops'] = $this->shop_model->getShops();
+
 		$this->load->view('addproduct', $data);
 	}
 

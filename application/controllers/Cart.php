@@ -204,10 +204,7 @@ class Cart extends CI_Controller {
 	{
 		$id = $this->uri->segment(3);
 
-		if($this->shop1->remove_item($id))
-		{
-			$this->session->set_userdata('delete_status', '1');
-		}
+		$this->session->set_userdata('delete_status', '1');
 
 		redirect('cart');
 	}

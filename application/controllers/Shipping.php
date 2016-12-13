@@ -202,6 +202,11 @@ class Shipping extends CI_Controller {
 	 */
 	public function sessionShipping()
 	{
+		if($this->input->post('wholesalecart') != NULL)
+		{
+			$_SESSION['wholesalecart'] = 1;
+		}
+
 		$id = $this->input->post('id_shipping_company');
 
 		$data['shipping_company'] = $this->shippingcompany_model->getShippingCompany($id);

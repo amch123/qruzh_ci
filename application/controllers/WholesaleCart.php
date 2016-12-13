@@ -49,7 +49,9 @@ class Wholesalecart extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('wholesalecart');
+		$data['shipping_companies'] = $this->shippingcompany_model->getShippingCompanies();
+
+		$this->load->view('wholesalecart', $data);
 	}
 
 	/**
@@ -124,10 +126,7 @@ class Wholesalecart extends CI_Controller {
 	{
 		$id = $this->uri->segment(3);
 
-		if($this->shop2->remove_item($id))
-		{
-			$this->session->set_userdata('delete_status', '1');
-		}
+		$this->shop2->remove_item($id);
 
 		redirect('wholesalecart');
 	}

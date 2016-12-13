@@ -9,7 +9,7 @@ class Order_model extends CI_Model {
 
 	function storeOrder($data)
 	{
-		$query = $this->db->insert('orders', array('id_user' => $data['id_user'], 'id_shipping_company' => $data['id_shipping_company'], 'subtotal' => $data['subtotal'], 'total_tax' => $data['total_tax'], 'total_shipping' => $data['total_shipping'], 'total_amount' => $data['total_amount'], 'status' => '2', 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('orders', array('id_user' => $data['id_user'], 'id_shop' => $data['id_shop'], 'id_shipping_company' => $data['id_shipping_company'], 'subtotal' => $data['subtotal'], 'total_tax' => $data['total_tax'], 'total_shipping' => $data['total_shipping'], 'total_amount' => $data['total_amount'], 'status' => '2', 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   

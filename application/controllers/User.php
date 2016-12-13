@@ -349,6 +349,7 @@ class User extends CI_Controller {
 			{
 				$data = array(
 							'id_user' => $data['user'][0]->id_user,
+							'id_shop' => $data['user'][0]->id_shop,
 							'name' => $data['user'][0]->name,
 							'email' => $data['user'][0]->email,
 							'id_role' => $data['user'][0]->id_role
@@ -552,7 +553,10 @@ class User extends CI_Controller {
 	{
 		$url = $this->uri->segment(1);
 
+		$data['shop'] = $this->shop_model->getShopState($_SESSION['my_state']);
+
 		$data = array(
+					'id_shop' => $data['shop'][0]->id_shop,
 					'name' => $this->input->post('name'),
 					'email' => $this->input->post('email'),
 					'password' => md5($this->input->post('password')),

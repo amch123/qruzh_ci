@@ -119,65 +119,82 @@ require('wholesaleheader.php');
                             if($this->shop2->total_articles() > 0)
                             {
                             ?>
-                                <div class="featured-boxes">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="featured-box featured-box-primary align-left mt-xlg">
-                                                <div class="box-content">
-                                                    <h4 class="heading-primary text-uppercase mb-md">Empresa de Envio</h4>
-                                                    <form action="/" id="frmCalculateShipping" method="post">
+                                <form id="searchForm" action="<?php echo base_url(); ?>index.php/shipping/sessionshipping" method="post">
+                                    <div class="featured-boxes">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="featured-box featured-box-primary align-left mt-xlg">
+                                                    <div class="box-content">
+                                                        <h4 class="heading-primary text-uppercase mb-md">Empresa de Envio</h4>
                                                         <div class="row">
                                                             <div class="form-group">
                                                                 <div class="col-md-12">
                                                                     <label>Empresa</label>
-                                                                    <select class="form-control">
+                                                                    <select name="id_shipping_company" class="form-control" required>
                                                                         <option value="">-Seleccione-</option>
+                                                                        <?php
+                                                                         foreach($shipping_companies->result() as $shipping_company)
+                                                                        {        
+                                                                        ?>
+                                                                            <option value="<?php echo $shipping_company->id_shipping_company; ?>"><?php echo $shipping_company->company_name; ?></option>
+                                                                        <?php
+                                                                        }       
+                                                                        ?>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="featured-box featured-box-primary align-left mt-xlg">
+                                                    <div class="box-content">
+                                                        <h4 class="heading-primary text-uppercase mb-md">Total</h4>
+                                                        <table class="cart-totals">
+                                                            <tbody>
+                                                                <tr class="cart-subtotal">
+                                                                    <th>
+                                                                        <strong>Subtotal</strong>
+                                                                    </th>
+                                                                    <td>
+                                                                        <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $this->shop2->total_cart(); ?></span></strong>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="tax">
+                                                                    <th>
+                                                                        <strong>Impuesto (<?php echo $_SESSION['tax']; ?> %)</strong>
+                                                                    </th>
+                                                                    <td>
+                                                                        <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $tax = ($this->shop2->total_cart() * 12)/100; ?></span></strong>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="total">
+                                                                    <th>
+                                                                        <strong>Total</strong>
+                                                                    </th>
+                                                                    <td>
+                                                                        <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $tax + $this->shop2->total_cart(); ?></span></strong>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="featured-box featured-box-primary align-left mt-xlg">
-                                                <div class="box-content">
-                                                    <h4 class="heading-primary text-uppercase mb-md">Total</h4>
-                                                    <table class="cart-totals">
-                                                        <tbody>
-                                                            <tr class="cart-subtotal">
-                                                                <th>
-                                                                    <strong>Subtotal</strong>
-                                                                </th>
-                                                                <td>
-                                                                    <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $this->shop2->total_cart(); ?></span></strong>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="total">
-                                                                <th>
-                                                                    <strong>Total</strong>
-                                                                </th>
-                                                                <td>
-                                                                    <strong><span class="amount">$431</span></strong>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="actions-continue">
+                                                <input type="hidden" name="wholesalecart" value="1">
+                                                <button type="submit" class="btn pull-right btn-primary btn-lg">Proceder a Pagar <i class="fa fa-angle-right ml-xs"></i></button>
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="actions-continue">
-                                            <button type="submit" class="btn pull-right btn-primary btn-lg">Proceder a Pagar <i class="fa fa-angle-right ml-xs"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             <?php
                             }
                             ?>

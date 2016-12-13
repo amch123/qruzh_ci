@@ -200,7 +200,7 @@ require('header.php');
                                                                 </tr>
                                                                 <tr class="tax">
                                                                     <th>
-                                                                        <strong>Tax (<?php echo $_SESSION['tax']; ?> %)</strong>
+                                                                        <strong>Impuesto (<?php echo $_SESSION['tax']; ?> %)</strong>
                                                                     </th>
                                                                     <td>
                                                                         <strong><span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $tax = ($this->shop1->total_cart() * 12)/100; ?></span></strong>

@@ -9,7 +9,7 @@ class User_model extends CI_Model {
 
 	function storeUser($data)
 	{
-		$query = $this->db->insert('users', array('name' => $data['name'], 'email' => $data['email'], 'password' => $data['password'], 'id_role' => $data['id_role'], 'status' => $data['status'], 'activation_code' => $data['activation_code'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('users', array('id_shop' => $data['id_shop'], 'name' => $data['name'], 'email' => $data['email'], 'password' => $data['password'], 'id_role' => $data['id_role'], 'status' => $data['status'], 'activation_code' => $data['activation_code'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   

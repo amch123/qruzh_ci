@@ -9,7 +9,7 @@ class Payment_model extends CI_Model {
 
 	function storePayment($data)
 	{
-		$query = $this->db->insert('payments', array('id_order' => $data['id_order'], 'id_user' => $data['id_user'], 'id_payment_type' => $data['id_payment_type'], 'status' => $data['status'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('payments', array('id_order' => $data['id_order'], 'id_user' => $data['id_user'], 'id_shop' => $data['id_shop'], 'id_payment_type' => $data['id_payment_type'], 'status' => $data['status'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   
@@ -21,17 +21,18 @@ class Payment_model extends CI_Model {
 		}
 	}
 
-	function getPayments($id = NULL)
+	function getPayments($data)
 	{
 		$this->db->select('payments.*, DATE_FORMAT(payments.created_at, "%d-%m-%Y") as custom_created_at, orders.*, users.*');
 		$this->db->where('payments.id_order = orders.id_order');
 		$this->db->where('payments.id_user = users.id_user');
 
-		if($id != NULL)
+		if($data['id'] != NULL)
 		{
-			$this->db->where('payments.id_user', $id);
+			$this->db->where('payments.id_user', $data['id']);
 		}
 
+		$this->db->where('payments.id_shop', $data['id_shop']);
 		$this->db->from('payments, orders, users');
 		$this->db->order_by("payments.created_at", "desc");
 		$query = $this->db->get();

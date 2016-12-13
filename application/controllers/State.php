@@ -23,10 +23,7 @@ class State extends CI_Controller {
 
 		$_SESSION['my_state'] = $id;
 
-		if($_SESSION['url'] == "/index.php/")
-		{
-			$_SESSION['url'] = "/";
-		}
+		$_SESSION['url'] = str_replace("/index.php/", "/", $_SESSION['url']);
 
 		redirect($_SESSION['url']);
 	}

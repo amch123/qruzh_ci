@@ -99,27 +99,55 @@ require('header.php');
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        foreach($this->shop1->get_content() as $items)
+                                                        if(isset($_SESSION['wholesalecart']))
                                                         {
+                                                            foreach($this->shop2->get_content() as $items)
+                                                            {
                                                         ?>
-                                                            <tr class="cart_table_item">
-                                                                <td class="product-thumbnail">
-                                                                    <img width="100" height="100" src="<?php echo base_url(); ?>uploads/<?php echo $items['options']['image']; ?>" class="img-responsive"></img>
-                                                                </td>
-                                                                <td class="product-name">
-                                                                    <a href="shop-product-sidebar.html"><?php echo $items['name']; ?></a>
-                                                                </td>
-                                                                <td class="product-price">
-                                                                    <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['price']; ?></span>
-                                                                </td>
-                                                                <td class="product-quantity">
-                                                                    <?php echo $items['qty']; ?>
-                                                                </td>
-                                                                <td class="product-subtotal">
-                                                                    <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['qty']*$items['price']; ?></span>
-                                                                </td>
-                                                            </tr>
+                                                                <tr class="cart_table_item">
+                                                                    <td class="product-thumbnail">
+                                                                        <img width="100" height="100" src="<?php echo base_url(); ?>uploads/<?php echo $items['options']['image']; ?>" class="img-responsive"></img>
+                                                                    </td>
+                                                                    <td class="product-name">
+                                                                        <a href="shop-product-sidebar.html"><?php echo $items['name']; ?></a>
+                                                                    </td>
+                                                                    <td class="product-price">
+                                                                        <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['price']; ?></span>
+                                                                    </td>
+                                                                    <td class="product-quantity">
+                                                                        <?php echo $items['qty']; ?>
+                                                                    </td>
+                                                                    <td class="product-subtotal">
+                                                                        <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['qty']*$items['price']; ?></span>
+                                                                    </td>
+                                                                </tr>
                                                         <?php
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            foreach($this->shop1->get_content() as $items)
+                                                            {
+                                                        ?>
+                                                                <tr class="cart_table_item">
+                                                                    <td class="product-thumbnail">
+                                                                        <img width="100" height="100" src="<?php echo base_url(); ?>uploads/<?php echo $items['options']['image']; ?>" class="img-responsive"></img>
+                                                                    </td>
+                                                                    <td class="product-name">
+                                                                        <a href="shop-product-sidebar.html"><?php echo $items['name']; ?></a>
+                                                                    </td>
+                                                                    <td class="product-price">
+                                                                        <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['price']; ?></span>
+                                                                    </td>
+                                                                    <td class="product-quantity">
+                                                                        <?php echo $items['qty']; ?>
+                                                                    </td>
+                                                                    <td class="product-subtotal">
+                                                                        <span class="amount"><?php echo $_SESSION['currency']; ?> <?php echo $items['qty']*$items['price']; ?></span>
+                                                                    </td>
+                                                                </tr>
+                                                        <?php
+                                                            }
                                                         }
                                                         ?>
                                                     </tbody>
@@ -130,40 +158,86 @@ require('header.php');
                                                 <h4 class="heading-primary">Cart Totals</h4>
                                                 <table class="cart-totals">
                                                     <tbody>
-                                                        <tr class="cart-subtotal">
-                                                            <th>
-                                                                <strong>Subtotal del Carro</strong>
-                                                            </th>
-                                                            <td>
-                                                                <strong>
-                                                                <span class="amount">
-                                                                    <?php echo $_SESSION['currency']; ?> 
-                                                                    <?php echo (($this->shop1->total_cart() * 12)/100) +$this->shop1->total_cart(); ?>
-                                                                </span>
-                                                                </strong>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="shipping">
-                                                            <th>
-                                                                Envio (<?php echo $_SESSION['shipping_company']; ?>)
-                                                            </th>
-                                                            <td>
-                                                                <?php echo $_SESSION['currency']; ?> <?php echo $_SESSION['shipping_price']; ?>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="total">
-                                                            <th>
-                                                                <strong>Order Total</strong>
-                                                            </th>
-                                                            <td>
-                                                                <strong>
-                                                                <span class="amount">
-                                                                <?php echo $_SESSION['currency']; ?>
-                                                                <?php echo (($this->shop1->total_cart() * 12)/100) +$this->shop1->total_cart() + $_SESSION['shipping_price']; ?>
-                                                                </span>
-                                                                </strong>
-                                                            </td>
-                                                        </tr>
+                                                        <?php
+                                                        if(isset($_SESSION['wholesalecart']))
+                                                        {
+                                                        ?>
+                                                            <tr class="cart-subtotal">
+                                                                <th>
+                                                                    <strong>Subtotal del Carro</strong>
+                                                                </th>
+                                                                <td>
+                                                                    <strong>
+                                                                    <span class="amount">
+                                                                        <?php echo $_SESSION['currency']; ?> 
+                                                                        <?php echo (($this->shop2->total_cart() * 12)/100) + $this->shop2->total_cart(); ?>
+                                                                    </span>
+                                                                    </strong>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="shipping">
+                                                                <th>
+                                                                    Envio (<?php echo $_SESSION['shipping_company']; ?>)
+                                                                </th>
+                                                                <td>
+                                                                    <?php echo $_SESSION['currency']; ?> <?php echo $_SESSION['shipping_price']; ?>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="total">
+                                                                <th>
+                                                                    <strong>Order Total</strong>
+                                                                </th>
+                                                                <td>
+                                                                    <strong>
+                                                                    <span class="amount">
+                                                                    <?php echo $_SESSION['currency']; ?>
+                                                                    <?php echo (($this->shop1->total_cart() * 12)/100) +$this->shop2->total_cart() + $_SESSION['shipping_price']; ?>
+                                                                    </span>
+                                                                    </strong>
+                                                                </td>
+                                                            </tr>
+                                                        <?php
+                                                        }
+                                                        else
+                                                        {
+                                                        ?>
+                                                            <tr class="cart-subtotal">
+                                                                <th>
+                                                                    <strong>Subtotal del Carro</strong>
+                                                                </th>
+                                                                <td>
+                                                                    <strong>
+                                                                    <span class="amount">
+                                                                        <?php echo $_SESSION['currency']; ?> 
+                                                                        <?php echo (($this->shop1->total_cart() * 12)/100) +$this->shop1->total_cart(); ?>
+                                                                    </span>
+                                                                    </strong>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="shipping">
+                                                                <th>
+                                                                    Envio (<?php echo $_SESSION['shipping_company']; ?>)
+                                                                </th>
+                                                                <td>
+                                                                    <?php echo $_SESSION['currency']; ?> <?php echo $_SESSION['shipping_price']; ?>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="total">
+                                                                <th>
+                                                                    <strong>Order Total</strong>
+                                                                </th>
+                                                                <td>
+                                                                    <strong>
+                                                                    <span class="amount">
+                                                                    <?php echo $_SESSION['currency']; ?>
+                                                                    <?php echo (($this->shop1->total_cart() * 12)/100) +$this->shop1->total_cart() + $_SESSION['shipping_price']; ?>
+                                                                    </span>
+                                                                    </strong>
+                                                                </td>
+                                                            </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </tbody>
                                                 </table>
                                             </div>

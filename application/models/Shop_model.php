@@ -42,6 +42,24 @@ class Shop_model extends CI_Model {
 		}
 	}
 
+	function getShopState($id)
+	{
+		$this->db->select('shops.*, states.*');
+		$this->db->from('shops, states');
+		$this->db->where('shops.id_state = states.id_state');
+		$this->db->where('states.id_shop = '.$id);
+		$query = $this->db->get()->result();
+
+		if(count($query) > 0)
+		{
+			return $query;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function deleteShop($id)
 	{
 		$shop = $this->db->delete('shops', array('id_shop' => $id));
