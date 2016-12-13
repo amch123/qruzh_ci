@@ -17,7 +17,7 @@
                                                 foreach($_SESSION['states']->result() as $state)
                                                 {
                                                 ?>
-                                                    <option value="<?php echo base_url(); ?>index.php/state/store/<?php echo $state->id_state; ?>"><?php echo $state->state; ?></option>
+                                                    <option value="<?php echo base_url(); ?>index.php/state/storeState/<?php echo $state->id_state; ?>"><?php echo $state->state; ?></option>
                                                 <?php
                                                 }
                                                 ?>
