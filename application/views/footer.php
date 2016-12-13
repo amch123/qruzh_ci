@@ -6,6 +6,9 @@
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">
+                            <div class="modal-header">
+                                <img src="<?php echo base_url(); ?>template/img/logo.png" width="141" height="74" data-sticky-width="82" data-sticky-height="40" data-sticky-top="33"></img>
+                            </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="form-group">
@@ -25,7 +28,9 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
+                            <div class="modal-footer">
+                                
                             </div>
                         </div>
 
