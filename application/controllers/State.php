@@ -154,4 +154,92 @@ class State extends CI_Controller {
 
 		redirect($_SESSION['url']);
 	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function edit()
+	{
+		$id = $this->uri->segment(4);
+
+		$data['state'] = $this->state_model->getState($id);
+
+		$data['shops'] = $this->shop_model->getShops();
+
+		$this->load->view('editstate', $data);
+	}
+
+	/**
+	 * Update Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/category/destroy/{$id}
+	 *
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see http://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function update()
+	{
+		$data['status'] = $this->state_model->updateState($this->input->post());
+		
+		if($data['status'] == true)
+		{
+			$data = array(
+						'update_status' => '1',
+					);
+
+			$this->session->set_userdata($data);
+		}
+		
+		redirect('account/state/edit/'.$this->input->post('id_state'));
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function destroy()
+	{
+		$id = $this->uri->segment(4);
+
+		$data['status'] = $this->state_model->deleteState($id);
+
+		if($data['status'] == true)
+		{
+			$data = array(
+						'delete_status' => '1',
+						);
+
+			$this->session->set_userdata($data);
+		}
+
+		redirect('account/state');
+	}
 }
