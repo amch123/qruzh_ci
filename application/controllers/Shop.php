@@ -24,10 +24,7 @@ class Shop extends CI_Controller {
 
 		$this->shop1 = new Udp_cart("shop1");
 
-		if(!isset($_SESSION['my_state']))
-		{
-			$_SESSION['url'] = $_SERVER["REQUEST_URI"];
-		}
+		$_SESSION['url'] = $_SERVER["REQUEST_URI"];
 
 		$_SESSION['states'] = $this->state_model->getStates();
 	}
