@@ -46,7 +46,11 @@ class User extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['users'] = $this->user_model->getUsers();
+		$data = array(
+					'id_shop' => $_SESSION['id_shop']
+				);
+
+		$data['users'] = $this->user_model->getUsers($data);
 
 		$this->load->view('usercrud', $data);
 	}
@@ -550,19 +554,38 @@ class User extends CI_Controller {
 	{
 		$url = $this->uri->segment(1);
 
-		$data['shop'] = $this->shop_model->getShopState($_SESSION['my_state']);
+		if(isset($_SESSION['id_role']) && ($_SESSION['id_role'] == 1)) 
+		{
+			$data['shop'] = $this->shop_model->getShopState($_SESSION['my_state']);
 
-		$data = array(
-					'id_shop' => $data['shop'][0]->id_shop,
-					'name' => $this->input->post('name'),
-					'email' => $this->input->post('email'),
-					'password' => md5($this->input->post('password')),
-					'id_role' => $this->input->post('id_role'),
-					'status' => 0,
-					'activation_code' => md5($this->input->post('email')),
-				);
+			$data = array(
+						'id_shop' => $data['shop'][0]->id_shop,
+						'name' => $this->input->post('name'),
+						'email' => $this->input->post('email'),
+						'password' => md5($this->input->post('password')),
+						'id_role' => $this->input->post('id_role'),
+						'status' => 0,
+						'activation_code' => md5($this->input->post('email')),
+					);
 
-		$data['status'] = $this->user_model->storeUser($data);
+			$data['status'] = $this->user_model->storeUser($data);
+		}
+		else
+		{
+			$data['shop'] = $this->shop_model->getShopState($_SESSION['my_state']);
+
+			$data = array(
+						'id_shop' => $data['shop'][0]->id_shop,
+						'name' => $this->input->post('name'),
+						'email' => $this->input->post('email'),
+						'password' => md5($this->input->post('password')),
+						'id_role' => $this->input->post('id_role'),
+						'status' => 0,
+						'activation_code' => md5($this->input->post('email')),
+					);
+
+			$data['status'] = $this->user_model->storeUser($data);
+		}
 
 		if($data['status'] == true)
 		{

@@ -42,11 +42,14 @@ require('header.php');
                                                         <select class="form-control" name="id_order" required>
                                                             <option value="">-Seleccione-</option>
                                                             <?php
-                                                            foreach($orders->result() as $order)
+                                                            if($orders != "")
                                                             {
+                                                                foreach($orders->result() as $order)
+                                                                {
                                                             ?>
-                                                                <option value="<?php echo $order->id_order; ?>">Cliente: <?php echo $order->name; ?> - <?php echo $_SESSION['currency']; ?> <?php echo $order->total_amount; ?> - Fecha de Registro: <?php echo $order->custom_created_at; ?></option>
+                                                                <option value="<?php echo $order->id_order; ?>">Enviar por: <?php echo $order->company_name; ?>. Cliente: <?php echo $order->name; ?> - <?php echo $_SESSION['currency']; ?> <?php echo $order->total_amount; ?> - Fecha de Registro: <?php echo $order->custom_created_at; ?></option>
                                                             <?php
+                                                                }
                                                             }
                                                             ?>
                                                         </select>

@@ -42,11 +42,14 @@ require('header.php');
                                                          <select class="form-control" name="id_order" onchange="MM_jumpMenu('parent',this,0)" required>
                                                             <option value="<?php echo base_url(); ?>index.php/payment/create">-Seleccione-</option>
                                                             <?php
-                                                            foreach($orders->result() as $order)
+                                                            if($orders != "")
                                                             {
+                                                                foreach($orders->result() as $order)
+                                                                {
                                                             ?>
-                                                                <option  <?php if($order->id_order == $_SESSION['id_order']) { ?> selected <? } ?>value="<?php echo base_url(); ?>index.php/payment/getValues/<?php echo $order->id_order; ?>">Orden N- <?php echo $order->id_order; ?>. Monto a pagar <?php echo $_SESSION['currency']; ?> <?php echo $order->total_amount; ?></option>
+                                                                    <option  <?php if($order->id_order == $_SESSION['id_order']) { ?> selected <? } ?>value="<?php echo base_url(); ?>index.php/payment/getValues/<?php echo $order->id_order; ?>">Orden N- <?php echo $order->id_order; ?>. Monto a pagar <?php echo $_SESSION['currency']; ?> <?php echo $order->total_amount; ?></option>
                                                             <?php
+                                                                }
                                                             }
                                                             ?>
                                                         </select>

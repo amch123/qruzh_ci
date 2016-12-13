@@ -51,7 +51,7 @@ class Order_model extends CI_Model {
 		}
 	}
 
-	function getOrders($id = NULL)
+	function getOrders($data)
 	{
 		$this->db->select('orders.*, DATE_FORMAT(orders.created_at, "%d-%m-%Y") as custom_created_at, users.*, shipping_companies.*, order_statuses.*');
 		$this->db->from('orders, users, shipping_companies, order_statuses');
@@ -59,11 +59,12 @@ class Order_model extends CI_Model {
 		$this->db->where('orders.id_shipping_company = shipping_companies.id_shipping_company');
 		$this->db->where('orders.status = order_statuses.id_order_status');
 
-		if($id != NULL)
+		if($data['id_user'] != NULL)
 		{
-			$this->db->where('orders.id_user', $id);
+			$this->db->where('orders.id_user', $data['id_user']);
 		}
 
+		$this->db->where('orders.id_shop', $data['id_shop']);
 		$this->db->order_by("orders.created_at", "desc");
 		$query = $this->db->get();
 
@@ -77,14 +78,21 @@ class Order_model extends CI_Model {
 		}
 	}
 
-	function getAcceptedOrders($id = NULL)
+	function getAcceptedOrders($data)
 	{
 		$this->db->select('orders.*, DATE_FORMAT(orders.created_at, "%d-%m-%Y") as custom_created_at, users.*, shipping_companies.*, order_statuses.*, orders.status as order_status');
 		$this->db->from('orders, users, shipping_companies, order_statuses');
 		$this->db->where('orders.id_user = users.id_user');
 		$this->db->where('orders.id_shipping_company = shipping_companies.id_shipping_company');
 		$this->db->where('orders.status = order_statuses.id_order_status');
+		
+		if($data['id_user'] != NULL)
+		{
+			$this->db->where('orders.id_user', $data['id_user']);
+		}
 
+		$this->db->where('orders.id_shop', $data['id_shop']);
+		
 		$this->db->where('orders.status', 1);
 
 		$this->db->order_by("orders.created_at", "desc");

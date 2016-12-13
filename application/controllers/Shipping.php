@@ -5,7 +5,7 @@ class Shipping extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session->set_userdata('account_button', '3');
+		$this->session->set_userdata('account_button', '4');
 		$this->session->set_userdata('account_button_client', '3');
 
 		$data['settings'] = $this->setting_model->getSettings(1);
@@ -48,14 +48,22 @@ class Shipping extends CI_Controller {
 	{
 		if(isset($_SESSION['id_role']) && ($_SESSION['id_role'] == 2))
 		{
-			$id = $_SESSION['id_user'];
+			$data['shop'] = $this->shop_model->getShopState($_SESSION['my_state']);
+
+			$data = array(
+					'id_user' => $_SESSION['id_user'],
+					'id_shop' => $data['shop'][0]->id_shop
+				);
 		}
 		else
 		{
-			$id = "";
+			$data = array(
+					'id_user' => '',
+					'id_shop' => $_SESSION['id_shop']
+				);
 		}
 
-		$data['shippings'] = $this->shipping_model->getShippings($id);
+		$data['shippings'] = $this->shipping_model->getShippings($data);
 
 		$this->load->view('shippingcrud', $data);	
 	}
@@ -101,7 +109,26 @@ class Shipping extends CI_Controller {
 	 */
 	public function create()
 	{
-		$data['orders'] = $this->order_model->getOrders();
+		if(isset($_SESSION['id_role']) && ($_SESSION['id_role'] == 2))
+		{
+			$data['shop'] = $this->shop_model->getShopState($_SESSION['my_state']);
+
+			$id = $_SESSION['id_user'];
+
+			$data = array(
+					'id_user' => $_SESSION['id_user'],
+					'id_shop' => $data['shop'][0]->id_shop
+				);
+		}
+		else
+		{
+			$data = array(
+					'id_user' => '',
+					'id_shop' => $_SESSION['id_shop']
+				);
+		}
+
+		$data['orders'] = $this->order_model->getOrders($data);
 
 		$data['shipping_companies'] = $this->shippingcompany_model->getShippingCompanies();
 
@@ -132,6 +159,7 @@ class Shipping extends CI_Controller {
 		$data = array(
 					'id_user' => $data['order'][0]->id_user,
 					'id_order' => $id,
+					'id_shop' => $_SESSION['id_shop'],
 					'id_shipping_company' => $this->input->post('id_shipping_company')
 				);
 

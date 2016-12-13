@@ -9,7 +9,7 @@ class Shipping_model extends CI_Model {
 
 	function storeShipping($data)
 	{
-		$query = $this->db->insert('shippings', array('id_user' => $data['id_user'], 'id_order' => $data['id_order'], 'id_shipping_company' => $data['id_shipping_company'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('shippings', array('id_user' => $data['id_user'], 'id_order' => $data['id_order'], 'id_shop' => $data['id_shop'], 'id_shipping_company' => $data['id_shipping_company'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   
@@ -21,7 +21,7 @@ class Shipping_model extends CI_Model {
 		}
 	}
 
-	function getShippings($id = NULL)
+	function getShippings($data)
 	{
 		$this->db->select('shippings.*, orders.*, users.*, shipping_companies.*, DATE_FORMAT(shippings.created_at, "%d-%m-%Y") as custom_created_at');
 		$this->db->from('shippings, orders, users, shipping_companies');
@@ -29,10 +29,12 @@ class Shipping_model extends CI_Model {
 		$this->db->where('shippings.id_user = users.id_user');
 		$this->db->where('shippings.id_shipping_company = shipping_companies.id_shipping_company');
 
-		if($id != NULL)
+		if($data['id_user'] != NULL)
 		{
-			$this->db->where('shippings.id_user', $id);
+			$this->db->where('shippings.id_user', $data['id_user']);
 		}
+
+		$this->db->where('shippings.id_shop', $data['id_shop']);
 
 		$this->db->order_by("shippings.created_at", "desc");
 		$query = $this->db->get();

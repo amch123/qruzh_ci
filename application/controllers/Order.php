@@ -52,14 +52,24 @@ class Order extends CI_Controller {
 	{
 		if(isset($_SESSION['id_role']) && ($_SESSION['id_role'] == 2))
 		{
+			$data['shop'] = $this->shop_model->getShopState($_SESSION['my_state']);
+
 			$id = $_SESSION['id_user'];
+
+			$data = array(
+					'id' => $id,
+					'id_shop' => $data['shop'][0]->id_shop
+				);
 		}
 		else
 		{
-			$id = "";
+			$data = array(
+					'id' => '',
+					'id_shop' => $_SESSION['id_shop']
+				);
 		}
 
-		$data['orders'] = $this->order_model->getOrders($id);
+		$data['orders'] = $this->order_model->getOrders($data);
 
 		$this->load->view('ordercrud', $data);
 	}

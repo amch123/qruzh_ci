@@ -9,7 +9,7 @@ class Product_model extends CI_Model {
 
 	function storeProduct($data)
 	{
-		$query = $this->db->insert('products', array('id_category' => $data['id_category'], 'title' => $data['title'], 'description' => $data['description'], 'unit_price' => $data['unit_price'], 'wholesale_price' => $data['wholesale_price'], 'stock' => $data['stock'], 'image' => $data['image'], 'created_at' => date('Y-m-d')));
+		$query = $this->db->insert('products', array('id_shop' => $data['id_shop'], 'id_category' => $data['id_category'], 'title' => $data['title'], 'description' => $data['description'], 'unit_price' => $data['unit_price'], 'wholesale_price' => $data['wholesale_price'], 'stock' => $data['stock'], 'image' => $data['image'], 'created_at' => date('Y-m-d')));
 
 		if($query)
 		{   
@@ -25,11 +25,12 @@ class Product_model extends CI_Model {
         return $this->db->count_all("products");
     }
 
-	function getProducts($limit = NULL, $start = NULL)
+	function getProducts($data, $limit = NULL, $start = NULL)
 	{
 		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
 		$this->db->limit($limit, $start);
 		$this->db->from('products');
+		$this->db->where('id_shop', $data['id_shop']);
 		$this->db->order_by("created_at", "desc");
 		$query = $this->db->get();
 

@@ -94,24 +94,6 @@ require('header.php');
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <label>Tienda</label>
-                                                        <select class="form-control" name="id_category" required>
-                                                            <option value="">-Seleccione-</option>
-                                                            <?php
-                                                            foreach($shops->result() as $shop)
-                                                            {
-                                                            ?>
-                                                                <option value="<?php echo $shop->id_shop; ?>"><?php echo $shop->shop_name; ?></option>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
                                                         <label>Titulo</label>
                                                         <input type="text" name="title" value="" class="form-control input-lg" required>
                                                     </div>

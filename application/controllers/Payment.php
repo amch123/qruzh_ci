@@ -96,7 +96,26 @@ class Payment extends CI_Controller {
 	 */
 	public function create()
 	{
-		$data['orders'] = $this->order_model->getAcceptedOrders();
+		if($_SESSION['id_role'] == 1)
+		{
+			$data = array(
+					'id_user' => $_SESSION['id_user'],
+					'id_shop' => $_SESSION['id_shop']
+				);
+
+			$data['orders'] = $this->order_model->getAcceptedOrders($data);
+		}
+		else
+		{
+			$data['shop'] = $this->shop_model->getShopState($_SESSION['my_state']);
+
+			$data = array(
+					'id_user' => $_SESSION['id_user'],
+					'id_shop' => $data['shop'][0]->id_shop
+				);
+
+			$data['orders'] = $this->order_model->getAcceptedOrders($data);
+		}
 
 		$this->load->view('addpayment', $data);
 	}

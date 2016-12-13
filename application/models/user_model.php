@@ -53,11 +53,12 @@ class User_model extends CI_Model {
 		}
 	}
 
-	function getUsers()
+	function getUsers($data)
 	{
 		$this->db->select('*, DATE_FORMAT(created_at, "%d-%m-%Y") as custom_created_at');
 		$this->db->from('users');
 		$this->db->order_by("created_at", "desc");
+		$this->db->where('id_shop', $data['id_shop']);
 		$query = $this->db->get();
 
 		if($query->num_rows() > 0)

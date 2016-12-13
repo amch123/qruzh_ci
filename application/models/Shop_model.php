@@ -45,7 +45,7 @@ class Shop_model extends CI_Model {
 	{
 		$this->db->select('shops.*, states.*');
 		$this->db->from('shops, states');
-		$this->db->where('shops.id_state = states.id_state');
+		$this->db->where('shops.id_shop = states.id_shop');
 		$this->db->where('states.id_shop = '.$id);
 		$query = $this->db->get()->result();
 

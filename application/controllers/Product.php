@@ -50,7 +50,11 @@ class Product extends CI_Controller {
 
 		if($url == "account")
 		{
-			$data['products'] = $this->product_model->getProducts();
+			$data = array(
+					'id_shop' => $_SESSION['id_shop']
+				);
+
+			$data['products'] = $this->product_model->getProducts($data);
 
 			$this->load->view('productcrud', $data);
 		}
@@ -92,7 +96,15 @@ class Product extends CI_Controller {
 
 	        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-	        $data['products'] = $this->product_model->getProducts($config["per_page"], $page);
+	        $data['shop'] = $this->shop_model->getShopState($_SESSION['my_state']);
+
+			$id = $_SESSION['id_user'];
+
+			$data = array(
+					'id_shop' => $data['shop'][0]->id_shop
+				);
+
+	        $data['products'] = $this->product_model->getProducts($data['shop'][0]->id_shop, $config["per_page"], $page);
 
         	$data["links"] = $this->pagination->create_links();
 
@@ -304,6 +316,7 @@ class Product extends CI_Controller {
 	public function store()
 	{
 		$data = array(
+					'id_shop' => $_SESSION['id_shop'],
 					'id_category' => $this->input->post('id_category'),
 					'title' => $this->input->post('title'),
 					'description' => $this->input->post('description'),
